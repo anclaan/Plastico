@@ -22,3 +22,12 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+$factory->define(App\Event::class, function (Faker\Generator $faker) {
+
+    return [
+        'title' => $faker->sentence(4),
+        'start' => $faker->dateTimeThisMonth(),
+        'end' => $faker->dateTimeThisMonth(),
+        'color' => $faker->hexColor,
+    ];
+});

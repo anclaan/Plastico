@@ -29,10 +29,17 @@ Route::prefix('admin')->group(function(){
   Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
   Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
   Route::get('/', 'AdminController@index')->name('admin.dashboard');
-  Route::get('/calendar','AdminController@calendar');
+  // Route::get('/calendar','AdminController@calendar');
   Route::get('/buttons','AdminController@buttons');
   Route::get('/editors','AdminController@editors');
   Route::get('/stats','AdminController@stats');
   Route::get('/tables','AdminController@tables');
 
+
 });
+
+  Route::get('admin/calendar',function()
+    {
+      return view ('admin.calendar');
+    });
+  Route::resource('events', 'EventsController',['only' => ['index', 'store']]);
