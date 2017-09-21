@@ -148,12 +148,12 @@
       </footer>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src=“https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js”></script>
+    {{-- <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- jQuery UI -->
-    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> --}}
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
     {{-- <script src="{{ asset('js/fullcalendar.js') }}"></script> --}}
     {{-- <script src="{{ asset('js/gcal.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
@@ -162,13 +162,23 @@
     {{-- fullcalendar --}}
     {{-- <script src="{{ asset('js/moment.min.js')}}"></script>
     <script src="{{ asset('js/fullcalendar.js')}}"></script> --}}
-    {!! Html::script('vendor/fullcalendar/lib/moment.min.js') !!}
-    {!! Html::script('vendor/fullcalendar/lib/jquery.min.js') !!}
-    {!! Html::script('vendor/fullcalendar/fullcalendar.min.js') !!}
 
+    {!! Html::script('https://code.jquery.com/jquery.js') !!}
+    {{-- {!! Html::script('https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js') !!} --}}
+    {{-- {!! Html::script('https://code.jquery.com/ui/1.10.3/jquery-ui.js') !!} --}}
+
+    {!! Html::script('js/bootstrap.js') !!}
+    {!! Html::script('js/bootstrap.min.js') !!}
+    {!! Html::script('vendor/fullcalendar/lib/moment.min.js') !!}
+    {{-- {!! Html::script('vendor/fullcalendar/lib/jquery.min.js') !!} --}}
+    {!! Html::script('vendor/fullcalendar/fullcalendar.min.js') !!}
+    {{-- {!! Html::script('vendor/fullcalendar/fullcalendar.js') !!} --}}
+    {!! Html::script('vendor/fullcalendar/locale/pl.js') !!}
+    {!! Html::script('vendor/moment/moment.js') !!}
+    {!! Html::script('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js') !!}
 
     {{-- Bootstrap --}}
-    <script src=“https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js” crossorigin=“anonymous”></script>
+
   <script>
   var BASEURL = "{{ url('/') }}"
   $(document).ready(function() {
