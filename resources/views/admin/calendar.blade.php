@@ -5,16 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- jQuery UI -->
     <link href="https://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet" media="screen">
-    {!! Html::style('')!!}
+
     <!-- Bootstrap -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"> --}}
     {{-- <link href="{{ asset('css/fullcalendar.css') }}" rel="stylesheet" media="screen"> --}}
-    <link  href=“https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css” rel=“stylesheet” >
+    {{-- <link  href=“https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css” rel=“stylesheet” > --}}
 
     <!-- styles -->
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/styles.css') }}" rel="stylesheet"> --}}
     {{-- <link href="{{ asset('css/calendar.css') }}" rel="stylesheet"> --}}
     {!! Html::style('vendor/fullcalendar/fullcalendar.min.css') !!}
+    {!! Html::style('css/bootstrap.min.css') !!}
+    {!! Html::style('vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') !!}
+    {!! Html::style('css/styles.css') !!}
+    {!! Html::style('vendor/bootstrap-timepicker/css/bootstrap-timepicker.min.css') !!}
 
      {{-- fullcalendar  --}}
 
@@ -92,20 +96,26 @@
 
                     {{Form::open(['route'=>'events.store', 'method'=>'post', 'role'=>'form']) }}
                     <div id = "responsive-modal" class = "modal fade" tabindex="-1" data-backdrop="static">
-                      <div class="modal dialog">
+                      <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
                               <h4>Dodaj nową sprawę</h4>
                           </div>
                           <div class="modal-body">
                               <div class="form-group">
+                                  {{ Form::label('title', 'Nazwa sprawy') }}
+                                  {{ Form::text('title', old('title'), ['class'=>'form-control']) }}
+                              </div>
+                              <div class="form-group">
                                   {{ Form::label('date_start', 'Data rozpoczęcia') }}
                                   {{ Form::text('date_start', old('date_start'), ['class'=>'form-control', 'readonly'=>'true']) }}
                               </div>
 
-                              <div class="form-group">
-                                  {{ Form::label('time_start', 'Czas rozpoczęcia') }}
-                                  {{ Form::text('time_start', old('time_start'), ['class'=>'form-control']) }}
+                              <div class="input-group bootstrap-timepicker timepicker">
+                                  {{-- {{ Form::label('time_start', 'Czas rozpoczęcia') }} --}}
+                                  <input id="time_start" type="text" class="form-control input-small">
+                                  {{-- {{ Form::text('time_start', old('time_start'), ['class'=>'form-control']) }} --}}
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                               </div>
 
                               <div class="form-group">
@@ -114,8 +124,8 @@
                               </div>
 
                               <div class="form-group">
-                                  {{ Form::label('color', 'Kolor') }}
-                                  {{ Form::text('color', old('color'), ['class'=>'form-control']) }}
+                                  {{ Form::label('typ', 'Typ sprawy') }}
+                                  {{ Form::text('typ', old('typ'), ['class'=>'form-control']) }}
                               </div>
                           </div>
                           <div class="modal-footer">
@@ -147,40 +157,21 @@
          </div>
       </footer>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    {{-- <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- jQuery UI -->
-    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> --}}
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-
-    {{-- <script src="{{ asset('js/fullcalendar.js') }}"></script> --}}
-    {{-- <script src="{{ asset('js/gcal.js') }}"></script>
-    <script src="{{ asset('js/custom.js') }}"></script>
-    <script src="{{ asset('js/calendar.js') }}"></script> --}}
-
-    {{-- fullcalendar --}}
-    {{-- <script src="{{ asset('js/moment.min.js')}}"></script>
-    <script src="{{ asset('js/fullcalendar.js')}}"></script> --}}
-
-    {!! Html::script('https://code.jquery.com/jquery.js') !!}
-    {{-- {!! Html::script('https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js') !!} --}}
-    {{-- {!! Html::script('https://code.jquery.com/ui/1.10.3/jquery-ui.js') !!} --}}
-
-    {!! Html::script('js/bootstrap.js') !!}
+    {!! Html::script('https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js') !!}
+    {!! Html::script('vendor/jquery/dist/jquery.min.js') !!}
+    {{-- {!! Html::script('js/bootstrap.js') !!} --}}
     {!! Html::script('js/bootstrap.min.js') !!}
+    {!! Html::script('vendor/moment/min/moment.min.js') !!}
     {!! Html::script('vendor/fullcalendar/lib/moment.min.js') !!}
-    {{-- {!! Html::script('vendor/fullcalendar/lib/jquery.min.js') !!} --}}
     {!! Html::script('vendor/fullcalendar/fullcalendar.min.js') !!}
-    {{-- {!! Html::script('vendor/fullcalendar/fullcalendar.js') !!} --}}
     {!! Html::script('vendor/fullcalendar/locale/pl.js') !!}
-    {!! Html::script('vendor/moment/moment.js') !!}
-    {!! Html::script('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js') !!}
+    {!! Html::script('vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') !!}
+    {!! Html::script('vendor/bootstrap-timepicker/js/bootstrap-timepicker.js') !!}
 
-    {{-- Bootstrap --}}
+
 
   <script>
-  var BASEURL = "{{ url('/') }}"
+  var BASEURL = "{{ url('/') }}";
   $(document).ready(function() {
 
     $('#calendar').fullCalendar({
@@ -197,12 +188,24 @@
       select: function(start)
       {
         start = moment(start.format());
+        $('#date_start').val(start.format('YYYY-MM-DD'));
         $('#responsive-modal').modal('show');
+
       },
       events: BASEURL + '/events'
     });
 
   });
 
+  $('#time_start').timepicker({
+      showMeridian: false,
+      showSeconds: true,
+
+
+          });
+  $('#date_end').datetimepicker({
+      format: 'YYYY-MM-DD HH:mm:ss',
+
+          });
 </script>
 </html>

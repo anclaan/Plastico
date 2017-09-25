@@ -13,7 +13,7 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $data = Event::get(['title','start','color']);
+        $data = Event::get(['title','start','typ']);
 
         return Response()->json($data);
       //  return view('admin.calendar');
@@ -37,7 +37,16 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $event = new Event();
+        $event -> title = $request -> title;
+        $event -> start = $request -> date_start . ' ' . $request -> time_start;
+        $event -> end = $request -> date_end;
+        $event -> typ = $request -> typ;
+        $event -> save();
+
+        return redirect('/admin/calendar');
+
+
     }
 
     /**

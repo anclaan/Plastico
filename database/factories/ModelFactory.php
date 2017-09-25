@@ -28,6 +28,6 @@ $factory->define(App\Event::class, function (Faker\Generator $faker) {
         'title' => $faker->sentence(4),
         'start' => $faker->dateTimeThisMonth(),
         'end' => $faker->dateTimeThisMonth(),
-        'color' => $faker->hexColor,
+        'typ' => $faker->hexColor,
     ];
 });

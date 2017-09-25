@@ -17,6 +17,6 @@ class Event extends Model
      * @var [type]
      */
     protected $fillable = [
-      'title', 'start','end','color'
+      'title', 'start','end','typ'
     ];
 }
