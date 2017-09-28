@@ -22,12 +22,16 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
-$factory->define(App\Event::class, function (Faker\Generator $faker) {
 
+use Carbon\Carbon;
+
+$factory->define(App\Event::class, function (Faker\Generator $faker) {
+    $date_start = $faker->dateTimeThisYear();
+    $date_end = new Carbon($date_start->format('r'));
     return [
         'title' => $faker->sentence(4),
-        'start' => $faker->dateTimeThisMonth(),
-        'end' => $faker->dateTimeThisMonth(),
+        'start' => $faker->$date_start,
+        'end' => $faker->addHours(numberBetween(1,25)),
         'typ' => $faker->hexColor,
     ];
 });

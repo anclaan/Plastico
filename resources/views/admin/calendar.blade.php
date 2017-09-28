@@ -110,14 +110,10 @@
                                   {{ Form::label('date_start', 'Data rozpoczęcia') }}
                                   {{ Form::text('date_start', old('date_start'), ['class'=>'form-control', 'readonly'=>'true']) }}
                               </div>
-
-                              <div class="input-group bootstrap-timepicker timepicker">
-                                  {{-- {{ Form::label('time_start', 'Czas rozpoczęcia') }} --}}
-                                  <input id="time_start" type="text" class="form-control input-small">
-                                  {{-- {{ Form::text('time_start', old('time_start'), ['class'=>'form-control']) }} --}}
-                                  <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                              <div class="form-group">
+                                  {{ Form::label('time_start', 'Data rozpoczęcia') }}
+                                  {{ Form::text('time_start', old('time_start'), ['class'=>'form-control']) }}
                               </div>
-
                               <div class="form-group">
                                   {{ Form::label('date_end', 'Data zakończenia') }}
                                   {{ Form::text('date_end', old('date_end'), ['class'=>'form-control']) }}
@@ -136,7 +132,50 @@
                       </div>
                     </div>
                     {{ Form::close() }}
+
+
                     <div id='calendar'></div>
+
+
+                    {{Form::open(['route'=>['events.update',1], 'method'=>'patch', 'role'=>'form']) }}
+                    <div id = "modal-event" class = "modal fade" tabindex="-1" data-backdrop="static">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                              <h4>Edytuj sprawę</h4>
+                          </div>
+                          <div class="modal-body">
+                              <div class="form-group">
+                                  {{ Form::label('_title', 'Nazwa sprawy') }}
+                                  {{ Form::text('_title', old('_title'), ['class'=>'form-control']) }}
+                              </div>
+                              <div class="form-group">
+                                  {{ Form::label('_date_start', 'Data rozpoczęcia') }}
+                                  {{ Form::text('_date_start', old('_date_start'), ['class'=>'form-control']) }}
+                              </div>
+                              <div class="form-group">
+                                  {{ Form::label('_time_start', 'Data rozpoczęcia') }}
+                                  {{ Form::text('_time_start', old('_time_start'), ['class'=>'form-control']) }}
+                              </div>
+                              <div class="form-group">
+                                  {{ Form::label('_date_end', 'Data zakończenia') }}
+                                  {{ Form::text('_date_end', old('_date_end'), ['class'=>'form-control']) }}
+                              </div>
+
+                              <div class="form-group">
+                                  {{ Form::label('_typ', 'Typ sprawy') }}
+                                  {{ Form::text('_typ', old('_typ'), ['class'=>'form-control']) }}
+                              </div>
+                          </div>
+                          <div class="modal-footer">
+                              <a id="delete" data-href="{{ url('events') }}" data-id="" class="btn btn-danger">Usuń</a>
+                              <button type="button" class="btn btn default" data-dismiss="modal">Anuluj</button>
+                              {!! Form::submit('Aktualizuj',['class' => 'btn btn-success']) !!}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {{ Form::close() }}
 
 
 		  				</div>
@@ -192,7 +231,22 @@
         $('#responsive-modal').modal('show');
 
       },
-      events: BASEURL + '/events'
+      events: BASEURL + '/events',
+
+      eventClick: function (event, jsEvent, view)
+      {
+        var date_start = $.fullCalendar.moment(event.start).format('YYYY-MM-DD');
+        var time_start = $.fullCalendar.moment(event.start).format('HH:mm:ss');
+        var date_end = $.fullCalendar.moment(event.end).format('YYYY-MM-DD hh:mm:ss');
+        $('#modal-event #delete').attr('data-id', event.id);
+        $('#modal-event #_title').val(event.title);
+        $('#modal-event #_date_start').val(date_start);
+        $('#modal-event #_time_start').val(time_start);
+        $('#modal-event #_date_end').val(date_end);
+        $('#modal-event #_typ').val(event.typ);
+        $('#modal-event').modal('show');
+      }
+
     });
 
   });
@@ -205,6 +259,26 @@
           });
   $('#date_end').datetimepicker({
       format: 'YYYY-MM-DD HH:mm:ss',
+
+          });
+  $('#delete').on('click', function(){
+      var x = $(this);
+      var delete_url = x.attr('data-href')+'/'+x.attr('data-id');
+
+      $.ajax({
+        url: delete_url,
+        type: 'DELETE',
+        success: function()
+        {
+          $('#modal-event').modal('hide');
+          alert(result.message);
+        },
+        error: function(result)
+        {
+          $('#modal-event').modal('hide');
+          alert('error');
+        }
+      })
 
           });
 </script>

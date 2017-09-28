@@ -13,7 +13,7 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $data = Event::get(['title','start','typ']);
+        $data = Event::get(['id','title','start','end','typ']);
 
         return Response()->json($data);
       //  return view('admin.calendar');
@@ -91,6 +91,16 @@ class EventsController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $event = Event::find($id);
+
+      if($event == null)
+        return Response()->json([
+          'message' => 'Błąd'
+        ]);
+        $event-> delete();
+        return Response()->json([
+          'message' => 'Sprawa została usunięta'
+        ]);
+
     }
 }

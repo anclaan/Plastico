@@ -42,4 +42,4 @@ Route::prefix('admin')->group(function(){
     {
       return view ('admin.calendar');
     });
-  Route::resource('events', 'EventsController',['only' => ['index', 'store']]);
+  Route::resource('events', 'EventsController',['only' => ['index', 'store','update','destroy']]);
