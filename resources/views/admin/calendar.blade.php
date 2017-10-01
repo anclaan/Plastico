@@ -137,7 +137,7 @@
                     <div id='calendar'></div>
 
 
-                    {{Form::open(['route'=>['events.update',1], 'method'=>'patch', 'role'=>'form']) }}
+                    {{ Form::open(['route'=>['events.update',1], 'method'=>'PUT', 'id'=>'updatemodal']) }}
                     <div id = "modal-event" class = "modal fade" tabindex="-1" data-backdrop="static">
                       <div class="modal-dialog">
                         <div class="modal-content">
@@ -168,6 +168,7 @@
                               </div>
                           </div>
                           <div class="modal-footer">
+                              <meta name="csrf-token" content="{{ csrf_token() }}">
                               <a id="delete" data-href="{{ url('events') }}" data-id="" class="btn btn-danger">Usuń</a>
                               <button type="button" class="btn btn default" data-dismiss="modal">Anuluj</button>
                               {!! Form::submit('Aktualizuj',['class' => 'btn btn-success']) !!}
@@ -196,7 +197,7 @@
          </div>
       </footer>
 
-    {!! Html::script('https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js') !!}
+    {{-- {!! Html::script('https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js') !!} --}}
     {!! Html::script('vendor/jquery/dist/jquery.min.js') !!}
     {{-- {!! Html::script('js/bootstrap.js') !!} --}}
     {!! Html::script('js/bootstrap.min.js') !!}
@@ -239,6 +240,7 @@
         var time_start = $.fullCalendar.moment(event.start).format('HH:mm:ss');
         var date_end = $.fullCalendar.moment(event.end).format('YYYY-MM-DD hh:mm:ss');
         $('#modal-event #delete').attr('data-id', event.id);
+        $('#updatemodal').attr("action", '/events/'+event.id);
         $('#modal-event #_title').val(event.title);
         $('#modal-event #_date_start').val(date_start);
         $('#modal-event #_time_start').val(time_start);
@@ -265,6 +267,12 @@
       var x = $(this);
       var delete_url = x.attr('data-href')+'/'+x.attr('data-id');
 
+      $.ajaxSetup({
+              headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+            });
+
       $.ajax({
         url: delete_url,
         type: 'DELETE',
@@ -276,10 +284,30 @@
         error: function(result)
         {
           $('#modal-event').modal('hide');
-          alert('error');
+          alert(result.message);
         }
       })
 
           });
+    // $('#update').on('click', function(){
+    //     var x = $(this);
+    //     var update_url = x.attr('data-href')+'/'+x.attr('data-id');
+    //
+    //     $.ajax({
+    //       url: update_url,
+    //       type: 'UPDATE',
+    //       success: function()
+    //       {
+    //         $('#modal-event').modal('hide');
+    //         alert(result.message);
+    //       },
+    //       error: function(result)
+    //       {
+    //         $('#modal-event').modal('hide');
+    //         alert(result.message);
+    //       }
+    //     })
+    //
+    //         });
 </script>
 </html>

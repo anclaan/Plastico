@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
+use Session;
+use Redirect;
 class EventsController extends Controller
 {
     /**
@@ -80,7 +82,11 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $event = Event::find($id);
+        $event->fill($request->all());
+        $event->save();
+        Session::flash('message', 'Sprawa została zaktualizowana');
+        return Redirect::to('/admin/calendar');
     }
 
     /**
