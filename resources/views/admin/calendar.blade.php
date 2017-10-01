@@ -197,7 +197,7 @@
          </div>
       </footer>
 
-    {{-- {!! Html::script('https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js') !!} --}}
+    {!! Html::script('https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js') !!}
     {!! Html::script('vendor/jquery/dist/jquery.min.js') !!}
     {{-- {!! Html::script('js/bootstrap.js') !!} --}}
     {!! Html::script('js/bootstrap.min.js') !!}
