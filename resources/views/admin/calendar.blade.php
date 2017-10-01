@@ -4,7 +4,7 @@
     <title>Terminarz</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- jQuery UI -->
-    <link href="https://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet" media="screen">
+    {{-- <link href="https://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet" media="screen"> --}}
 
     <!-- Bootstrap -->
     {{-- <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"> --}}
@@ -14,8 +14,8 @@
     <!-- styles -->
     {{-- <link href="{{ asset('css/styles.css') }}" rel="stylesheet"> --}}
     {{-- <link href="{{ asset('css/calendar.css') }}" rel="stylesheet"> --}}
+    {!! Html::style('vendor/bootstrap/dist/css/bootstrap.min.css') !!}
     {!! Html::style('vendor/fullcalendar/fullcalendar.min.css') !!}
-    {!! Html::style('css/bootstrap.min.css') !!}
     {!! Html::style('vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') !!}
     {!! Html::style('css/styles.css') !!}
     {!! Html::style('vendor/bootstrap-timepicker/css/bootstrap-timepicker.min.css') !!}
@@ -95,7 +95,7 @@
 
 
                     {{Form::open(['route'=>'events.store', 'method'=>'post', 'role'=>'form']) }}
-                    <div id = "responsive-modal" class = "modal fade" tabindex="-1" data-backdrop="static">
+                    <div id = "responsive-modal" class = "modal" tabindex="-1" data-backdrop="static">
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -137,8 +137,8 @@
                     <div id='calendar'></div>
 
 
-                    {{ Form::open(['route'=>['events.update',1], 'method'=>'PUT', 'id'=>'updatemodal']) }}
-                    <div id = "modal-event" class = "modal fade" tabindex="-1" data-backdrop="static">
+                    {{!!Form::open(['route'=>['events.update',1], 'method'=>'PUT', 'id'=>'updatemodal'])!!}}
+                    <div id = "modal-event" class = "modal" tabindex="-1" data-backdrop="static">
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -185,7 +185,7 @@
         </div>
 		  </div>
 		</div>
-    
+
 </body>
     <footer>
          <div class="container">
@@ -199,10 +199,11 @@
 
     {!! Html::script('https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js') !!}
     {!! Html::script('vendor/jquery/dist/jquery.min.js') !!}
-    {{-- {!! Html::script('js/bootstrap.js') !!} --}}
-    {!! Html::script('js/bootstrap.min.js') !!}
+    {!! Html::script('vendor/bootstrap/dist/js/bootstrap.js') !!}
+    {{-- {!! Html::script('js/bootstrap.min.js') !!} --}}
     {!! Html::script('vendor/moment/min/moment.min.js') !!}
-    {!! Html::script('vendor/fullcalendar/lib/moment.min.js') !!}
+    {!! Html::script('vendor/bootstrap/js/collapse.js') !!}
+    {!! Html::script('vendor/bootstrap/js/transition.js') !!}
     {!! Html::script('vendor/fullcalendar/fullcalendar.min.js') !!}
     {!! Html::script('vendor/fullcalendar/locale/pl.js') !!}
     {!! Html::script('vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') !!}
@@ -239,7 +240,7 @@
       {
         var date_start = $.fullCalendar.moment(event.start).format('YYYY-MM-DD');
         var time_start = $.fullCalendar.moment(event.start).format('HH:mm:ss');
-        var date_end = $.fullCalendar.moment(event.end).format('YYYY-MM-DD hh:mm:ss');
+        var date_end = $.fullCalendar.moment(event.end).format('YYYY-MM-DD HH:mm:ss');
         $('#modal-event #delete').attr('data-id', event.id);
         $('#updatemodal').attr("action", '/events/'+event.id);
         $('#modal-event #_title').val(event.title);
@@ -260,8 +261,22 @@
 
 
           });
+    $('#_time_start').timepicker({
+        showMeridian: false,
+        showSeconds: true,
+
+
+            });
   $('#date_end').datetimepicker({
       format: 'YYYY-MM-DD HH:mm:ss',
+
+          });
+  $('#_date_end').datetimepicker({
+      format: 'YYYY-MM-DD HH:mm:ss',
+
+          });
+  $('#date_start').datetimepicker({
+      format: 'YYYY-MM-DD',
 
           });
   $('#delete').on('click', function(){

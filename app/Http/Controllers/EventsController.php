@@ -83,7 +83,10 @@ class EventsController extends Controller
     public function update(Request $request, $id)
     {
       $event = Event::find($id);
-        $event->fill($request->all());
+      $event -> title = $request -> _title;
+      $event -> start = $request -> _date_start . ' ' . $request -> _time_start;
+      $event -> end = $request -> _date_end;
+      $event -> typ = $request -> _typ;
         $event->save();
         Session::flash('message', 'Sprawa została zaktualizowana');
         return Redirect::to('/admin/calendar');
