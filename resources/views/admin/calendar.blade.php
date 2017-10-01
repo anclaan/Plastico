@@ -185,7 +185,7 @@
         </div>
 		  </div>
 		</div>
-    </div>
+    
 </body>
     <footer>
          <div class="container">
@@ -230,6 +230,7 @@
         start = moment(start.format());
         $('#date_start').val(start.format('YYYY-MM-DD'));
         $('#responsive-modal').modal('show');
+
 
       },
       events: BASEURL + '/events',
