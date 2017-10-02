@@ -19,7 +19,7 @@ TABLE OF CONTENTS
 	- Testimonials
 	- Accordions
 	- Tabs
-	- Progress Bars 
+	- Progress Bars
 	- Panels
 	- Social Icons
 	- Carousel
@@ -106,7 +106,7 @@ body {
 /* Header */
 /*-----------------------------------------------------------------------------------*/
 #header {
-  position: relative;
+  position: fixed;
   background-color: #000;
   background-color: rgba(0, 0, 0, 0.7);
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
@@ -120,7 +120,7 @@ body {
   background-color: #ffffff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   height: 85px;
-  position: relative;
+  position: fixed;
 }
 /* Logo */
 .logo {
@@ -1030,7 +1030,7 @@ h1.logo-text a {
 .slicknav_menu {
   *zoom: 1;
 }
-/* 
+/*
     User Default Style
     Change the following styles to modify the appearance of the menu.
 */

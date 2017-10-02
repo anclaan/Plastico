@@ -292,7 +292,7 @@
       $.ajax({
         url: delete_url,
         type: 'DELETE',
-        success: function()
+        success: function(result)
         {
           $('#modal-event').modal('hide');
           alert(result.message);

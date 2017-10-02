@@ -102,14 +102,14 @@ class EventsController extends Controller
     {
       $event = Event::find($id);
 
-      if($event == null)
-        return Response()->json([
-          'message' => 'Błąd'
-        ]);
+      // if($event == null)
+      //   return Response()->json([
+      //     'message' => 'Błąd'
+      //   ]);
         $event-> delete();
-        return Response()->json([
-          'message' => 'Sprawa została usunięta'
-        ]);
-
+        // return Response()->json([
+        //   'message' => 'Sprawa została usunięta'
+        // ]);
+       return Redirect::to('/admin/calendar');
     }
 }

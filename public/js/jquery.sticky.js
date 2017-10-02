@@ -34,16 +34,16 @@
           elementTop = s.stickyWrapper.offset().top,
           etse = elementTop - s.topSpacing - extra;
 
-        if (scrollTop <= etse) {
-          if (s.currentTop !== null) {
-            s.stickyElement
-              .css('position', '')
-              .css('top', '');
-            s.stickyElement.parent().removeClass(s.className);
-            s.currentTop = null;
-          }
-        }
-        else {
+        // if (scrollTop <= etse) {
+        //   if (s.currentTop !== null) {
+        //     s.stickyElement
+        //       .css('position', '')
+        //       .css('top', '');
+        //     s.stickyElement.parent().removeClass(s.className);
+        //     s.currentTop = null;
+        //   }
+        // }
+        // else {
           var newTop = documentHeight - s.stickyElement.outerHeight()
             - s.topSpacing - s.bottomSpacing - scrollTop - extra;
           if (newTop < 0) {
@@ -63,7 +63,7 @@
             s.stickyElement.parent().addClass(s.className);
             s.currentTop = newTop;
           }
-        }
+        // }
       }
     },
     resizer = function() {
