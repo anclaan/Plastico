@@ -33,7 +33,7 @@ Route::prefix('admin')->group(function(){
   Route::get('/buttons','AdminController@buttons');
   Route::get('/editors','AdminController@editors');
   Route::get('/stats','AdminController@stats');
-  Route::get('/tables','AdminController@tables');
+  Route::get('/tables','UsersController@index');
 
 
 });

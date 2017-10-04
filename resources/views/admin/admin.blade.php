@@ -226,21 +226,14 @@
 		</div>
     </div>
 
-    <footer>
-         <div class="container">
-
-            <div class="copy text-center">
-               Copyright 2014 <a href='#'>Website</a>
-            </div>
-
-         </div>
-      </footer>
-
+    @include('partials._AdminFooter')
+    {!! Html::script('https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js') !!}
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-
+    {!! Html::script('vendor/bootstrap/js/collapse.js') !!}
+    {!! Html::script('vendor/bootstrap/js/transition.js') !!}
 
     <script src="{{ asset('js/custom.js') }}"></script>
   </body>

@@ -262,7 +262,7 @@ footer .copy{
 .sidebar ul.nav ul {
    margin:0px;
    padding:0px;
-   display:none;
+   /* display:none; */
 }
 
 .sidebar .nav li.open ul{
@@ -271,7 +271,7 @@ footer .copy{
 
 .sidebar .nav > li {
 	margin: 0;
-   border-bottom:1px dashed #eee;
+	border-bottom:1px dashed #eee;
 }
 
 .sidebar .nav > li:last-child{
