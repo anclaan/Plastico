@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Klient;
 
-class UsersController extends Controller
+class KlientsController extends Controller
 {
 
   /**
@@ -19,12 +19,12 @@ class UsersController extends Controller
   }
   public function index()
   {
-      $users = User::all();
-      return view('admin.users')->with('users', $users);
+      $klienci = Klient::all();
+      return view('admin.klienci')->with('klienci', $klienci);
   }
   public function destroy($id)
   {
-    $user = User::find($id);
+    $user = Klient::find($id);
 
     if($user == null)
       return false;

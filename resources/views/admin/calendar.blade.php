@@ -79,7 +79,7 @@
                                  <span class="item-text">Yes</span>
                              </fieldset>
                              <fieldset class="klient">
-                               {{ Form::select('klient_id', $klienci, null, ['optional'=>'Wybierz klienta']) }}
+                               {{-- {{ Form::select('klient_id', $klienci, null, ['optional'=>'Wybierz klienta']) }}  --}}
                            </fieldset>
                           </div>
                           <div class="modal-footer">
@@ -184,6 +184,7 @@
 
 
       },
+
       events: BASEURL + '/events',
 
       eventClick: function (event, jsEvent, view)
