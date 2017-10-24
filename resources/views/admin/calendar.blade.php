@@ -233,24 +233,6 @@
             });
 
       $.ajax({
-
-
-        // url: delete_url,
-        // type: 'DELETE',
-        // success: function(result)
-        // {
-        //   $('#modal-event').modal('hide');
-        //   alert(result.message);
-        // },
-        // error: function(result)
-        // {
-        //   $('#modal-event').modal('hide');
-        //   alert(result.message);
-        // },
-        // complete: function () {
-        //         return redirect('/admin/calendar');
-        //     }
-
         type: 'DELETE',
         url: delete_url,
 
