@@ -7,24 +7,23 @@
     {{-- <link href="https://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet" media="screen"> --}}
 
     <!-- Bootstrap -->
-    {{-- <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"> --}}
-    {{-- <link href="{{ asset('css/fullcalendar.css') }}" rel="stylesheet" media="screen"> --}}
+    {{-- <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/fullcalendar.css') }}" rel="stylesheet" media="screen"> --}}
     {{-- <link  href=“https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css” rel=“stylesheet” > --}}
 
     <!-- styles -->
-    {{-- <link href="{{ asset('css/styles.css') }}" rel="stylesheet"> --}}
-    {{-- <link href="{{ asset('css/calendar.css') }}" rel="stylesheet"> --}}
-    {!! Html::style('vendor/bootstrap/dist/css/bootstrap.min.css') !!}
-    {!! Html::style('vendor/fullcalendar/fullcalendar.min.css') !!}
-    {!! Html::style('vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') !!}
-    {!! Html::style('css/styles.css') !!}
-    {!! Html::style('vendor/bootstrap-timepicker/css/bootstrap-timepicker.min.css') !!}
+    {{-- <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/calendar.css') }}" rel="stylesheet"> --}}
 
      {{-- fullcalendar  --}}
+     {!! Html::style('vendor/bootstrap/dist/css/bootstrap.min.css') !!}
+     {!! Html::style('vendor/fullcalendar/fullcalendar.min.css') !!}
+     {!! Html::style('vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') !!}
+     {!! Html::style('css/styles.css') !!}
+     {!! Html::style('vendor/bootstrap-timepicker/css/bootstrap-timepicker.min.css') !!}
 
-  {{-- <link href=“css/fullcalendar.css” rel=“stylesheet” />
-  <link href=“css/fullcalendar.print.css” rel=“stylesheet” media=“print” /> --}}
-
+    {{-- <link href=“css/fullcalendar.css” rel=“stylesheet” />
+    <link href=“css/fullcalendar.print.css” rel=“stylesheet” media=“print” />  --}}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -74,6 +73,14 @@
                                   {{ Form::label('typ', 'Typ sprawy') }}
                                   {{ Form::text('typ', old('typ'), ['class'=>'form-control']) }}
                               </div>
+                              <fieldset class="pytanie">
+                                 <label for="czyKlient">Czy chcesz wprowadzic klienta?</label>
+                                 <input class="czyKlient" type="checkbox" name="czyKlient" value="0" onchange="valueChanged()" />
+                                 <span class="item-text">Yes</span>
+                             </fieldset>
+                             <fieldset class="klient">
+                               {{ Form::select('klient_id', $klienci, null, ['optional'=>'Wybierz klienta']) }}
+                           </fieldset>
                           </div>
                           <div class="modal-footer">
                               <button type="button" class="btn btn default" data-dismiss="modal">Anuluj</button>
@@ -197,6 +204,15 @@
     });
 
   });
+$(".klient").hide();
+  function valueChanged()
+{
+    if($('.czyKlient').is(":checked")){
+      $(".klient").show();
+      }
+    else
+        $(".klient").hide();
+}
 
   $('#time_start').timepicker({
       showMeridian: false,

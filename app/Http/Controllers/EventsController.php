@@ -8,11 +8,13 @@ use Session;
 use Redirect;
 class EventsController extends Controller
 {
+    public $klienci = Klient::lists('imie','id');
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $data = Event::get(['id','title','start','end','typ']);
@@ -20,7 +22,10 @@ class EventsController extends Controller
         return Response()->json($data);
       //  return view('admin.calendar');
     }
-
+    public function klienci()
+    {
+      return $klienci = Klient::lists('imie','id');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -107,7 +112,7 @@ class EventsController extends Controller
 
         $event-> delete();
         return true;
-        
+
         // if($event == null)
         //   return Response()->json([
         //     'message' => 'Błąd'

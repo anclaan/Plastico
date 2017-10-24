@@ -10,6 +10,7 @@ class Event extends Model
      * [$table description]
      * @var string
      */
+     
     protected $table = 'events';
 
     /**
