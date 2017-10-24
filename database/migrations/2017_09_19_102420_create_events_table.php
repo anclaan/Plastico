@@ -15,12 +15,14 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
-
+            $table->integer('klient_id')->unsigned()->nullable();
             $table->string('title');
             $table->datetime('start');
             $table->datetime('end');
             $table->string('typ');
             $table->timestamps();
+
+            $table->foreign('klient_id')->references('id')->on('klients');
         });
     }
 
