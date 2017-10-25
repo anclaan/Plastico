@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    public $klienci = Klient::all();
+
     public function klienci()
     {
       return $this->hasMany('App\Klient');

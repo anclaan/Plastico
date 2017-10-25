@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
+use App\Klient;
 use Session;
 use Redirect;
 class EventsController extends Controller
 {
-    public $klienci = Klient::lists('imie','id');
+
     /**
      * Display a listing of the resource.
      *
@@ -17,17 +18,25 @@ class EventsController extends Controller
 
     public function index()
     {
-        $data = Event::get(['id','title','start','end','typ']);
+        // $data = Event::get(['id','title','start','end','typ']);
+           $data = Event::all();
         $klienci = Klient::all();
-        return Response()->json($data);
-      //  return Response()->json(array('data'=>$data,'klienci'=>$klienci));
-      //  Response::json(array('user'=>$user,'post'=>$post,'comment'=>$comment));
-      //  return view('admin.calendar');
+
+
+      // return Response()->json($data);
+      return Response()->json($data);
+
+      // return Response()->json(array('data'=>$data));
+      // return view('admin.calendar');
     }
-    public function klienci()
-    {
-      return $klienci = Klient::lists('imie','id');
-    }
+    // public function klienci()
+    // {
+    //     $klienci = Klient::all();
+    //
+    //     return view ('admin.calendar')->with($klienci);
+    //
+    // }
+
     /**
      * Show the form for creating a new resource.
      *

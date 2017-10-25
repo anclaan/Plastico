@@ -79,11 +79,11 @@
                                  <span class="item-text">Yes</span>
                              </fieldset>
                              <fieldset class="klient">
-                               <select>
+                               <!-- <select>
                                   @foreach($klienci->klienci() as $klient)
                                       <option value="{{ $klient->id }}">{{ $klient->name }}</option>
                                   @endforeach
-                              </select>
+                              </select> -->
                            </fieldset>
                           </div>
                           <div class="modal-footer">
@@ -188,6 +188,7 @@
 
 
       },
+
       events: BASEURL + '/events',
 
       eventClick: function (event, jsEvent, view)

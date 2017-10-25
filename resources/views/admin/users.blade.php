@@ -31,7 +31,7 @@
   				<div class="col-md-6">
   					<div class="content-box-large">
 		  				<div class="panel-heading">
-							<div class="panel-title">Klienci</div>
+							<div class="panel-title">Uzytkownicy</div>
 
 							<div class="panel-options">
 								<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
@@ -55,10 +55,13 @@
 				                <tr>
                           <td>{{$user->id}}</td>
 				                  <td>{{$user->name}}</td>
-				                  <td>{{$user->email}}</td>
 				                  <td>{{$user->password}}</td>
-                          <td><a href={{ action('UsersController@destroy', $user->id) }}>
-                                 <span class="glyphicon glyphicon-edit"></span</a>
+				                  <td>{{$user->email}}</td>
+                          <td>
+                            <a href={{ action('UsersController@destroy', $user->id) }}>
+                                 <span class="label label-danger">Usuń</span</a>
+                             <a href={{ action('UsersController@update', $user->id) }}>
+                                  <span class="label label-success">Edytuj</span</a>
                           </td>
 				                </tr>
                       @endforeach
