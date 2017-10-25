@@ -79,7 +79,11 @@
                                  <span class="item-text">Yes</span>
                              </fieldset>
                              <fieldset class="klient">
-                               {{ Form::select('klient_id', $klienci, null, ['optional'=>'Wybierz klienta']) }}
+                               <select>
+                                  @foreach($klienci->klienci() as $klient)
+                                      <option value="{{ $klient->id }}">{{ $klient->name }}</option>
+                                  @endforeach
+                              </select>
                            </fieldset>
                           </div>
                           <div class="modal-footer">

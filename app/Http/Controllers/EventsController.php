@@ -18,8 +18,10 @@ class EventsController extends Controller
     public function index()
     {
         $data = Event::get(['id','title','start','end','typ']);
-
+        $klienci = Klient::all();
         return Response()->json($data);
+      //  return Response()->json(array('data'=>$data,'klienci'=>$klienci));
+      //  Response::json(array('user'=>$user,'post'=>$post,'comment'=>$comment));
       //  return view('admin.calendar');
     }
     public function klienci()
