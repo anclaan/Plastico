@@ -78,12 +78,13 @@
                                  <input class="czyKlient" type="checkbox" name="czyKlient" value="0" onchange="valueChanged()" />
                                  <span class="item-text">Yes</span>
                              </fieldset>
+
                              <fieldset class="klient">
-                               <!-- <select>
-                                  @foreach($klienci->klienci() as $klient)
-                                      <option value="{{ $klient->id }}">{{ $klient->name }}</option>
-                                  @endforeach
-                              </select> -->
+                               <select>
+                                 @foreach($product->sizeAvailable() as $size)
+                                     <option value="{{ $size->id }}">{{ $size->name }}</option>
+                                 @endforeach
+                              </select>
                            </fieldset>
                           </div>
                           <div class="modal-footer">
@@ -167,6 +168,7 @@
 
   <script>
   var BASEURL = "{{ url('/') }}";
+  var URL = "{{  url('/events/create') }}";
   $(document).ready(function() {
 
     $('#calendar').fullCalendar({
@@ -187,6 +189,7 @@
         $('#responsive-modal').modal('show');
 
 
+
       },
 
       events: BASEURL + '/events',
@@ -204,6 +207,8 @@
         $('#modal-event #_date_end').val(date_end);
         $('#modal-event #_typ').val(event.typ);
         $('#modal-event').modal('show');
+
+
       }
 
     });
@@ -213,6 +218,26 @@ $(".klient").hide();
   function valueChanged()
 {
     if($('.czyKlient').is(":checked")){
+      $.ajax({
+        type: 'GET',
+        url: '/events/create',
+        success: function(result)
+        {
+        $select =
+        },
+        error: function(result)
+        {
+          $('#modal-event').modal('hide');
+          alert(result.message);
+
+        },
+        complete: function () {
+              //  window.location.reload();
+            }
+
+
+
+      })
       $(".klient").show();
       }
     else

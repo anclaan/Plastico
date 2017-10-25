@@ -20,11 +20,25 @@ class EventsController extends Controller
     {
         // $data = Event::get(['id','title','start','end','typ']);
            $data = Event::all();
-        $klienci = Klient::all();
+
+      //  $zmienna =
+      //$data['klienci']=$klienci;
+    //   $result = User
+    // ::join('contacts', 'users.id', '=', 'contacts.user_id')
+    // ->join('orders', 'users.id', '=', 'orders.user_id')
+    // ->select('users.id', 'contacts.phone', 'orders.price')
+    // ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
+    // ->get();
+
+    // $data = Klient
+    // ::join('events', 'klients.id', '=', 'events.klient_id')
+    // ->select('*')
+    // ->getQuery()
+    // ->get();
 
 
-      // return Response()->json($data);
       return Response()->json($data);
+      //return Response()->json(['data'=>$data,'klienci'=>$klienci]);
 
       // return Response()->json(array('data'=>$data));
       // return view('admin.calendar');
@@ -44,7 +58,10 @@ class EventsController extends Controller
      */
     public function create()
     {
-        //
+        $klienci = Klient::all();
+
+        return Response()->json($klienci);
+
     }
 
     /**

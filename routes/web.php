@@ -39,6 +39,11 @@ Route::prefix('admin')->group(function(){
   Route::get('/klienci','KlientsController@index');
   Route::get('/klienci/destroy','KlientsController@destroy');
   Route::get('/klienci/update','KlientsController@update');
+  Route::get('/events/create','EventsController@create');
+  // Route::create('/events/create',
+  // [
+  //   'as'
+  // ])
 
 
 
@@ -48,4 +53,4 @@ Route::prefix('admin')->group(function(){
     {
       return view ('admin.calendar');
     });
-  Route::resource('events', 'EventsController',['only' => ['index', 'store','update','destroy']]);
+  Route::resource('events', 'EventsController',['only' => ['index', 'store','update','destroy','create']]);
