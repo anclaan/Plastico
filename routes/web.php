@@ -36,9 +36,9 @@ Route::prefix('admin')->group(function(){
   Route::get('/users','UsersController@index');
   Route::get('/users/destroy','UsersController@destroy');
   Route::get('/users/update','UsersController@update');
-  Route::get('/klienci','KlientsController@index');
-  Route::get('/klienci/destroy','KlientsController@destroy');
-  Route::get('/klienci/update','KlientsController@update');
+  Route::get('/klienci','CustomersController@index');
+  Route::get('/klienci/destroy','CustomersController@destroy');
+  Route::get('/klienci/update','CustomersController@update');
   Route::get('/events/create','EventsController@create');
   // Route::create('/events/create',
   // [

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
-use App\Klient;
+use App\Customer;
 use Session;
 use Redirect;
 class EventsController extends Controller
@@ -18,38 +18,9 @@ class EventsController extends Controller
 
     public function index()
     {
-        // $data = Event::get(['id','title','start','end','typ']);
-           $data = Event::all();
-
-      //  $zmienna =
-      //$data['klienci']=$klienci;
-    //   $result = User
-    // ::join('contacts', 'users.id', '=', 'contacts.user_id')
-    // ->join('orders', 'users.id', '=', 'orders.user_id')
-    // ->select('users.id', 'contacts.phone', 'orders.price')
-    // ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
-    // ->get();
-
-    // $data = Klient
-    // ::join('events', 'klients.id', '=', 'events.klient_id')
-    // ->select('*')
-    // ->getQuery()
-    // ->get();
-
-
+      $data = Event::all();
       return Response()->json($data);
-      //return Response()->json(['data'=>$data,'klienci'=>$klienci]);
-
-      // return Response()->json(array('data'=>$data));
-      // return view('admin.calendar');
     }
-    // public function klienci()
-    // {
-    //     $klienci = Klient::all();
-    //
-    //     return view ('admin.calendar')->with($klienci);
-    //
-    // }
 
     /**
      * Show the form for creating a new resource.
@@ -58,9 +29,10 @@ class EventsController extends Controller
      */
     public function create()
     {
-        $klienci = Klient::all();
+        $klienci = Customer::all();
 
         return Response()->json($klienci);
+        //return view('/admin/calendar', compact($klienci));
 
     }
 
@@ -74,9 +46,12 @@ class EventsController extends Controller
     {
         $event = new Event();
         $event -> title = $request -> title;
+        $event -> customer_id = $request -> klienci;
         $event -> start = $request -> date_start . ' ' . $request -> time_start;
         $event -> end = $request -> date_end;
-        $event -> typ = $request -> typ;
+        $event -> eventType_id = $request -> typ;
+        $event -> opis = $request -> opis;
+
         $event -> save();
 
         return redirect('/admin/calendar');

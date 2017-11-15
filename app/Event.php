@@ -9,7 +9,7 @@ class Event extends Model
 
     public function klienci()
     {
-      return $this->hasMany('App\Klient');
+      return $this->hasMany('App\Customer');
     }
     /**
      * [$table description]
@@ -23,6 +23,6 @@ class Event extends Model
      * @var [type]
      */
     protected $fillable = [
-      'title', 'start','end','typ'
+      'customer_id','title', 'start','end','eventType_id','opis'
     ];
 }
