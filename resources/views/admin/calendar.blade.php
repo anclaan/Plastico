@@ -34,6 +34,7 @@
   <body>
 @include('partials._adminNav')
 
+
     <div class="page-content">
     	<div class="row">
 		  @include('partials._adminSidebar')
@@ -76,16 +77,13 @@
                               <fieldset class="pytanie">
                                  <label for="czyKlient">Czy chcesz wprowadzic klienta?</label>
                                  <input class="czyKlient" type="checkbox" name="czyKlient" value="0" onchange="valueChanged()" />
-                                 <span class="item-text">Yes</span>
+                                 <span class="item-text">Tak</span>
                              </fieldset>
 
                              <fieldset class="klient">
-                               <select>
-                                 @foreach($product->sizeAvailable() as $size)
-                                     <option value="{{ $size->id }}">{{ $size->name }}</option>
-                                 @endforeach
-                              </select>
-                           </fieldset>
+                               <select id="klienci" name="klienci" style="width:250px;"></select>
+                             </fieldset>
+
                           </div>
                           <div class="modal-footer">
                               <button type="button" class="btn btn default" data-dismiss="modal">Anuluj</button>
@@ -149,6 +147,7 @@
 		  </div>
 		</div>
 
+
 </body>
     @include('partials._AdminFooter')
 
@@ -168,8 +167,7 @@
 
   <script>
   var BASEURL = "{{ url('/') }}";
-  var URL = "{{  url('/events/create') }}";
-  $(document).ready(function() {
+    $(document).ready(function() {
 
     $('#calendar').fullCalendar({
       header: {
@@ -223,7 +221,17 @@ $(".klient").hide();
         url: '/events/create',
         success: function(result)
         {
-        $select =
+
+
+          $.each(result, function (i, item) {
+          $('#klienci').append($('<option>', {
+
+              value: item.id,
+              text : item.imie+' '+item.nazwisko
+
+          }));
+
+      });
         },
         error: function(result)
         {
