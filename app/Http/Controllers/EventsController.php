@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
-use App\Klient;
+use App\Customer;
 use Session;
 use Redirect;
 class EventsController extends Controller
@@ -29,7 +29,7 @@ class EventsController extends Controller
      */
     public function create()
     {
-        $klienci = Klient::all();
+        $klienci = Customer::all();
 
         return Response()->json($klienci);
         //return view('/admin/calendar', compact($klienci));
@@ -46,10 +46,11 @@ class EventsController extends Controller
     {
         $event = new Event();
         $event -> title = $request -> title;
-        $event -> klient_id = $request -> klienci;
+        $event -> customer_id = $request -> klienci;
         $event -> start = $request -> date_start . ' ' . $request -> time_start;
         $event -> end = $request -> date_end;
-        $event -> typ = $request -> typ;
+        $event -> eventType_id = $request -> typ;
+        $event -> opis = $request -> opis;
 
         $event -> save();
 
