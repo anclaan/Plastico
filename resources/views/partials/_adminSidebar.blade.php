@@ -7,6 +7,8 @@
               <li><a href="/admin/stats"><i class="glyphicon glyphicon-stats"></i> Statystyki</a></li>
               <li><a href="/admin/users"><i class="glyphicon glyphicon-user"></i> Uzytkownicy</a></li>
               <li><a href="/admin/klienci"><i class="glyphicon glyphicon-user"></i> Klienci</a></li>
+              <li><a href="/admin/orders"><i class="glyphicon glyphicon-user"></i> Zamówienia</a></li>
+              <li><a href="/admin/products/index"><i class="glyphicon glyphicon-user"></i> Produkty</a></li>
           </ul>
        </div>
 </div>

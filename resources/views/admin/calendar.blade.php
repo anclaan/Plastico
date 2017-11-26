@@ -53,6 +53,17 @@
                               <h4>Dodaj nową sprawę</h4>
                           </div>
                           <div class="modal-body">
+                            <fieldset class="pytanie">
+                               <input class="czyKlient" type="checkbox" name="czyKlient" value="0" onchange="valueChanged()" />
+                               <label for="czyKlient">Sprawa dotycząca klienta</label>
+                           </fieldset>
+
+                           <fieldset class="klient">
+                             <label for="wybierzKlienta">Wybierz klienta</label></br>
+                             <select id="wybierzKlienta" name="wybierzKlienta" class="form-control"></select></br>
+                             <label for="wybierzSprawe">Wybierz typ sprawy</label></br>
+                             <select id="wybierzSprawe" name="wybierzSprawe" class="form-control"></select></br>
+                           </fieldset>
                               <div class="form-group">
                                   {{ Form::label('title', 'Nazwa sprawy') }}
                                   {{ Form::text('title', old('title'), ['class'=>'form-control']) }}
@@ -62,28 +73,17 @@
                                   {{ Form::text('date_start', old('date_start'), ['class'=>'form-control', 'readonly'=>'true']) }}
                               </div>
                               <div class="form-group">
-                                  {{ Form::label('time_start', 'Data rozpoczęcia') }}
+                                  {{ Form::label('time_start', 'Czas rozpoczęcia') }}
                                   {{ Form::text('time_start', old('time_start'), ['class'=>'form-control']) }}
                               </div>
                               <div class="form-group">
                                   {{ Form::label('date_end', 'Data zakończenia') }}
                                   {{ Form::text('date_end', old('date_end'), ['class'=>'form-control']) }}
                               </div>
-
                               <div class="form-group">
-                                  {{ Form::label('typ', 'Typ sprawy') }}
-                                  {{ Form::text('typ', old('typ'), ['class'=>'form-control']) }}
+                                  {{ Form::label('opis', 'Opis') }}
+                                  {{ Form::textarea('opis', old('opis'), ['class'=>'form-control']) }}
                               </div>
-                              <fieldset class="pytanie">
-                                 <label for="czyKlient">Czy chcesz wprowadzic klienta?</label>
-                                 <input class="czyKlient" type="checkbox" name="czyKlient" value="0" onchange="valueChanged()" />
-                                 <span class="item-text">Tak</span>
-                             </fieldset>
-
-                             <fieldset class="klient">
-                               <select id="klienci" name="klienci" style="width:250px;"></select>
-                             </fieldset>
-
                           </div>
                           <div class="modal-footer">
                               <button type="button" class="btn btn default" data-dismiss="modal">Anuluj</button>
@@ -124,8 +124,8 @@
                               </div>
 
                               <div class="form-group">
-                                  {{ Form::label('_typ', 'Typ sprawy') }}
-                                  {{ Form::text('_typ', old('_typ'), ['class'=>'form-control']) }}
+                                  {{ Form::label('_opis', 'Opis') }}
+                                  {{ Form::text('_opis', old('_opis'), ['class'=>'form-control']) }}
                               </div>
                           </div>
                           <div class="modal-footer">
@@ -204,6 +204,7 @@
         $('#modal-event #_time_start').val(time_start);
         $('#modal-event #_date_end').val(date_end);
         $('#modal-event #_typ').val(event.typ);
+        $('#modal-event #_opis').val(event.opis);
         $('#modal-event').modal('show');
 
 
@@ -216,21 +217,36 @@ $(".klient").hide();
   function valueChanged()
 {
     if($('.czyKlient').is(":checked")){
-      $.ajax({
+        $.ajax({
         type: 'GET',
         url: '/events/create',
         success: function(result)
         {
+          console.log(result)
+          $("#wybierzKlienta").empty();
+          $("#wybierzSprawe").empty();
 
 
-          $.each(result, function (i, item) {
-          $('#klienci').append($('<option>', {
+
+          $.each(result.klienci, function (i, item) {
+          $('#wybierzKlienta').append($('<option>', {
 
               value: item.id,
               text : item.imie+' '+item.nazwisko
 
           }));
+      });
 
+
+
+          $.each(result.sprawy, function (i, item) {
+          $('#wybierzSprawe').append($('<option>', {
+
+              value: item.id,
+              text : item.nazwa
+
+
+          }));
       });
         },
         error: function(result)
@@ -251,6 +267,64 @@ $(".klient").hide();
     else
         $(".klient").hide();
 }
+
+$(".klientEdycja").hide();
+  function valueChanged2()
+{
+    if($('.czyKlientEdycja').is(":checked")){
+        $.ajax({
+        type: 'GET',
+        url: '/events/create',
+        success: function(result)
+        {
+          console.log(result)
+          $("#wybierzKlientaEdycja").empty();
+          $("#wybierzSpraweEdycja").empty();
+
+
+
+          $.each(result.klienci, function (i, item) {
+          $('#wybierzKlientaEdycja').append($('<option>', {
+
+              value: item.id,
+              text : item.imie+' '+item.nazwisko
+
+          }));
+      });
+
+
+
+          $.each(result.sprawy, function (i, item) {
+          $('#wybierzSpraweEdycja').append($('<option>', {
+
+              value: item.id,
+              text : item.nazwa
+
+
+          }));
+      });
+        },
+        error: function(result)
+        {
+          $('#modal-event').modal('hide');
+          alert(result.message);
+
+        },
+        complete: function () {
+              //  window.location.reload();
+            }
+
+
+
+      })
+      $(".klientEdycja").show();
+      }
+    else
+        $(".klientEdycja").hide();
+}
+
+
+
 
   $('#time_start').timepicker({
       showMeridian: false,

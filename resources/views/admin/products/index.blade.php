@@ -44,33 +44,28 @@
 				                <tr>
                           <th>Id</th>
 				                  <th>Nazwa</th>
-				                  <th>Koszt Całkowity</th>
-				                  <th>Termin Realizacji</th>
-                          <th>Data Realizacji</th>
-                          <th>Klient</th>
-                          <th>Zarządzaj</th>
+				                  <th>Typ produktu</th>
+				                  <th>Zarządzaj</th>
 				                </tr>
 				              </thead>
 
 				              <tbody>
-                      @foreach ($zamowienia as $zamowienie)
+                      @foreach ($produkty as $produkt)
 				                <tr>
-                          <td>{{$zamowienie->id}}</td>
-				                  <td>{{$zamowienie->nazwa}}</td>
-				                  <td>{{$zamowienie->kosztCalkowity}}</td>
-				                  <td>{{$zamowienie->terminRealizacji}}</td>
-                          <td>{{$zamowienie->dataRealizacji}}</td>
-                          <td>{{$zamowienie->customer_id}}</td>
-                          <td>
-                            <a href={{ action('OrdersController@destroy', $zamowienie->id) }}>
+                          <td>{{$produkt->id}}</td>
+				                  <td>{{$produkt->nazwa}}</td>
+				                  <td>{{$produkt->productType_id}}</td>
+				                  <td>
+                            <a href={{ action('OrdersController@destroy', $produkt->id) }}>
                                  <span class="label label-danger">Usuń</span</a>
-                             <a href={{ action('OrdersController@update', $zamowienie->id) }}>
+                             <a href={{ action('OrdersController@update', $produkt->id) }}>
                                   <span class="label label-success">Edytuj</span</a>
                           </td>
 				                </tr>
                       @endforeach
 				              </tbody>
 				            </table>
+                    <button>
 		  				</div>
 		  			</div>
   				</div>
