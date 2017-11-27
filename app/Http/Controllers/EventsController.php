@@ -31,7 +31,8 @@ class EventsController extends Controller
     {
         $klienci = Customer::all();
 
-        return Response()->json($klienci);
+
+        return Response()->json(array('klienci'=>$klienci,'cos'=>$klienci));
         //return view('/admin/calendar', compact($klienci));
 
     }

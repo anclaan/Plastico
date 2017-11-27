@@ -216,14 +216,15 @@ $(".klient").hide();
   function valueChanged()
 {
     if($('.czyKlient').is(":checked")){
+
       $.ajax({
         type: 'GET',
         url: '/events/create',
         success: function(result)
         {
+          console.log(result.klienci);
 
-
-          $.each(result, function (i, item) {
+          $.each(result.klienci, function (i, item) {
           $('#klienci').append($('<option>', {
 
               value: item.id,
