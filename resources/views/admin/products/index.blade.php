@@ -65,7 +65,7 @@
                       @endforeach
 				              </tbody>
 				            </table>
-                    <button>
+                    <a href={{ action('ProductsController@showCreateForm')}} class="btn btn-link" role="button">Link Button</a>
 		  				</div>
 		  			</div>
   				</div>

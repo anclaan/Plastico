@@ -25,78 +25,43 @@
         	<div class="row">
     		  @include('partials._adminSidebar')
 
-		  <div class="col-md-10">
+          <div class="col-md-10">
 
-		  	<div class="row">
-  				<div class="col-md-6">
-  					<div class="content-box-large">
-		  				<div class="panel-heading">
-							<div class="panel-title">Klienci</div>
+    		  	<div class="row">
+      				<div class="col-md-6">
+      					<div class="content-box-large">
+    		  				<div class="panel-heading">
+    							<div class="panel-title">Dodaj nowy produkt</div>
 
-							<div class="panel-options">
-								<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
-								<a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
-							</div>
-						</div>
-		  				<div class="panel-body">
-                <div class="container padding-vert-30 margin-top-60">
-                    <div class="row">
-                        <!-- Contact Details -->
-                        <div class="col-md-4 margin-bottom-20">
-                            <h3 class="margin-bottom-10">Kontakt</h3>
-                            <p>
-                                <span class="fa-phone">Telefon:</span>43 892 22 03
-                                <br>
-                                <span class="fa-envelope">Email:</span>
-                                <a href="mailto:plastico@gmail.com">plastico@gmail.com</a>
-                                <br>
 
-                            </p>
-                            <p>Błaszki,
-                                <br>Ul. Sulwińskiego 29,
-                                </p>
-                        </div>
-                        <!-- End Contact Details -->
-                        <!-- Sample Menu -->
-                        <div class="col-md-3 margin-bottom-20">
-                            <h3 class="margin-bottom-10">Przykładowe menu</h3>
-                            <ul class="menu">
-                                <li>
-                                    <a class="fa-tasks" href="#">Okna</a>
-                                </li>
-                                <li>
-                                    <a class="fa-users" href="#">Drzwi</a>
-                                </li>
-                                <li>
-                                    <a class="fa-signal" href="#">Akcesoria</a>
-                                </li>
-                                <li>
-                                    <a class="fa-coffee" href="#">Montaże</a>
-                                </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                        </div>
-                        <!-- End Sample Menu -->
-                        <div class="col-md-1"></div>
-                        <!-- Disclaimer -->
-                        <div class="col-md-3 margin-bottom-20 padding-vert-30 text-center">
-                            <h3 class="color-gray margin-bottom-10">Chcesz być na bieżąco?</h3>
-                            <p>
-                                Zarejestruj się aby otrzymywać najświeższe informacje
-                                <br>o produkach i promocjach
-                            </p>
-                            <input type="email">
-                            <br>
-                            <button class="btn btn-primary btn-lg margin-top-20" type="button">Subskrybuj</button>
-                        </div>
-                        <!-- End Disclaimer -->
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-		  				</div>
-		  			</div>
-  				</div>
-  			</div>
+    						</div>
+                {{Form::open(['route'=>'products.create', 'method'=>'post', 'role'=>'form']) }}
+                  <div class="content">
+                      <div class="header">
+                          <h4>Dodaj nowy produkt</h4>
+                      </div>
+                          <div class="form-group">
+                              {{ Form::label('nazwa', 'Nazwa produktu') }}
+                              {{ Form::text('nazwa', old('nazwa'), ['class'=>'form-control']) }}
+                          </div>
+                          <div class="form-group">
+                              {{ Form::label('opis', 'Opis produktu') }}
+                              {{ Form::text('opis', old('opis'), ['class'=>'form-control', 'readonly'=>'true']) }}
+                          </div>
+                          <div class="form-group">
+                              {{ Form::label('productType_id', 'Typ produktu') }}
+                              {{ Form::text('productType_id', old('productType_id'), ['class'=>'form-control']) }}
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn default" data-dismiss="modal">Anuluj</button>
+                          {!! Form::submit('Dodaj',['class' => 'btn btn-success']) !!}
+                      </div>
+                  </div>
+                {{ Form::close() }}
+    		  			</div>
+      				</div>
+      			</div>
 
 
 
@@ -105,8 +70,8 @@
 
 
 
-		  </div>
-    </div>
+    		  </div>
+        </div>
 		</div>
     </div>
 

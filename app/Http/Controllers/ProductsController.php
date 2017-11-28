@@ -19,7 +19,7 @@ class ProductsController extends Controller
     public function index()
     {
       $produkty = Product::all();
-      return view('admin.products')->with('produkty', $produkty);
+      return view('admin.products/index')->with('produkty', $produkty);
     }
 
     /**
@@ -29,7 +29,7 @@ class ProductsController extends Controller
      */
     public function showCreateForm()
     {
-        return redirect('admin/productCreate');
+        return view('admin/products/create');
     }
 
     /**
@@ -40,7 +40,7 @@ class ProductsController extends Controller
      */
     public function create(Request $request)
     {
-      $product = new Event();
+      $product = new Product();
       $product -> nazwa = $request -> nazwa;
       $product -> opis = $request -> opis;
       $product -> productType_id = $request -> wybierzTyp;

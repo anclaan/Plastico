@@ -33,13 +33,21 @@ Route::prefix('admin')->group(function(){
   Route::get('/buttons','AdminController@buttons');
   Route::get('/editors','AdminController@editors');
   Route::get('/stats','AdminController@stats');
+
+  // Users routes
   Route::get('/users','UsersController@index');
   Route::get('/users/destroy','UsersController@destroy');
   Route::get('/users/update','UsersController@update');
+
+  // Customers routes
   Route::get('/klienci','CustomersController@index');
   Route::get('/klienci/destroy','CustomersController@destroy');
   Route::get('/klienci/update','CustomersController@update');
+
+  // Events routes
   Route::get('/events/create','EventsController@create');
+
+  // Orders routes
   Route::get('/orders','OrdersController@index');
   Route::get('/orders/create','OrdersController@create');
   Route::get('/orders/destroy','OrdersController@destroy');
@@ -47,8 +55,8 @@ Route::prefix('admin')->group(function(){
 
   // Product routes
   Route::get('/products/index','ProductsController@index');
-  Route::get('/products/create','ProductsController@showCreateForm');
-  Route::post('/products/create','ProductsController@create');
+  Route::get('/products/create','ProductsController@showCreateForm')->name('admin.products.create');
+  Route::post('/products/create','ProductsController@create')->name('admin.products.create.submit');
   Route::get('/products/destroy','ProductsController@destroy');
   Route::get('/products/update','ProductsController@update');
 

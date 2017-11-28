@@ -16,7 +16,7 @@
     <link href="{{ asset('css/calendar.css') }}" rel="stylesheet"> --}}
 
      {{-- fullcalendar  --}}
-     {!! Html::style('vendor/bootstrap/dist/css/bootstrap.min.css') !!}
+     {! ! Html::style('vendor/bootstrap/dist/css/bootstrap.min.css') !!}
      {!! Html::style('vendor/fullcalendar/fullcalendar.min.css') !!}
      {!! Html::style('vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') !!}
      {!! Html::style('css/styles.css') !!}
