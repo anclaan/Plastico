@@ -14,7 +14,9 @@ class CustomersController extends Controller
      */
     public function index()
     {
-        //
+        $klienci = Customer::all();
+
+        return view('admin.klienci')->with('klienci',$klienci);
     }
 
     /**

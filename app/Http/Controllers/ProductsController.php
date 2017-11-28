@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Order;
+use App\Product;
+use App\ProductType;
 use Illuminate\Http\Request;
 
-class OrdersController extends Controller
+class ProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +19,9 @@ class OrdersController extends Controller
     }
     public function index()
     {
-      $zamowienia = Order::all();
-      return view('admin.orders')->with('zamowienia', $zamowienia);
+      $produkty = Product::all();
+
+      return view('admin.products.index')->with('produkty', $produkty);
     }
 
     /**
@@ -27,9 +29,12 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function showCreateForm()
     {
-        //
+      //  $typy = EventType::all();
+      $typy = ProductType::pluck('nazwa','id');
+
+        return view('admin/products/create')->with('typy',$typy);
     }
 
     /**
@@ -38,9 +43,17 @@ class OrdersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function create(Request $request)
     {
-        //
+      $product = new Product();
+      $product -> nazwa = $request -> nazwa;
+      $product -> opis = $request -> opis;
+      $product -> productType_id = $request -> wybierzTyp;
+
+
+      $product -> save();
+
+      return redirect('admin/products/index');
     }
 
     /**
@@ -49,7 +62,7 @@ class OrdersController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Product $product)
     {
         //
     }
@@ -60,7 +73,7 @@ class OrdersController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit(Product $product)
     {
         //
     }
@@ -72,7 +85,7 @@ class OrdersController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, Product $product)
     {
         //
     }
@@ -83,14 +96,15 @@ class OrdersController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy(Product $product)
     {
-      $order = Order::find($id);
+      $product = Product::find($id);
 
-      if($order == null)
+      if($product == null)
         return false;
 
-        $order-> delete();
+        $product-> delete();
         return true;
     }
+
 }

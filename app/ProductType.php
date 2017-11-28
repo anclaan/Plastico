@@ -4,19 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class ProductType extends Model
 {
   /**
    * [$table description]
    * @var string
    */
-  protected $table = 'orders';
+  protected $table = 'producttype';
 
   /**
    * [$filable description]
    * @var [type]
    */
   protected $fillable = [
-    'nazwa', 'kosztCalkowity','terminRealizacji','dataRealizacji','customer_id'
+    'nazwa','productMainType_id','opis'
   ];
 }

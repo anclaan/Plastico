@@ -40,10 +40,20 @@ Route::prefix('admin')->group(function(){
   Route::get('/klienci/destroy','CustomersController@destroy');
   Route::get('/klienci/update','CustomersController@update');
   Route::get('/events/create','EventsController@create');
-  // Route::create('/events/create',
-  // [
-  //   'as'
-  // ])
+  Route::get('/orders','OrdersController@index');
+  Route::get('/orders/create','OrdersController@create');
+  Route::get('/orders/destroy','OrdersController@destroy');
+  Route::get('/orders/update','OrdersController@update');
+
+  // Product routes
+  Route::get('/products/index','ProductsController@index');
+  Route::get('/product/index','ProductsController@getProductType');
+  Route::get('/products/create','ProductsController@showCreateForm');
+  Route::post('/products/create','ProductsController@create');
+  Route::get('/products/destroy','ProductsController@destroy');
+  Route::get('/products/update','ProductsController@update');
+
+
 
 
 
@@ -54,3 +64,4 @@ Route::prefix('admin')->group(function(){
       return view ('admin.calendar');
     });
   Route::resource('events', 'EventsController',['only' => ['index', 'store','update','destroy','create']]);
+  Route::resource('products', 'ProductsController',['only' => ['index', 'store','update','destroy','create','getProductType']]);

@@ -13,10 +13,10 @@ class UsersController extends Controller
    *
    * @return void
    */
-  public function __construct()
-  {
-      $this->middleware('auth:admin');
-  }
+  // public function __construct()
+  // {
+  //     $this->middleware('auth:admin');
+  // }
   public function index()
   {
       $users = User::all();

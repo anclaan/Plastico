@@ -142,7 +142,7 @@
 
 
 
-      <link href="vendors/datatables/dataTables.bootstrap.css" rel="stylesheet" media="screen">
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
@@ -150,7 +150,7 @@
     <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-
+    {!! Html::script('https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js') !!}
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 
     <script src="{{ asset('js/dataTables.bootstrap.js') }}"></script>
