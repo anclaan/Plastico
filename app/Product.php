@@ -10,13 +10,26 @@ class Product extends Model
    * [$table description]
    * @var string
    */
-  protected $table = 'products';
+
+
+   protected $table = 'products';
 
   /**
    * [$filable description]
    * @var [type]
    */
-  protected $fillable = [
-    'nazwa', 'productType_id'
-  ];
+   protected $fillable = [
+    'nazwa','opis', 'productType_id'
+    ];
+
+    public function typy()
+    {
+      return $this->hasMany('App\EventType');
+    }
+    public function typ()
+    {
+      return $this->belongsTo('App\ProductType','productType_id');
+
+    }
+
 }

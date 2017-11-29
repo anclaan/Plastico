@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Customer;
+use App\Product;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
@@ -19,17 +21,34 @@ class OrdersController extends Controller
     public function index()
     {
       $zamowienia = Order::all();
-      return view('admin.orders')->with('zamowienia', $zamowienia);
+      return view('admin.orders.index')->with('zamowienia', $zamowienia);
     }
+    public function showCreateForm()
+    {
+
+      $klienci = Customer::all();
+
+        return view('admin/orders/create')->with('klienci',$klienci);
+    }
+
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+      $order = new Order();
+      $order -> nazwa = $request -> nazwa;
+      $order -> terminRealizacji = $request -> terminRealizacji;
+      $order -> dataRealizacji = $request -> dataRealizacji;
+      $order -> customer_id = $request -> klient;
+
+
+      $order -> save();
+      $produkty = Product::all();
+      return view('admin/orders/addProducts')->with('produkty', $produkty);
     }
 
     /**
@@ -41,6 +60,10 @@ class OrdersController extends Controller
     public function store(Request $request)
     {
         //
+    }
+    public function addProducts(Request $request)
+    {
+        return redirect('admin/orders/index');
     }
 
     /**
@@ -83,7 +106,7 @@ class OrdersController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy($id)
     {
       $order = Order::find($id);
 
@@ -91,6 +114,6 @@ class OrdersController extends Controller
         return false;
 
         $order-> delete();
-        return true;
+        return redirect('/admin/orders/index');;
     }
 }

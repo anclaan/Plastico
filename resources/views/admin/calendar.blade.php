@@ -16,7 +16,7 @@
     <link href="{{ asset('css/calendar.css') }}" rel="stylesheet"> --}}
 
      {{-- fullcalendar  --}}
-     {! ! Html::style('vendor/bootstrap/dist/css/bootstrap.min.css') !!}
+     {!! Html::style('vendor/bootstrap/dist/css/bootstrap.min.css') !!}
      {!! Html::style('vendor/fullcalendar/fullcalendar.min.css') !!}
      {!! Html::style('vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') !!}
      {!! Html::style('css/styles.css') !!}
@@ -268,60 +268,6 @@ $(".klient").hide();
         $(".klient").hide();
 }
 
-$(".klientEdycja").hide();
-  function valueChanged2()
-{
-    if($('.czyKlientEdycja').is(":checked")){
-        $.ajax({
-        type: 'GET',
-        url: '/events/create',
-        success: function(result)
-        {
-          console.log(result)
-          $("#wybierzKlientaEdycja").empty();
-          $("#wybierzSpraweEdycja").empty();
-
-
-
-          $.each(result.klienci, function (i, item) {
-          $('#wybierzKlientaEdycja').append($('<option>', {
-
-              value: item.id,
-              text : item.imie+' '+item.nazwisko
-
-          }));
-      });
-
-
-
-          $.each(result.sprawy, function (i, item) {
-          $('#wybierzSpraweEdycja').append($('<option>', {
-
-              value: item.id,
-              text : item.nazwa
-
-
-          }));
-      });
-        },
-        error: function(result)
-        {
-          $('#modal-event').modal('hide');
-          alert(result.message);
-
-        },
-        complete: function () {
-              //  window.location.reload();
-            }
-
-
-
-      })
-      $(".klientEdycja").show();
-      }
-    else
-        $(".klientEdycja").hide();
-}
 
 
 

@@ -97,10 +97,10 @@ class EventsController extends Controller
     {
         $event = Event::find($id);
         $event -> title = $request -> _title;
-        $event -> customer_id = $request -> wybierzKlienta;
+      //  $event -> customer_id = $request -> wybierzKlienta;
         $event -> start = $request -> _date_start . ' ' . $request -> _time_start;
         $event -> end = $request -> _date_end;
-        $event -> eventType_id = $request -> wybierzSprawe;
+      //  $event -> eventType_id = $request -> wybierzSprawe;
         $event -> opis = $request -> opis;
 
         $event->save();

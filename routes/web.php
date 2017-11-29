@@ -48,17 +48,21 @@ Route::prefix('admin')->group(function(){
   Route::get('/events/create','EventsController@create');
 
   // Orders routes
-  Route::get('/orders','OrdersController@index');
-  Route::get('/orders/create','OrdersController@create');
-  Route::get('/orders/destroy','OrdersController@destroy');
-  Route::get('/orders/update','OrdersController@update');
+  Route::get('/orders/index','OrdersController@index');
+  Route::get('/orders/create','OrdersController@showCreateForm');
+  Route::post('/orders/create','OrdersController@create');
+  Route::get('/orders/{id}/destroy','OrdersController@destroy');
+  Route::get('/orders/{id}/update','OrdersController@update');
 
   // Product routes
   Route::get('/products/index','ProductsController@index');
-  Route::get('/products/create','ProductsController@showCreateForm')->name('admin.products.create');
-  Route::post('/products/create','ProductsController@create')->name('admin.products.create.submit');
-  Route::get('/products/destroy','ProductsController@destroy');
-  Route::get('/products/update','ProductsController@update');
+  Route::get('/product/index','ProductsController@getProductType');
+  Route::get('/products/create','ProductsController@showCreateForm');
+  Route::post('/products/create','ProductsController@create');
+  Route::get('/product/addProducts','ProductsController@create');
+  Route::post('/product/addProducts','ProductsController@addProducts');
+  Route::get('/products/{id}/destroy','ProductsController@destroy');
+  Route::get('/products/{id}/update','ProductsController@update');
 
 
 
@@ -71,4 +75,5 @@ Route::prefix('admin')->group(function(){
       return view ('admin.calendar');
     });
   Route::resource('events', 'EventsController',['only' => ['index', 'store','update','destroy','create']]);
-  Route::resource('products', 'ProductsController',['only' => ['index', 'store','update','destroy','create']]);
+  Route::resource('products', 'ProductsController',['only' => ['index', 'store','create','getProductType']]);
+  Route::resource('orders', 'OrdersController',['only' => ['index', 'store','create','addProducts']]);

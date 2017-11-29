@@ -62,10 +62,10 @@
                           <td>{{$klient->telefon}}</td>
                           <td>{{$klient->email}}</td>
                           <td>
-                            <a href={{ action('UsersController@destroy', $klient->id) }}>
+                            <a href={{ action('CustomersController@destroy', $klient->id)}} data-method="update">
+                                 <span class="label label-success">Edytuj</span</a>
+                            <a href={{ action('CustomersController@destroy', $klient->id)}} data-method="delete">
                                  <span class="label label-danger">Usuń</span</a>
-                             <a href={{ action('UsersController@update', $klient->id) }}>
-                                  <span class="label label-success">Edytuj</span</a>
                           </td>
 				                </tr>
                       @endforeach

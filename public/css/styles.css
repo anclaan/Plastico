@@ -556,7 +556,7 @@ body {
 }
 
 .panel-heading>.panel-title, .content-box-header .panel-title {
-    float: left;
+    float: center;
     padding: 10px 15px;
     padding-top: 0px;
 }

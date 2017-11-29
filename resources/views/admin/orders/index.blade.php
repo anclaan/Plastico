@@ -25,21 +25,18 @@
         	<div class="row">
     		  @include('partials._adminSidebar')
 
-		  <div class="col-md-10">
+          <div class="col-md-10">
+    		  	<div class="row">
+      				<div class="col-md-10">
+      					<div class="content-box-large">
+    		  				<div class="panel-heading">
+    							<div class="panel-title" style="text-align: center;"><h1>Zamówienia</h1></div>
 
-		  	<div class="row">
-  				<div class="col-md-6">
-  					<div class="content-box-large">
-		  				<div class="panel-heading">
-							<div class="panel-title">Klienci</div>
-
-							<div class="panel-options">
-								<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
-								<a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
-							</div>
-						</div>
-		  				<div class="panel-body">
-		  					<table class="table">
+    							<div class="panel-options">
+    							</div>
+    						</div>
+    		  				<div class="panel-body">
+    		  					<table class="table table-striped">
 				              <thead>
 				                <tr>
                           <th>Id</th>
@@ -62,28 +59,22 @@
                           <td>{{$zamowienie->dataRealizacji}}</td>
                           <td>{{$zamowienie->customer_id}}</td>
                           <td>
+                            <a href={{ action('OrdersController@update', $zamowienie->id) }}>
+                                  <span class="label label-success">Edytuj</span</a>
                             <a href={{ action('OrdersController@destroy', $zamowienie->id) }}>
                                  <span class="label label-danger">Usuń</span</a>
-                             <a href={{ action('OrdersController@update', $zamowienie->id) }}>
-                                  <span class="label label-success">Edytuj</span</a>
                           </td>
 				                </tr>
                       @endforeach
 				              </tbody>
 				            </table>
+                      <a href={{ action('OrdersController@showCreateForm')}} role="button" type="button" class="btn btn-success"style="float: right;">Stwórz nowe zamówienie</a>
 		  				</div>
 		  			</div>
   				</div>
   			</div>
-
-
-
-
-
-
-
-
 		  </div>
+
     </div>
 		</div>
     </div>

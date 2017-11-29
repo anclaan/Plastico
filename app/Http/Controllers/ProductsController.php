@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\ProductType;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -19,7 +20,8 @@ class ProductsController extends Controller
     public function index()
     {
       $produkty = Product::all();
-      return view('admin.products/index')->with('produkty', $produkty);
+
+      return view('admin.products.index')->with('produkty', $produkty);
     }
 
     /**
@@ -29,7 +31,10 @@ class ProductsController extends Controller
      */
     public function showCreateForm()
     {
-        return view('admin/products/create');
+
+      $typy = ProductType::pluck('nazwa','id');
+
+        return view('admin/products/create')->with('typy',$typy);
     }
 
     /**
@@ -43,12 +48,12 @@ class ProductsController extends Controller
       $product = new Product();
       $product -> nazwa = $request -> nazwa;
       $product -> opis = $request -> opis;
-      $product -> productType_id = $request -> wybierzTyp;
+      $product -> productType_id = $request -> typy;
 
 
       $product -> save();
 
-      return redirect('admin.products');
+      return redirect('admin/products/index');
     }
 
     /**
@@ -91,7 +96,7 @@ class ProductsController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
       $product = Product::find($id);
 
@@ -99,6 +104,7 @@ class ProductsController extends Controller
         return false;
 
         $product-> delete();
-        return true;
+        return redirect('/admin/products/index');
     }
+
 }

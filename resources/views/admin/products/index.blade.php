@@ -28,23 +28,22 @@
 		  <div class="col-md-10">
 
 		  	<div class="row">
-  				<div class="col-md-6">
+  				<div class="col-md-10">
   					<div class="content-box-large">
 		  				<div class="panel-heading">
-							<div class="panel-title">Klienci</div>
+							<div class="panel-title" style="text-align: center;"><h1>Produkty</h1></div>
 
 							<div class="panel-options">
-								<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
-								<a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
 							</div>
 						</div>
 		  				<div class="panel-body">
-		  					<table class="table">
-				              <thead>
+		  					<table class="table table-striped">
+				              <thead class="thead-dark">
 				                <tr>
                           <th>Id</th>
 				                  <th>Nazwa</th>
-				                  <th>Typ produktu</th>
+                          <th>Typ produktu</th>
+				                  <th>Opis</th>
 				                  <th>Zarządzaj</th>
 				                </tr>
 				              </thead>
@@ -54,18 +53,20 @@
 				                <tr>
                           <td>{{$produkt->id}}</td>
 				                  <td>{{$produkt->nazwa}}</td>
-				                  <td>{{$produkt->productType_id}}</td>
+                          <td>{{$produkt->typ['nazwa']}}</td>
+                          <td>{{$produkt->opis}}</td>
 				                  <td>
-                            <a href={{ action('OrdersController@destroy', $produkt->id) }}>
+                              <a href={{ action('ProductsController@update', $produkt->id)}}>
+                                <span class="label label-success">Edytuj</span</a>
+                              <a href={{ action('ProductsController@destroy', $produkt->id)}}>
                                  <span class="label label-danger">Usuń</span</a>
-                             <a href={{ action('OrdersController@update', $produkt->id) }}>
-                                  <span class="label label-success">Edytuj</span</a>
                           </td>
 				                </tr>
                       @endforeach
 				              </tbody>
 				            </table>
-                    <a href={{ action('ProductsController@showCreateForm')}} class="btn btn-link" role="button">Link Button</a>
+                    <a href={{ action('ProductsController@showCreateForm')}} role="button" type="button" class="btn btn-success"style="float: right;">Dodaj nowy produkt</a>
+
 		  				</div>
 		  			</div>
   				</div>

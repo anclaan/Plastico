@@ -12,15 +12,11 @@ class CustomersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function __construct()
-     {
-         $this->middleware('auth:admin');
-     }
     public function index()
     {
+        $klienci = Customer::all();
 
-      $klienci = Customer::all();
-      return view('admin.klienci')->with('klienci', $klienci);
+        return view('admin.klienci')->with('klienci',$klienci);
     }
 
     /**
