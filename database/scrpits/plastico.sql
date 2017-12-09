@@ -44,6 +44,8 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `telefon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `NIP` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `kod` varchar(6) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `poczta` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -51,9 +53,9 @@ CREATE TABLE IF NOT EXISTS `customers` (
 
 -- Zrzucanie danych dla tabeli plastico.customers: ~2 rows (około)
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-INSERT INTO `customers` (`id`, `imie`, `nazwisko`, `adres`, `telefon`, `email`, `NIP`, `created_at`, `updated_at`) VALUES
-	(1, 'Jan', 'Kowalski', 'Borysławice 15', '608103310', 'janekKowal@gmail.com', NULL, NULL, NULL),
-	(2, 'Andrzej', 'Wisniewski', 'Romanow 29', '509332201', 'awisnia@gmail.com', NULL, '2017-10-25 00:23:18', NULL);
+INSERT INTO `customers` (`id`, `imie`, `nazwisko`, `adres`, `telefon`, `email`, `NIP`,`kod`,`poczta`,`created_at`, `updated_at`) VALUES
+	(1, 'Jan', 'Kowalski', 'Borysławice 15', '608103310', 'janekKowal@gmail.com', NULL, '98-235','Błaszki', NULL, NULL),
+	(2, 'Andrzej', 'Wisniewski', 'Romanow 29', '509332201', 'awisnia@gmail.com', NULL, '98-235','Błaszki', '2017-10-25 00:23:18', NULL);
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 
 -- Zrzut struktury tabela plastico.events
@@ -114,25 +116,6 @@ CREATE TABLE IF NOT EXISTS `parameters` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Zrzut struktury tabela plastico.klients
-CREATE TABLE IF NOT EXISTS `klients` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `imie` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nazwisko` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `adres` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `telefon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Zrzucanie danych dla tabeli plastico.klients: ~2 rows (około)
-/*!40000 ALTER TABLE `klients` DISABLE KEYS */;
-INSERT INTO `klients` (`id`, `imie`, `nazwisko`, `adres`, `telefon`, `email`, `created_at`, `updated_at`) VALUES
-	(1, 'Jan', 'Kowalski', 'Borysławice 15', '608103310', 'janekKowal@gmail.com', NULL, NULL),
-	(2, 'Andrzej', 'Wisniewski', 'Romanow 29', '509332201', 'awisnia@gmail.com', '2017-10-25 00:23:18', NULL);
-/*!40000 ALTER TABLE `klients` ENABLE KEYS */;
 
 -- Zrzut struktury tabela plastico.migrations
 CREATE TABLE IF NOT EXISTS `migrations` (

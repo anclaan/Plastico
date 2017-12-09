@@ -29,7 +29,7 @@
         <div class="content-box-large">
 		  	<div class="row">
           {{Form::open(['route'=>'products.create', 'method'=>'GET', 'role'=>'form']) }}
-          <div id = "content" class="col-md-5"onloadedmetadata="">
+          <div id = "content" class="col-md-5" onloadedmetadata="">
                 <div class="modal-header">
                     <h4>Dodaj nowy produkt</h4>
                 </div>

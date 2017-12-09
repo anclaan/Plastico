@@ -31,7 +31,7 @@
   				<div class="col-md-6">
   					<div class="content-box-large">
 		  				<div class="panel-heading">
-							<div class="panel-title">Klienci</div>
+							<div class="panel-title">Uzytkownicy</div>
 
 							<div class="panel-options">
 								<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
@@ -43,29 +43,24 @@
 				              <thead>
 				                <tr>
                           <th>Id</th>
-				                  <th>Imie</th>
-				                  <th>Naziwsko</th>
-				                  <th>Adres</th>
-                          <th>Telefon</th>
-                          <th>Email</th>
+				                  <th>Login</th>
+				                  <th>Hasło</th>
+				                  <th>Email</th>
                           <th>Zarządzaj</th>
 				                </tr>
 				              </thead>
 
 				              <tbody>
-                      @foreach ($klienci as $klient)
+                      @foreach ($users as $user)
 				                <tr>
-                          <td>{{$klient->id}}</td>
-				                  <td>{{$klient->imie}}</td>
-				                  <td>{{$klient->nazwisko}}</td>
-				                  <td>{{$klient->adres}}</td>
-                          <td>{{$klient->telefon}}</td>
-                          <td>{{$klient->email}}</td>
+                          <td>{{$user->id}}</td>
+				                  <td>{{$user->name}}</td>
+				                  <td>{{$user->password}}</td>
+				                  <td>{{$user->email}}</td>
                           <td>
-                            <a href={{ action('CustomersController@destroy', $klient->id)}} data-method="update">
-                                 <span class="label label-success">Edytuj</span</a>
-                            <a href={{ action('CustomersController@destroy', $klient->id)}} data-method="delete">
-                                 <span class="label label-danger">Usuń</span</a>
+                            <a href={{ action('UsersController@destroy', $user->id) }}>
+                                 <span class="label label-danger">Archiwizuj</span</a>
+
                           </td>
 				                </tr>
                       @endforeach
@@ -84,9 +79,67 @@
 
 
 		  </div>
-    </div>
+      {{-- <div class="col-md-10">
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="content-box-large">
+              <div class="panel-heading">
+              <div class="panel-title">Pracownicy</div>
+
+              <div class="panel-options">
+                <a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
+                <a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
+              </div>
+            </div>
+              <div class="panel-body">
+                <table class="table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Imie</th>
+                          <th>Nazwisko</th>
+                          <th>Nr Telefonu</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>Andrzej</td>
+                          <td>Nowak</td>
+                          <td>609940823</td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Janusz</td>
+                          <td>Tracz</td>
+                          <td>798503955</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>Anna</td>
+                          <td>Wiśniewska</td>
+                          <td>504493033</td>
+                        </tr>
+                      </tbody>
+                    </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+      </div> --}}
 		</div>
     </div>
+
+
 
 
 

@@ -16,7 +16,7 @@ class CustomersController extends Controller
     {
         $klienci = Customer::all();
 
-        return view('admin.klienci')->with('klienci',$klienci);
+        return view('admin.customers.index')->with('klienci',$klienci);
     }
 
     /**
@@ -24,10 +24,10 @@ class CustomersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+     public function create(Request $request)
+     {
+
+     }
 
     /**
      * Store a newly created resource in storage.
@@ -37,7 +37,20 @@ class CustomersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $customer = new Customer();
+      $customer -> imie = $request -> imie;
+      $customer -> nazwisko = $request -> nazwisko;
+      $customer -> telefon = $request -> telefon;
+      $customer -> email = $request -> email;
+      $customer -> nip = $request -> nip;
+      $customer -> adres = $request -> adres;
+      $customer -> kod = $request -> kod;
+      $customer -> poczta = $request -> poczta;
+
+
+      $customer -> save();
+      return redirect('/admin/customers/index');
+
     }
 
     /**
@@ -80,8 +93,14 @@ class CustomersController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function destroy($id)
     {
-        //
+      $customer = Customer::find($id);
+
+    if($customer == null)
+      return false;
+
+      $customer-> delete();
+      return redirect('/admin/customers/index');;
     }
 }

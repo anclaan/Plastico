@@ -35,14 +35,14 @@ Route::prefix('admin')->group(function(){
   Route::get('/stats','AdminController@stats');
 
   // Users routes
-  Route::get('/users','UsersController@index');
-  Route::get('/users/destroy','UsersController@destroy');
-  Route::get('/users/update','UsersController@update');
+  Route::get('/users/index','UsersController@index');
+  Route::get('/users/{id}/update','UsersController@update');
+  Route::get('/users/{id}/destroy','UsersController@destroy');
 
   // Customers routes
-  Route::get('/klienci','CustomersController@index');
-  Route::get('/klienci/destroy','CustomersController@destroy');
-  Route::get('/klienci/update','CustomersController@update');
+  Route::get('/customers/index','CustomersController@index');
+  Route::get('/customers/{id}/update','CustomersController@update');
+  Route::get('/customers/{id}/destroy','CustomersController@destroy');
 
   // Events routes
   Route::get('/events/create','EventsController@create');
@@ -77,3 +77,5 @@ Route::prefix('admin')->group(function(){
   Route::resource('events', 'EventsController',['only' => ['index', 'store','update','destroy','create']]);
   Route::resource('products', 'ProductsController',['only' => ['index', 'store','create','getProductType']]);
   Route::resource('orders', 'OrdersController',['only' => ['index', 'store','create','addProducts']]);
+  Route::resource('customers', 'CustomersController',['only' => ['index', 'store','create']]);
+  Route::resource('users', 'UsersController',['only' => ['index', 'store','create']]);

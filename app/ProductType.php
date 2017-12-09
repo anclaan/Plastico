@@ -20,8 +20,4 @@ class ProductType extends Model
     'nazwa','productMainType_id','opis'
   ];
 
-  public function getNazwaAttribute($value)
-  {
-      return ucfirst($value);
-  }
 }

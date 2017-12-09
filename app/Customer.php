@@ -17,6 +17,6 @@ class Customer extends Model
    * @var [type]
    */
   protected $fillable = [
-    'imie', 'nazwisko','adres','telefon','email','NIP'
+    'imie', 'nazwisko','adres','telefon','email','NIP','kod','poczta'
   ];
 }
