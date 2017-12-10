@@ -80,15 +80,17 @@
                   </div>
                   {{ Form::close() }}
 
-                  {!!Form::open(['route'=>['customers.update',1], 'method'=>'PUT', 'id'=>'updatemodal'])!!}
-                  <div id = "modal-event" class = "modal" tabindex="-1" data-backdrop="static">
+  {!!Form::open(['route'=>['customers.update',1], 'method'=>'PUT', 'id'=>'updatemodal'])!!}
+                  <div id = "myModal" class = "modal fade" tabindex="-1" data-backdrop="static">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
                             <h4>Edytuj sprawę</h4>
-                        </div>
-                        <div class="modal-body">
-
+                            <div class="modal-body">
+                            <div class="form-group">
+                                {{ Form::label('_id', 'Id') }}
+                                {{ Form::text('_id', old('_id'), ['class'=>'form-control']) }}
+                            </div>
                             <div class="form-group">
                                 {{ Form::label('_imie', 'Imię') }}
                                 {{ Form::text('_imie', old('_imie'), ['class'=>'form-control']) }}
@@ -123,14 +125,15 @@
                             </div>
                         </div>
                         <div class="modal-footer">
+
                             <meta name="csrf-token" content="{{ csrf_token() }}">
-                            <a id="delete" data-href="{{ url('events') }}" data-id="" class="btn btn-danger">Usuń</a>
                             <button type="button" class="btn btn default" data-dismiss="modal">Anuluj</button>
-                            {!! Form::submit('Aktualizuj',['class' => 'btn btn-success']) !!}
+                            {!! Form::submit('Aktualizuj',['class' => 'btn btn-info']) !!}
                         </div>
                       </div>
                     </div>
                   </div>
+                </div>
                   {{ Form::close() }}
 
   				<div class="col-md-6">
@@ -149,9 +152,10 @@
 				                <tr>
                           <th>Id</th>
 				                  <th>Imie</th>
-				                  <th>Naziwsko</th>
+				                  <th>Nazwisko</th>
 				                  <th>Telefon</th>
                           <th>Email</th>
+                          <th>NIP</th>
                           <th>Adres</th>
                           <th>Kod Pocztowy</th>
                           <th>Poczta</th>
@@ -167,14 +171,29 @@
 				                  <td>{{$klient->nazwisko}}</td>
                           <td>{{$klient->telefon}}</td>
                           <td>{{$klient->email}}</td>
+                          <td>{{$klient->nip}}</td>
                           <td>{{$klient->adres}}</td>
                           <td>{{$klient->kod}}</td>
                           <td>{{$klient->poczta}}</td>
                           <td>
-                            <a href={{ action('CustomersController@update', $klient->id) }}>
-                                  <span class="label label-success">Edytuj</span</a>
-                            <a href={{ action('CustomersController@destroy', $klient->id) }}>
-                                 <span class="label label-danger">Usuń</span</a>
+                            {{-- <a class="edycja" role="button" type="button" id={{$klient->id}}>
+                                  <span class="label label-success">Edytuj</span></a> --}}
+                            {{-- <a role="button" type="button" id={{$klient->id}} class="btn btn-success"></a> --}}
+                            {{-- <input id={{$klient->id}} type="button" value="edytuj" class="edycja"/> --}}
+                            {{-- <button class="btn btn-success btn-edit" data-id="{{$klient->id}}">Edytuj</button> --}}
+                            <td><a id ="edit-modal"  data-id="{{$klient->id}}"
+                                  data-imie="{{$klient->imie}}"
+                                  data-nazwisko="{{$klient->nazwisko}}"
+                                  data-telefon="{{$klient->telefon}}"
+                                  data-email="{{$klient->email}}"
+                                  data-nip="{{$klient->nip}}"
+                                  data-adres="{{$klient->adres}}"
+                                  data-kod="{{$klient->kod}}"
+                                  data-poczta="{{$klient->poczta}}">
+                    							<span class="btn btn-info"> Edytuj</span>
+                    						</a>
+                            <a id="usun" href={{ action('CustomersController@destroy', $klient->id) }}>
+                                 <span class="btn btn-danger">Usuń</span></a>
                           </td>
 				                </tr>
                       @endforeach
@@ -214,30 +233,100 @@
     {!! Html::script('vendor/bootstrap-timepicker/js/bootstrap-timepicker.js') !!}
 
     <script>
-      $(document).ready(function()
-      {
+    $(document).ready(function()
+    {
+
+      $(document).on('click', '#edit-modal', function(){
+
+        $('#myModal').modal('show');
+
+        $('#myModal #_imie').val($(this).data('imie'));
+        $('#updatemodal').attr("action", '/customers/'+$(this).data('id'));
+        $('#_nazwisko').val($(this).data('nazwisko'));
+        $('#_telefon').val($(this).data('telefon'));
+        $('#_email').val($(this).data('email'));
+        $('#_nip').val($(this).data('nip'));
+        $('#_adres').val($(this).data('adres'));
+        $('#_kod').val($(this).data('kod'));
+        $('#_poczta').val($(this).data('poczta'));
+        $('#_id').val($(this).data('id'));
+      })
+
+
+      $('#usun').on('click', function() {
+        // if(result)
+        //   alert(result.error);
+        //  });
+})
+
+
 
         $('#dodajKlienta').on('click',function(){
           $('#responsive-modal').modal('show')
         });
+        // $('.btn-edit').on('click', function(){
+        //
+        // });
+        // $('tbody').delegate('.btn-edit','click', function(){
+        //   var value = $(this).data('id');
+        //   var url = '{URL::to('getUpdate')}}';
+        //   $.ajax({
+        //     type : 'get',
+        //     url : url,
+        //     data : {'id':value},
+        //     success:function(data){
+        //       console.log(data);
+        //     }
+        //   })
+        // })
 
-        eventClick: function (customer, jsEvent, view)
-        {
-          var date_start = $.fullCalendar.moment(event.start).format('YYYY-MM-DD');
-          var time_start = $.fullCalendar.moment(event.start).format('HH:mm:ss');
-          var date_end = $.fullCalendar.moment(event.end).format('YYYY-MM-DD HH:mm:ss');
-          $('#modal-event #delete').attr('data-id', event.id);
-          $('#updatemodal').attr("action", '/events/'+event.id);
-          $('#modal-event #_title').val(event.title);
-          $('#modal-event #_date_start').val(date_start);
-          $('#modal-event #_time_start').val(time_start);
-          $('#modal-event #_date_end').val(date_end);
-          $('#modal-event #_typ').val(event.typ);
-          $('#modal-event #_opis').val(event.opis);
-          $('#modal-event').modal('show');
+        // eventClick: function (customer, jsEvent, view)
+        // {
+        //   var date_start = $.fullCalendar.moment(event.start).format('YYYY-MM-DD');
+        //   var time_start = $.fullCalendar.moment(event.start).format('HH:mm:ss');
+        //   var date_end = $.fullCalendar.moment(event.end).format('YYYY-MM-DD HH:mm:ss');
+        //   $('#modal-event #delete').attr('data-id', event.id);
+        //   $('#updatemodal').attr("action", '/events/'+event.id);
+        //   $('#modal-event #_title').val(event.title);
+        //   $('#modal-event #_date_start').val(date_start);
+        //   $('#modal-event #_time_start').val(time_start);
+        //   $('#modal-event #_date_end').val(date_end);
+        //   $('#modal-event #_typ').val(event.typ);
+        //   $('#modal-event #_opis').val(event.opis);
+        //   $('#modal-event').modal('show');
+        //
+        //
+        // }
+      //   $('#edytujKlienta').on('click', function ()
+      // {
+      //       var url = '/customers'+
+      //       $('#modal-event').modal('show');
+      //       $.ajax({
+      //       type: 'GET',
+      //       url: '/customers/{id}/edit',
+      //       success: function(result)
+      //       {
+      //         console.log(result);
+      //       },
+      //       error: function(result)
+      //       {
+      //         $('#modal-event').modal('hide');
+      //         alert(result.message);
+      //
+      //       },
+      //       complete: function () {
+      //             //  window.location.reload();
+      //           }
+      //
+      //
+      //
+      //     })
+
+      // })
 
 
-        }
+
+
       })
     </script>
   </body>

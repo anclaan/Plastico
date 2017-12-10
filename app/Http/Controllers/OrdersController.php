@@ -21,14 +21,15 @@ class OrdersController extends Controller
     public function index()
     {
       $zamowienia = Order::all();
+      $produkty = Product::all();
       return view('admin.orders.index')->with('zamowienia', $zamowienia);
     }
     public function showCreateForm()
     {
 
-      $klienci = Customer::all();
-
-        return view('admin/orders/create')->with('klienci',$klienci);
+        $klienci = Customer::all();
+        $produkty = Product::all();
+        return view('admin/orders/create')->with(array('klienci' => $klienci,'produkty' => $produkty));
     }
 
 

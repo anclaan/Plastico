@@ -19,4 +19,9 @@ class Order extends Model
   protected $fillable = [
     'nazwa', 'kosztCalkowity','terminRealizacji','dataRealizacji','customer_id'
   ];
+  public function typ()
+  {
+    return $this->belongsTo('App\ProductType','productType_id');
+
+  }
 }

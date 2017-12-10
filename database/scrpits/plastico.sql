@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `adres` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `telefon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `NIP` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nip` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `kod` varchar(6) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `poczta` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
 
 -- Zrzucanie danych dla tabeli plastico.customers: ~2 rows (około)
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-INSERT INTO `customers` (`id`, `imie`, `nazwisko`, `adres`, `telefon`, `email`, `NIP`,`kod`,`poczta`,`created_at`, `updated_at`) VALUES
+INSERT INTO `customers` (`id`, `imie`, `nazwisko`, `adres`, `telefon`, `email`, `nip`,`kod`,`poczta`,`created_at`, `updated_at`) VALUES
 	(1, 'Jan', 'Kowalski', 'Borysławice 15', '608103310', 'janekKowal@gmail.com', NULL, '98-235','Błaszki', NULL, NULL),
 	(2, 'Andrzej', 'Wisniewski', 'Romanow 29', '509332201', 'awisnia@gmail.com', NULL, '98-235','Błaszki', '2017-10-25 00:23:18', NULL);
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;

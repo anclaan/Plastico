@@ -41,7 +41,10 @@ Route::prefix('admin')->group(function(){
 
   // Customers routes
   Route::get('/customers/index','CustomersController@index');
-  Route::get('/customers/{id}/update','CustomersController@update');
+  Route::get('/customers/edit','CustomersController@edit');
+  Route::get('/customers/getUpdate', 'CustomersController@getUpdate');
+  Route::put('/customers/newUpdate', 'CustomersController@newUpdate');
+  Route::post('/customers/{id}/update','CustomersController@update');
   Route::get('/customers/{id}/destroy','CustomersController@destroy');
 
   // Events routes
@@ -62,7 +65,7 @@ Route::prefix('admin')->group(function(){
   Route::get('/product/addProducts','ProductsController@create');
   Route::post('/product/addProducts','ProductsController@addProducts');
   Route::get('/products/{id}/destroy','ProductsController@destroy');
-  Route::get('/products/{id}/update','ProductsController@update');
+  Route::put('/products/{id}/update','ProductsController@update');
 
 
 
@@ -77,5 +80,5 @@ Route::prefix('admin')->group(function(){
   Route::resource('events', 'EventsController',['only' => ['index', 'store','update','destroy','create']]);
   Route::resource('products', 'ProductsController',['only' => ['index', 'store','create','getProductType']]);
   Route::resource('orders', 'OrdersController',['only' => ['index', 'store','create','addProducts']]);
-  Route::resource('customers', 'CustomersController',['only' => ['index', 'store','create']]);
+  Route::resource('customers', 'CustomersController',['except' => ['destroy']]);
   Route::resource('users', 'UsersController',['only' => ['index', 'store','create']]);

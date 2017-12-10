@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Customer;
+use App\Order;
 use Illuminate\Http\Request;
-
+use Session;
+use Redirect;
 class CustomersController extends Controller
 {
     /**
@@ -70,21 +73,36 @@ class CustomersController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Customer $customer)
+    public function edit($id)
     {
-        //
+
     }
 
-    /**
+
+      /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request, $id)
     {
-        //
+      $customer = Customer::find($id);
+
+      $customer -> imie = $request -> _imie;
+      $customer -> nazwisko = $request -> _nazwisko;
+      $customer -> telefon = $request -> _telefon;
+      $customer -> email = $request -> _email;
+      $customer -> nip = $request -> _nip;
+      $customer -> adres = $request -> _adres;
+      $customer -> kod = $request -> _kod;
+      $customer -> poczta = $request -> _poczta;
+
+
+      $customer -> save();
+      Session::flash('message', 'Sprawa została zaktualizowana');
+      return Redirect::to('/admin/customers/index');
     }
 
     /**
@@ -97,10 +115,19 @@ class CustomersController extends Controller
     {
       $customer = Customer::find($id);
 
-    if($customer == null)
-      return false;
 
-      $customer-> delete();
-      return redirect('/admin/customers/index');;
+      $order = DB::table('customers')->get();
+      if($order = null){
+        $customer-> delete();
+        return redirect('/admin/customers/index');
+      }else{
+        $error = 'Nie można usunąć klienta, ponieważ przypisane jest do niego zamówienie';
+        return redirect('admin/customers/index')->with('error',$error);
+        //   $event-> delete();
+          // return view('admin.customers.index')->with(
+          //   'message' => 'Nie można usunąć'
+          // ]);
+      }
+
     }
 }

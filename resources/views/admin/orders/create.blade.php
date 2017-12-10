@@ -6,18 +6,16 @@
     <!-- jQuery UI -->
     <link href="https://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet" media="screen">
 
-    <!-- Bootstrap -->
-    {!! Html::style('vendor/bootstrap/dist/css/bootstrap.css') !!}
-     {!! Html::style('vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') !!}
-    <!-- styles -->
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
+    {!! Html::style('vendor/bootstrap/dist/css/bootstrap.css') !!}
+    {!! Html::style('vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') !!}
+    {!! Html::style('css/styles.css') !!}
+    {!! Html::style('css/myStyles.css') !!}
+
+
+
+
+
   </head>
   <body>
     @include('partials._adminNav')
@@ -29,15 +27,50 @@
 		  <div class="col-md-10">
         <div class="content-box-large">
 		  	<div class="row">
-
-          {{Form::open(['route'=>'orders.create', 'method'=>'GET', 'role'=>'form']) }}
-          <div id = "content" class="col-md-5" onloadedmetadata="">
+          {{Form::open(['route'=>'orders.create', 'method'=>'post', 'role'=>'form']) }}
+          <div id = "responsive-modal" class = "modal" tabindex="-1" data-backdrop="static">
+            <div class="modal-dialog">
+              <div class="modal-content">
                 <div class="modal-header">
-                    <h4>Tworzenie nowego zamówienia</h4>
+                    <h4>Dodawanie produktu do zamówienia</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    {{ Form::label('produkt', 'Wybierz produkt') }}
+                    <select id = "produkt" class="form-control" name="produkt"  >
+                      @foreach($produkty as $produkt)
+                        <option value="{{$produkt->id}}" data-typId="{{$produkt->productType_id}}">{{$produkt->typ['nazwa']}} - {{$produkt->nazwa}}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                    <div class="form-group">
+                        {{ Form::label('cena', 'Cena') }}
+                        {{ Form::text('cena', old('cena'), ['class'=>'form-control'])}}
+                    </div>
+                    <fieldset class="params">
+
+                    </fieldset>
+                    <div class="form-group">
+                        {{ Form::label('opis', 'Opis') }}
+                        {{ Form::textarea('opis', old('opis'), ['class'=>'form-control']) }}
+                    </div>
+                  </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn default" data-dismiss="modal">Anuluj</button>
+                    {!! Form::submit('Dodaj',['class' => 'btn btn-success']) !!}
+                </div>
+              </div>
+            </div>
+          </div>
+          {{ Form::close() }}
+          <div id = "content" class="col-md-4" onloadedmetadata="">
+            {{Form::open(['route'=>'orders.create', 'method'=>'GET', 'role'=>'form']) }}
+                <div class="modal-header">
+                    <h4>Nowe zamówienie</h4>
                 </div>
                 <div id="form-body" style="background color: white;">
                 <div class="form-group">
-                        {{ Form::label('nazwa', 'Nazwa zamówienia') }}
+                        {{ Form::label('nazwa', 'Numer zamówienia') }}
                         {{ Form::text('nazwa', old('nazwa'), ['class'=>'form-control']) }}
                     </div>
                     <div class="form-group">
@@ -60,13 +93,36 @@
                     </div>
 
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn default" data-dismiss="modal">Anuluj</button>
-                    {!! Form::submit('Dalej',['class' => 'btn btn-success']) !!}
-                </div>
+                <a role="button" id="dodajProdukt" type="button" class="btn btn-info">Dodaj produkt</a>
+
               </div>
+              <div id = "produkty" class="col-md-6">
+                <div class="modal-header">
+                    <h4>Lista produktów</h4>
+                </div>
+                <div class="panel-body">
+                  <table class="produktyZamowienie table" style="height:5300px;">
+  				              <thead>
+  				                <tr>
+                            <th>Lp.</th>
+                            <th>Nazwa produktu</th>
+  				                  <th>Cena</th>
+  				                  <th>Opis</th>
+  				                  <th>Zarządzaj</th>
+  				                </tr>
+  				              </thead>
+                      </table>
+                </div>
+                <div class="modal-footer">
+                    <button  type="button" class="btn btn default" data-dismiss="modal">Anuluj</button>
+
+                    {!! Form::submit('Utwórz zamówienie',['class' => 'btn btn-success']) !!}
+                </div>
+                {{ Form::close() }}
+              </div>
+
           </div>
-          {{ Form::close() }}
+
           </div>
 
 
@@ -107,6 +163,33 @@
             format: 'YYYY-MM-DD',
 
                 });
+        $('#dodajProdukt').on('click',function(){
+          $('#responsive-modal').modal('show')
+        });
+
+        $('#produkt').on('change', function()
+        {
+              var produkt = $('#produkt').val($(this).data('typId'));
+
+              // $.ajax({
+              // type: 'GET',
+              // url: '/events/create',
+              // success: function(result)
+              // {
+              //
+              // },
+              // error: function(result)
+              // {
+              //
+              //
+              // },
+              // complete: function () {
+              //       //  window.location.reload();
+              //     }
+              //
+              // })
+
+          })
       })
     </script>
 

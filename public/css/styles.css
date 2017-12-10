@@ -580,7 +580,10 @@ body {
 
 .panel-body {
   clear:both;
+  min-width: 600px;
+  min-height: 400px;
 }
+
 
 /* Responsive CSS */
 

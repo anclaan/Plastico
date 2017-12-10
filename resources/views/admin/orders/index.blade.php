@@ -60,9 +60,9 @@
                           <td>{{$zamowienie->customer_id}}</td>
                           <td>
                             <a href={{ action('OrdersController@update', $zamowienie->id) }}>
-                                  <span class="label label-success">Edytuj</span</a>
+                                  <span class="btn btn-info">Edytuj</span</a>
                             <a href={{ action('OrdersController@destroy', $zamowienie->id) }}>
-                                 <span class="label label-danger">Usuń</span</a>
+                                 <span class="btn btn-danger">Usuń</span</a>
                           </td>
 				                </tr>
                       @endforeach
