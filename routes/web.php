@@ -41,7 +41,7 @@ Route::prefix('admin')->group(function(){
 
   // Customers routes
   Route::get('/customers/index','CustomersController@index');
-  Route::get('/customers/edit','CustomersController@edit');
+  Route::get('/customers/{id}/edit','CustomersController@edit');
   Route::get('/customers/getUpdate', 'CustomersController@getUpdate');
   Route::put('/customers/newUpdate', 'CustomersController@newUpdate');
   Route::post('/customers/{id}/update','CustomersController@update');

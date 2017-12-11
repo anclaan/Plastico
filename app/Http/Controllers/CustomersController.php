@@ -75,7 +75,9 @@ class CustomersController extends Controller
      */
     public function edit($id)
     {
+        $customer = Customer::find($id);
 
+        return Response()->json($customer);
     }
 
 
@@ -114,20 +116,24 @@ class CustomersController extends Controller
     public function destroy($id)
     {
       $customer = Customer::find($id);
+      // dd($customer);
 
+      $order = DB::table('orders')->where('customer_id',$id)->get();
 
-      $order = DB::table('customers')->get();
-      if($order = null){
-        $customer-> delete();
-        return redirect('/admin/customers/index');
-      }else{
-        $error = 'Nie można usunąć klienta, ponieważ przypisane jest do niego zamówienie';
-        return redirect('admin/customers/index')->with('error',$error);
+      $customer-> delete();
+      return redirect('/admin/customers/index');
+      // if($order == null){
+      //
+      //
+      // }else{
+      //
+      //   $error = 'Nie można usunąć klienta, ponieważ przypisane jest do niego zamówienie';
+      //   return redirect('admin/calendar')->with(array('error'=>$error,'order'=>$order));
         //   $event-> delete();
           // return view('admin.customers.index')->with(
           //   'message' => 'Nie można usunąć'
           // ]);
-      }
+
 
     }
 }

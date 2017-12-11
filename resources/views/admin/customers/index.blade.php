@@ -88,10 +88,6 @@
                             <h4>Edytuj sprawę</h4>
                             <div class="modal-body">
                             <div class="form-group">
-                                {{ Form::label('_id', 'Id') }}
-                                {{ Form::text('_id', old('_id'), ['class'=>'form-control']) }}
-                            </div>
-                            <div class="form-group">
                                 {{ Form::label('_imie', 'Imię') }}
                                 {{ Form::text('_imie', old('_imie'), ['class'=>'form-control']) }}
                             </div>
@@ -147,6 +143,7 @@
 							</div>
 						</div>
 		  				<div class="panel-body">
+
 		  					<table class="table">
 				              <thead>
 				                <tr>
@@ -181,7 +178,7 @@
                             {{-- <a role="button" type="button" id={{$klient->id}} class="btn btn-success"></a> --}}
                             {{-- <input id={{$klient->id}} type="button" value="edytuj" class="edycja"/> --}}
                             {{-- <button class="btn btn-success btn-edit" data-id="{{$klient->id}}">Edytuj</button> --}}
-                            <td><a id ="edit-modal"  data-id="{{$klient->id}}"
+                            <td><a id ="edit-modal" class="button" data-id="{{$klient->id}}"
                                   data-imie="{{$klient->imie}}"
                                   data-nazwisko="{{$klient->nazwisko}}"
                                   data-telefon="{{$klient->telefon}}"
@@ -236,26 +233,27 @@
     $(document).ready(function()
     {
 
-      $(document).on('click', '#edit-modal', function(){
-
-        $('#myModal').modal('show');
-
-        $('#myModal #_imie').val($(this).data('imie'));
-        $('#updatemodal').attr("action", '/customers/'+$(this).data('id'));
-        $('#_nazwisko').val($(this).data('nazwisko'));
-        $('#_telefon').val($(this).data('telefon'));
-        $('#_email').val($(this).data('email'));
-        $('#_nip').val($(this).data('nip'));
-        $('#_adres').val($(this).data('adres'));
-        $('#_kod').val($(this).data('kod'));
-        $('#_poczta').val($(this).data('poczta'));
-        $('#_id').val($(this).data('id'));
-      })
+      // $(document).on('click', '#edit-modal', function(){
+      //
+      //   $('#myModal').modal('show');
+      //
+      //   $('#myModal #_imie').val($(this).data('imie'));
+      //   $('#updatemodal').attr("action", '/customers/'+$(this).data('id'));
+      //   $('#_nazwisko').val($(this).data('nazwisko'));
+      //   $('#_telefon').val($(this).data('telefon'));
+      //   $('#_email').val($(this).data('email'));
+      //   $('#_nip').val($(this).data('nip'));
+      //   $('#_adres').val($(this).data('adres'));
+      //   $('#_kod').val($(this).data('kod'));
+      //   $('#_poczta').val($(this).data('poczta'));
+      //   $('#_id').val($(this).data('id'));
+      // })
 
 
       $('#usun').on('click', function() {
         // if(result)
         //   alert(result.error);
+        console.log(result.order);
         //  });
 })
 
@@ -297,32 +295,45 @@
         //
         //
         // }
-      //   $('#edytujKlienta').on('click', function ()
-      // {
-      //       var url = '/customers'+
-      //       $('#modal-event').modal('show');
-      //       $.ajax({
-      //       type: 'GET',
-      //       url: '/customers/{id}/edit',
-      //       success: function(result)
-      //       {
-      //         console.log(result);
-      //       },
-      //       error: function(result)
-      //       {
-      //         $('#modal-event').modal('hide');
-      //         alert(result.message);
-      //
-      //       },
-      //       complete: function () {
-      //             //  window.location.reload();
-      //           }
-      //
-      //
-      //
-      //     })
+        $('.button').on('click', function ()
+      {
+            var url = '/customers';
+            var id =$(this).data('id');
 
-      // })
+            $('#myModal').modal('show');
+            $.ajax({
+            type: 'GET',
+            url: '/customers/'+id+'/edit',
+            success: function(result)
+            {
+              console.log(result.id);
+
+              $('#myModal #_imie').val(result.imie);
+              $('#updatemodal').attr("action", '/customers/'+result.id);
+              $('#_nazwisko').val(result.nazwisko);
+              $('#_telefon').val(result.telefon);
+              $('#_email').val(result.email);
+              $('#_nip').val(result.nip);
+              $('#_adres').val(result.adres);
+              $('#_kod').val(result.kod);
+              $('#_poczta').val(result.poczta);
+
+            },
+            error: function(result)
+            {
+              $('#modal-event').modal('hide');
+              alert(result.message);
+
+            },
+            complete: function () {
+                  //  window.location.reload();
+                }
+
+
+
+          })
+
+      })
 
 
 
