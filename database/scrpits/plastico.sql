@@ -102,9 +102,9 @@ CREATE TABLE IF NOT EXISTS `eventtypes` (
 /*!40000 ALTER TABLE `eventtypes` DISABLE KEYS */;
 INSERT INTO `eventtypes` (`id`, `nazwa`, `remember_token`, `created_at`, `updated_at`) VALUES
 	(1, 'Inna sprawa...', NULL, NULL, NULL),
-	(16, 'Konsultacja', NULL, NULL, NULL),
-	(17, 'Pomiar', NULL, NULL, NULL),
-	(18, 'Montaz', NULL, NULL, NULL);
+	(2, 'Konsultacja', NULL, NULL, NULL),
+	(3, 'Pomiar', NULL, NULL, NULL),
+	(4, 'Montaz', NULL, NULL, NULL);
 /*!40000 ALTER TABLE `eventtypes` ENABLE KEYS */;
 
 CREATE TABLE IF NOT EXISTS `parameters` (
@@ -135,25 +135,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(5, '2017_09_19_102420_create_events_table', 1);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
--- Zrzut struktury tabela plastico.orderproducts
-CREATE TABLE IF NOT EXISTS `orderproducts` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `cenaProduktu` decimal(10,0) NOT NULL,
-  `order_id` int(10) unsigned NOT NULL,
-  `product_id` int(10) unsigned DEFAULT NULL,
-  `opis` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `orderproducts_order_id_foreign` (`order_id`),
-  KEY `orderproducst_product_id_foreign` (`product_id`),
-  CONSTRAINT `orderproducts_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
-  CONSTRAINT `orderproducts_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Zrzucanie danych dla tabeli plastico.orderproducts: ~0 rows (około)
-/*!40000 ALTER TABLE `orderproducts` DISABLE KEYS */;
-/*!40000 ALTER TABLE `orderproducts` ENABLE KEYS */;
 
 -- Zrzut struktury tabela plastico.orders
 CREATE TABLE IF NOT EXISTS `orders` (
@@ -296,17 +277,32 @@ CREATE TABLE IF NOT EXISTS `producttypeparams` (
   CONSTRAINT `producttypeparams_parameters_id_foreign` FOREIGN KEY (`parameters_id`) REFERENCES `parameters` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS `orderproducts` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `cenaProduktu` decimal(10,0) NOT NULL,
+  `order_id` int(10) unsigned NOT NULL,
+  `product_id` int(10) unsigned DEFAULT NULL,
+  `opis` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `orderproducts_order_id_foreign` (`order_id`),
+  KEY `orderproducst_product_id_foreign` (`product_id`),
+  CONSTRAINT `orderproducts_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
+  CONSTRAINT `orderproducts_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE IF NOT EXISTS `paramvalue` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `opis` varchar(255) NULL,
-  `product_id` int(10) unsigned NOT NULL,
+  `orderproduct_id` int(10) unsigned NOT NULL,
   `producttypeparam_id` int(10) unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `paramvalue_product_id_foreign` (`product_id`),
+  KEY `paramvalue_orderproduct_id_foreign` (`orderproduct_id`),
   KEY `paramvalue_parameters_id_foreign` (`producttypeparam_id`),
-  CONSTRAINT `paramvalue_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
+  CONSTRAINT `paramvalue_orderproduct_id_foreign` FOREIGN KEY (`orderproduct_id`) REFERENCES `orderproducts` (`id`),
   CONSTRAINT `paramvalue_parameters_id_foreign` FOREIGN KEY (`producttypeparam_id`) REFERENCES `producttypeparams` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
