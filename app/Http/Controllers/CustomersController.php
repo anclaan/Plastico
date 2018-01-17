@@ -29,6 +29,19 @@ class CustomersController extends Controller
      */
      public function create(Request $request)
      {
+       $customer = new Customer();
+       $customer -> imie = $request -> imie;
+       $customer -> nazwisko = $request -> nazwisko;
+       $customer -> telefon = $request -> telefon;
+       $customer -> email = $request -> email;
+       $customer -> nip = $request -> nip;
+       $customer -> adres = $request -> adres;
+       $customer -> kod = $request -> kod;
+       $customer -> poczta = $request -> poczta;
+
+
+       $customer -> save();
+       return redirect('/admin/customers/index');
 
      }
 
@@ -40,19 +53,6 @@ class CustomersController extends Controller
      */
     public function store(Request $request)
     {
-      $customer = new Customer();
-      $customer -> imie = $request -> imie;
-      $customer -> nazwisko = $request -> nazwisko;
-      $customer -> telefon = $request -> telefon;
-      $customer -> email = $request -> email;
-      $customer -> nip = $request -> nip;
-      $customer -> adres = $request -> adres;
-      $customer -> kod = $request -> kod;
-      $customer -> poczta = $request -> poczta;
-
-
-      $customer -> save();
-      return redirect('/admin/customers/index');
 
     }
 

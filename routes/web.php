@@ -41,10 +41,8 @@ Route::prefix('admin')->group(function(){
 
   // Customers routes
   Route::get('/customers/index','CustomersController@index');
-  Route::get('/customers/{id}/edit','CustomersController@edit');
-  Route::get('/customers/getUpdate', 'CustomersController@getUpdate');
-  Route::put('/customers/newUpdate', 'CustomersController@newUpdate');
-  Route::post('/customers/{id}/update','CustomersController@update');
+  // Route::get('/customers/{id}/edit','CustomersController@edit');
+  // Route::post('/customers/{id}/update','CustomersController@update');
   Route::get('/customers/{id}/destroy','CustomersController@destroy');
 
   // Events routes
@@ -56,6 +54,7 @@ Route::prefix('admin')->group(function(){
   Route::post('/orders/create','OrdersController@create');
   Route::get('/orders/{id}/destroy','OrdersController@destroy');
   Route::get('/orders/{id}/update','OrdersController@update');
+  Route::get('orders/get/{id}', 'OrdersController@getProducts');
 
   // Product routes
   Route::get('/products/index','ProductsController@index');
@@ -65,7 +64,7 @@ Route::prefix('admin')->group(function(){
   Route::get('/product/addProducts','ProductsController@create');
   Route::post('/product/addProducts','ProductsController@addProducts');
   Route::get('/products/{id}/destroy','ProductsController@destroy');
-  Route::put('/products/{id}/update','ProductsController@update');
+  // Route::post('/products/{id}/update','ProductsController@update');
 
 
 
@@ -78,7 +77,7 @@ Route::prefix('admin')->group(function(){
       return view ('admin.calendar');
     });
   Route::resource('events', 'EventsController',['only' => ['index', 'store','update','destroy','create']]);
-  Route::resource('products', 'ProductsController',['only' => ['index', 'store','create','getProductType']]);
-  Route::resource('orders', 'OrdersController',['only' => ['index', 'store','create','addProducts']]);
-  Route::resource('customers', 'CustomersController',['except' => ['destroy']]);
+  Route::resource('products', 'ProductsController',['only' => ['index', 'store','create','addProducts','update','edit']]);
+  Route::resource('orders', 'OrdersController');
+  Route::resource('customers', 'CustomersController',['only' => ['index', 'store','create','update','edit']]);
   Route::resource('users', 'UsersController',['only' => ['index', 'store','create']]);

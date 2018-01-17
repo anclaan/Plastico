@@ -2,3 +2,57 @@
     min-height:400px
 
 }
+.col-md-10 {
+  margin-left: auto;
+  margin-right: auto;
+  width: 73.33333333%;
+
+}
+#calendar {
+  padding: 10px;
+  height: auto;
+  background-color: #94ccad;
+  border: 2px solid black;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.navbar {
+  background-color: black;
+  font;
+}
+
+.content-box-large {
+  margin-top: 200px;
+  min-height: 1080px;
+
+}
+
+.page-content {
+
+  min-height: 1080px;
+  background-image:url("/img/back.jpg");
+}
+
+.table>thead {
+  background-color: black;
+  color: white;
+
+
+}
+
+/* #tabelaAdmin>table, th,thead, td{
+border: 1px solid black;
+} */
+.table {
+  border: 3px solid black;
+  overflow-y:scroll;
+}
+/* .panel-body {
+  border: 1px solid black;
+} */
+html {
+
+}

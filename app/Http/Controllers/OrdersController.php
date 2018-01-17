@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\Customer;
 use App\Product;
+use App\ProductType;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
@@ -28,8 +29,16 @@ class OrdersController extends Controller
     {
 
         $klienci = Customer::all();
-        $produkty = Product::all();
-        return view('admin/orders/create')->with(array('klienci' => $klienci,'produkty' => $produkty));
+        $typy = ProductType::pluck('nazwa','id');
+
+        return view('admin/orders/create')->with(array('klienci' => $klienci,'typy' => $typy));
+    }
+
+    public function getProducts($id)
+    {
+      $products = DB::table("products")->where("productType_id",$id)->pluck("name","id");
+
+        return json_encode($products);
     }
 
 

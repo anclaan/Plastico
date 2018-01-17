@@ -1,70 +1,64 @@
-<!-- Default Bootstrap Navbar -->
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/">PLASTICO</a>
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbarContainer" >
+  <div id="header">
+      <div class="container">
+          <div class="row" id="headerRow">
+              <!-- Logo -->
+              <div class="logo">
+                  <a href="index.html" title="">
+                      <img src="{{ asset('img/logo2.png') }}" alt="Logo">
+                  </a>
+              </div>
+              <!-- End Logo -->
+          </div>
       </div>
+  </div>
+      <div class="container" id="navbarC">
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li><a href="/">Strona głowna<span class="sr-only"></span></a></li>
-          <li class="dropdown"><a href="/oferta" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Okna<span class="caret"></span></a>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/admin/calendar">Terminarz</a></li>
+            <li><a href="/admin/stats">Statystyki</a></li>
+            <li><a href="/admin/users/index">Uzytkownicy</a></li>
+            <li><a href="/admin/customers/index">Klienci</a></li>
+            <li><a href="/admin/products/index">Produkty</a></li>
+            <li><a href="/admin/orders/index">Zamowienia</a></li>
+            <li class="dropdown">
+              <a href="/admin/orders/index" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Zamówienia <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Aluplast</a></li>
-                <li><a href="#">Veka</a></li>
-                <li><a href="#">Inne</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Montaż</a></li>
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
               </ul>
-          </li>
-          <li><a href="/galeria" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Drzwi<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Wewnętrzne</a></li>
-                <li><a href="#">Zewnętrzne</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Montaż</a></li>
-              </ul>
-          </li>
-          <li><a href="/oNas"class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bramy<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Garażowe</a></li>
-                <li><a href="#">Ogrodzeniowe</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Montaż</a></li>
-              </ul>
-          </li>
-          <li><a href="/kontakt"class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Akcesoria<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Parapety</a></li>
-                <li><a href="#">Rolety materiałowe</a></li>
-                <li><a href="#">Rolety zewnętrzne</a></li>
-                <li><a href="#">Moskitiery</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Montaż</a></li>
-              </ul>
-          </li>
-          <li><a href="/kontakt">Kontakt</a></li>
+            </li>
+            <li><a href="/admin/dictionaries/index">Słowniki</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <!-- Authentication Links -->
+              @if (Auth::guest())
+                  <li><a href="{{ route('login') }}">Login</a></li>
+                  <li><a href="{{ route('register') }}">Register</a></li>
+              @else
+                  <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                          {{ Auth::user()->name }} <span class="caret"></span>
+                      </a>
 
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Moje konto<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Moje zamówienia</a></li>
-              <li><a href="#">Edytuj konto</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Wyloguj</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
+                      <ul class="dropdown-menu" role="menu">
+                          <li>
+                              <a href="{{ route('logout') }}"
+                                  onclick="event.preventDefault();
+                                           document.getElementById('logout-form').submit();">
+                                  Logout
+                              </a>
+
+                              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                  {{ csrf_field() }}
+                              </form>
+                          </li>
+                      </ul>
+                  </li>
+              @endif
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>

@@ -5,12 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- jQuery UI -->
     <link href="https://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet" media="screen">
-
-    <!-- Bootstrap -->
-    {!! Html::style('vendor/bootstrap/dist/css/bootstrap.css') !!}
-    <!-- styles -->
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-
+     {!! Html::style('vendor/bootstrap/dist/css/bootstrap.css') !!}
+     {!! Html::style('css/myStyles.css') !!}
+     {!! Html::style('css/styles.css') !!}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -23,11 +20,10 @@
 
         <div class="page-content">
         	<div class="row">
-    		  @include('partials._adminSidebar')
+
 
           <div class="col-md-10">
     		  	<div class="row">
-      				<div class="col-md-10">
       					<div class="content-box-large">
     		  				<div class="panel-heading">
     							<div class="panel-title" style="text-align: center;"><h1>Zamówienia</h1></div>
@@ -71,7 +67,7 @@
                       <a href={{ action('OrdersController@showCreateForm')}} role="button" type="button" class="btn btn-success"style="float: right;">Stwórz nowe zamówienie</a>
 		  				</div>
 		  			</div>
-  				</div>
+
   			</div>
 		  </div>
 
@@ -82,19 +78,20 @@
 
 
 
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <!-- jQuery UI -->
-    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     {!! Html::script('https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js') !!}
-    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-
-    <script src="{{ asset('js/dataTables.bootstrap.js') }}"></script>
+    {!! Html::script('vendor/jquery/dist/jquery.min.js') !!}
+    {!! Html::script('vendor/bootstrap/dist/js/bootstrap.js') !!}
+    {{-- {!! Html::script('js/bootstrap.min.js') !!} --}}
+    {!! Html::script('vendor/moment/min/moment.min.js') !!}
+    {!! Html::script('vendor/bootstrap/js/collapse.js') !!}
+    {!! Html::script('vendor/bootstrap/js/transition.js') !!}
+    {!! Html::script('vendor/fullcalendar/fullcalendar.min.js') !!}
+    {!! Html::script('vendor/fullcalendar/locale/pl.js') !!}
+    {!! Html::script('vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') !!}
+    {!! Html::script('vendor/bootstrap-timepicker/js/bootstrap-timepicker.js') !!}
 
     <script src="{{ asset('js/custom.js') }}"></script>
     <script src="{{ asset('js/tables.js') }}"></script>
   </body>
 </html>
+@include('partials._AdminFooter')

@@ -3,13 +3,11 @@
   <head>
     <title>Bootstrap Admin Theme v3</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- jQuery UI -->
     <link href="https://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet" media="screen">
+     {!! Html::style('vendor/bootstrap/dist/css/bootstrap.css') !!}
+     {!! Html::style('css/myStyles.css') !!}
+     {!! Html::style('css/styles.css') !!}
 
-    <!-- Bootstrap -->
-    {!! Html::style('vendor/bootstrap/dist/css/bootstrap.css') !!}
-    <!-- styles -->
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,13 +21,13 @@
 
         <div class="page-content">
         	<div class="row">
-    		  @include('partials._adminSidebar')
+
 
 		  <div class="col-md-10">
 
 		  	<div class="row">
-
-          {{Form::open(['route'=>'customers.store', 'method'=>'post', 'role'=>'form']) }}
+          <div class="content-box-large">
+          {{Form::open(['route'=>'customers.create', 'method'=>'GET', 'role'=>'form']) }}
                   <div id = "responsive-modal" class = "modal" tabindex="-1" data-backdrop="static">
                     <div class="modal-dialog">
                       <div class="modal-content">
@@ -80,7 +78,7 @@
                   </div>
                   {{ Form::close() }}
 
-  {!!Form::open(['route'=>['customers.update',1], 'method'=>'PUT', 'id'=>'updatemodal'])!!}
+                  {!!Form::open(['route'=>['customers.update',1], 'method'=>'PUT', 'id'=>'updatemodal'])!!}
                   <div id = "myModal" class = "modal fade" tabindex="-1" data-backdrop="static">
                     <div class="modal-dialog">
                       <div class="modal-content">
@@ -132,8 +130,8 @@
                 </div>
                   {{ Form::close() }}
 
-  				<div class="col-md-6">
-  					<div class="content-box-large">
+
+
 		  				<div class="panel-heading">
 							<div class="panel-title">Klienci</div>
 
@@ -172,13 +170,14 @@
                           <td>{{$klient->adres}}</td>
                           <td>{{$klient->kod}}</td>
                           <td>{{$klient->poczta}}</td>
-                          <td>
+
                             {{-- <a class="edycja" role="button" type="button" id={{$klient->id}}>
                                   <span class="label label-success">Edytuj</span></a> --}}
                             {{-- <a role="button" type="button" id={{$klient->id}} class="btn btn-success"></a> --}}
                             {{-- <input id={{$klient->id}} type="button" value="edytuj" class="edycja"/> --}}
                             {{-- <button class="btn btn-success btn-edit" data-id="{{$klient->id}}">Edytuj</button> --}}
-                            <td><a id ="edit-modal" class="button" data-id="{{$klient->id}}"
+                            <td><a id ="edit-modal" class="button"
+                                  data-id="{{$klient->id}}"
                                   data-imie="{{$klient->imie}}"
                                   data-nazwisko="{{$klient->nazwisko}}"
                                   data-telefon="{{$klient->telefon}}"
@@ -199,8 +198,9 @@
                       <a role="button" id="dodajKlienta" type="button" class="btn btn-success"style="float: right;">Dodaj nowego klienta</a>
 		  				</div>
 		  			</div>
-  				</div>
-  			</div>
+
+
+        </div>
 
 
 
@@ -213,9 +213,9 @@
     </div>
 		</div>
     </div>
-
-
-
+</body>
+</html>
+@include('partials._AdminFooter')
 
     {!! Html::script('https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js') !!}
     {!! Html::script('vendor/jquery/dist/jquery.min.js') !!}
@@ -250,12 +250,12 @@
       // })
 
 
-      $('#usun').on('click', function() {
-        // if(result)
-        //   alert(result.error);
-        console.log(result.order);
-        //  });
-})
+//       $('#usun').on('click', function() {
+//         // if(result)
+//         //   alert(result.error);
+//         console.log(result.order);
+//         //  });
+// })
 
 
 
@@ -340,5 +340,3 @@
 
       })
     </script>
-  </body>
-</html>
