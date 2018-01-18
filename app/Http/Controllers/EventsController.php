@@ -12,11 +12,6 @@ use Redirect;
 class EventsController extends Controller
 {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function index()
     {
@@ -24,29 +19,8 @@ class EventsController extends Controller
       return Response()->json($data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-      $klienci = Customer::all();
-      $typySpraw = EventType::all();
 
 
-      return Response()->json(array('klienci'=>$klienci, 'sprawy'=>$typySpraw));
-
-
-
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $event = new Event();
@@ -64,43 +38,12 @@ class EventsController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $event = Event::find($id);
         $event -> title = $request -> _title;
-      //  $event -> customer_id = $request -> wybierzKlienta;
         $event -> start = $request -> _date_start . ' ' . $request -> _time_start;
         $event -> end = $request -> _date_end;
-      //  $event -> eventType_id = $request -> wybierzSprawe;
         $event -> opis = $request -> opis;
 
         $event->save();
@@ -108,30 +51,29 @@ class EventsController extends Controller
         return Redirect::to('/admin/calendar');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-      $event = Event::find($id);
+        $event = Event::find($id);
 
-      if($event == null)
-        return false;
+        if($event == null)
+          return false;
 
-        $event-> delete();
-        return true;
+          $event-> delete();
+          return true;
 
-        // if($event == null)
-        //   return Response()->json([
-        //     'message' => 'Błąd'
-        //   ]);
-        //   $event-> delete();
-        //   return Response()->json([
-        //     'message' => 'Sprawa została usunięta'
-        //   ]);
+
+    }
+
+    public function create()
+    {
+        $klienci = Customer::all();
+        $typySpraw = EventType::all();
+
+
+        return Response()->json(array('klienci'=>$klienci, 'sprawy'=>$typySpraw));
+
+
 
     }
 }

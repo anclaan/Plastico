@@ -3,33 +3,14 @@
   <head>
     <title>Terminarz</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- jQuery UI -->
-    {{-- <link href="https://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet" media="screen"> --}}
-
-    <!-- Bootstrap -->
-    {{-- <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/fullcalendar.css') }}" rel="stylesheet" media="screen"> --}}
-    {{-- <link  href=“https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css” rel=“stylesheet” > --}}
-
-    <!-- styles -->
-    {{-- <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/calendar.css') }}" rel="stylesheet"> --}}
-
-     {{-- fullcalendar  --}}
-     {!! Html::style('vendor/bootstrap/dist/css/bootstrap.min.css') !!}
+    <link href="https://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet" media="screen">
+     {!! Html::style('vendor/bootstrap/dist/css/bootstrap.css') !!}
      {!! Html::style('vendor/fullcalendar/fullcalendar.min.css') !!}
      {!! Html::style('vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') !!}
+     {!! Html::style('css/myStyles.css') !!}
      {!! Html::style('css/styles.css') !!}
      {!! Html::style('vendor/bootstrap-timepicker/css/bootstrap-timepicker.min.css') !!}
 
-    {{-- <link href=“css/fullcalendar.css” rel=“stylesheet” />
-    <link href=“css/fullcalendar.print.css” rel=“stylesheet” media=“print” />  --}}
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
   </head>
   <body>
 @include('partials._adminNav')
@@ -37,15 +18,12 @@
 
     <div class="page-content">
     	<div class="row">
-		  @include('partials._adminSidebar')
-		  <div class="col-md-10">
 
+		  <div class="col-md-10">
+        <div class="row">
 		  			<div class="content-box-large">
 		  				<div class="panel-body">
-		  					<div class="row">
-
-
-                    {{Form::open(['route'=>'events.store', 'method'=>'post', 'role'=>'form']) }}
+		  					  {{Form::open(['route'=>'events.store', 'method'=>'post', 'role'=>'form']) }}
                     <div id = "responsive-modal" class = "modal" tabindex="-1" data-backdrop="static">
                       <div class="modal-dialog">
                         <div class="modal-content">
@@ -154,10 +132,9 @@
     {!! Html::script('https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js') !!}
     {!! Html::script('vendor/jquery/dist/jquery.min.js') !!}
     {!! Html::script('vendor/bootstrap/dist/js/bootstrap.js') !!}
-    {{-- {!! Html::script('js/bootstrap.min.js') !!} --}}
     {!! Html::script('vendor/moment/min/moment.min.js') !!}
-    {!! Html::script('vendor/bootstrap/js/collapse.js') !!}
     {!! Html::script('vendor/bootstrap/js/transition.js') !!}
+    {!! Html::script('vendor/bootstrap/js/collapse.js') !!}
     {!! Html::script('vendor/fullcalendar/fullcalendar.min.js') !!}
     {!! Html::script('vendor/fullcalendar/locale/pl.js') !!}
     {!! Html::script('vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') !!}
@@ -175,10 +152,11 @@
         center: 'title',
         right: 'month,basicWeek,basicDay'
       },
-      navLinks: true, // can click day/week names to navigate views
+      navLinks: true,
       editable: true,
       selectable: true,
       selectHelper: true,
+      events: BASEURL + '/events',
 
       select: function(start)
       {
@@ -190,7 +168,6 @@
 
       },
 
-      events: BASEURL + '/events',
 
       eventClick: function (event, jsEvent, view)
       {

@@ -20,8 +20,9 @@ class ProductsController extends Controller
     public function index()
     {
       $produkty = Product::all();
+      $typy = ProductType::pluck('nazwa','id');
 
-      return view('admin.products.index')->with('produkty', $produkty);
+      return view('admin.products.index')->with(array('produkty'=>$produkty,'typy'=>$typy));
     }
 
     /**
@@ -29,13 +30,7 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showCreateForm()
-    {
 
-      $typy = ProductType::pluck('nazwa','id');
-
-        return view('admin/products/create')->with('typy',$typy);
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -73,9 +68,11 @@ class ProductsController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+          $product = Product::find($id);
+          $typy = ProductType::all();
+          return Response()->json(array('produkt'=>$product,'typy'=>$typy));
     }
 
     /**
@@ -87,7 +84,17 @@ class ProductsController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+      $product = Product::find($id);
+
+      $product -> nazwa = $request -> _nazwa;
+      $product -> typ = $request -> _typ;
+      $product -> opis = $request -> _opis;
+
+
+
+      $product -> save();
+      Session::flash('message', 'Sprawa została zaktualizowana');
+      return Redirect::to('/admin/products/index');
     }
 
     /**

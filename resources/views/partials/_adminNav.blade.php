@@ -1,39 +1,58 @@
-<div class="header">
-   <div class="container">
-      <div class="row">
-         <div class="col-md-5">
-            <!-- Logo -->
-            <div class="logo">
-               <h1><a href="index.html">Panel Administratora Plastico</a></h1>
-            </div>
-         </div>
-         <div class="col-md-5">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="input-group form">
-                     <input type="text" class="form-control" placeholder="Search...">
-                     <span class="input-group-btn">
-                       <button class="btn btn-primary" type="button">Search</button>
-                     </span>
-                </div>
-              </div>
-            </div>
-         </div>
-         <div class="col-md-2">
-            <div class="navbar navbar-inverse" role="banner">
-                <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
-                  <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
-                      <ul class="dropdown-menu animated fadeInUp">
-                        <li><a href="profile.html">Profile</a></li>
-                        <li><a href="login.html">Logout</a></li>
+<nav class="navbar navbar-default navbar-fixed-top" style="color: white;">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">PLASTICO</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/admin/calendar">Terminarz</a></li>
+            <li><a href="/admin/stats">Statystyki</a></li>
+            <li><a href="/admin/users/index">Uzytkownicy</a></li>
+            <li><a href="/admin/customers/index">Klienci</a></li>
+            <li><a href="/admin/products/index">Produkty</a></li>
+            <li><a href="/admin/orders/index">Zamowienia</a></li>
+            <li class="dropdown">
+              <a href="/admin/orders/index" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Zamówienia <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+              </ul>
+            </li>
+            <li><a href="/admin/dictionaries/index">Słowniki</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <!-- Authentication Links -->
+              @if (Auth::guest())
+                  <li><a href="{{ route('login') }}">Login</a></li>
+                  <li><a href="{{ route('register') }}">Register</a></li>
+              @else
+                  <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                          {{ Auth::user()->name }} <span class="caret"></span>
+                      </a>
+
+                      <ul class="dropdown-menu" role="menu">
+                          <li>
+                              <a href="{{ route('logout') }}"
+                                  onclick="event.preventDefault();
+                                           document.getElementById('logout-form').submit();">
+                                  Logout
+                              </a>
+
+                              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                  {{ csrf_field() }}
+                              </form>
+                          </li>
                       </ul>
-                    </li>
-                  </ul>
-                </nav>
-            </div>
-         </div>
+                  </li>
+              @endif
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
-   </div>
-</div>
+    </nav>

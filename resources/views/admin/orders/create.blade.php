@@ -36,13 +36,15 @@
                 </div>
                 <div class="modal-body">
                   <div class="form-group">
-                    {{ Form::label('produkt', 'Wybierz produkt') }}
-                    <select id = "produkt" class="form-control" name="produkt"  >
-                      @foreach($produkty as $produkt)
-                        <option value="{{$produkt->id}}" data-typId="{{$produkt->productType_id}}">{{$produkt->typ['nazwa']}} - {{$produkt->nazwa}}</option>
-                      @endforeach
+                    {{ Form::label('typy', 'Wybierz typ produktu') }}
+                    {!! Form::select('typy', $typy, null,['class' => 'form-control'] ) !!}
+                  </div>
+                  <div class="form-group">
+                    <select name="produkty" class="form-control">
+                       <option>--Produkt--</option>
                     </select>
                   </div>
+                  <div class="col-md-2"><span id="loader"><i class="fa fa-spinner fa-3x fa-spin"></i></span></div>
                     <div class="form-group">
                         {{ Form::label('cena', 'Cena') }}
                         {{ Form::text('cena', old('cena'), ['class'=>'form-control'])}}
@@ -64,6 +66,8 @@
           </div>
           {{ Form::close() }}
           <div id = "content" class="col-md-4" onloadedmetadata="">
+
+
             {{Form::open(['route'=>'orders.create', 'method'=>'GET', 'role'=>'form']) }}
                 <div class="modal-header">
                     <h4>Nowe zamówienie</h4>
@@ -190,6 +194,37 @@
               // })
 
           })
+
+    $('select[name="typy"]').on('change', function(){
+        var typeId = $(this).val();
+        if(typeId) {
+            $.ajax({
+                url: '/admin/orders/get/'+typeId,
+                type:"GET",
+                dataType:"json",
+                beforeSend: function(){
+                    $('#loader').css("visibility", "visible");
+                },
+
+                success:function(data) {
+
+                    $('select[name="produkty"]').empty();
+
+                    $.each(data, function(key, value){
+
+                        $('select[name="produkty"]').append('<option value="'+ key +'">' + value + '</option>');
+
+                    });
+                },
+                complete: function(){
+                    $('#loader').css("visibility", "hidden");
+                }
+            });
+        } else {
+            $('select[name="produkty"]').empty();
+        }
+
+    });
       })
     </script>
 

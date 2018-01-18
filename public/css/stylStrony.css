@@ -1,0 +1,56 @@
+#header {
+  min-height: 120px;
+  background-color:black;
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+#headerRow{
+  margin-left: -20px;
+  margin-right: -20px;
+}
+.logo{
+      margin-top:30px;
+      text-align: center;
+}
+#navbarC {
+background-color: #171717;
+color: white;
+
+}
+#navbar {
+background-color: #171717;
+color: white;
+max-width: 1000px;
+opacity: 1;
+}
+#navbarContainer {
+  background:transparent;
+}
+body{
+  background-image:url("/img/backgroundGlowna.jpg");
+  background-size:     100%;                      /* <------ */
+  background-attachment: fixed;
+}
+.page-content {
+
+  min-height: 1080px;
+
+}
+.col-md-10{
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+
+}
+.content-box-large {
+  margin-top: 330px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  border-left: 1px solid #eee;
+  border-top: 1px solid #eee;
+  border-right: 2px solid #eee;
+  border-bottom: 2px solid #eee;
+  min-height: 1000px;
+}

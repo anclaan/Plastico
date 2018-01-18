@@ -17,7 +17,7 @@ class ProductType extends Model
    * @var [type]
    */
   protected $fillable = [
-    'nazwa','productMainType_id','opis'
+    'nazwa'
   ];
 
 }
