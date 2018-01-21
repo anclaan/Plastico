@@ -36,7 +36,9 @@ class OrdersController extends Controller
 
     public function getProducts($id)
     {
-      $products = DB::table("products")->where("productType_id",$id)->pluck("name","id");
+
+      // $products = Products::table("products")->where("productType_id",$id)->pluck("name","id");
+        $products = Product::where("productType_id",$id)->pluck("nazwa","id");
 
         return json_encode($products);
     }

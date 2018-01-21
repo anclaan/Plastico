@@ -178,11 +178,11 @@
             success: function(result)
             {
               console.log(result.produkt.id);
-
+              console.log(result.produkt.productType_id);
               $('#myModal #_imie').val(result.produkt.imie);
               $('#updatemodal').attr("action", '/products/'+result.id);
               $('#_nazwa').val(result.produkt.nazwa);
-              $('#_typy').val(result.produkt.typ['nazwa']);
+              $('#_typy').val(result.produkt.productType_id);
 
               $('#_opis').val(result.produkt.opis);
 

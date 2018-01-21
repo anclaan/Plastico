@@ -53,7 +53,7 @@ Route::prefix('admin')->group(function(){
   Route::post('/orders/create','OrdersController@create');
   Route::get('/orders/{id}/destroy','OrdersController@destroy');
   Route::get('/orders/{id}/update','OrdersController@update');
-  Route::get('orders/get/{id}', 'OrdersController@getProducts');
+  Route::get('/orders/get/{id}', 'OrdersController@getProducts');
 
   // Product routes
   Route::get('/products/index','ProductsController@index');
