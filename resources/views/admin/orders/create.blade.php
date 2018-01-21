@@ -197,9 +197,10 @@
 
     $('select[name="typy"]').on('change', function(){
         var typeId = $(this).val();
+        console.log(typeId);
         if(typeId) {
             $.ajax({
-                url: '/orders/get/'+typeId,
+                url: '/orders/'+typeId+'/get',
                 type:"GET",
                 dataType:"json",
                 beforeSend: function(){

@@ -31,8 +31,7 @@ Route::prefix('admin')->group(function(){
   Route::get('/', 'AdminController@index')->name('admin.dashboard');
   // Route::get('/calendar','AdminController@calendar');
   Route::get('/buttons','AdminController@buttons');
-  Route::get('/editors','AdminController@editors');
-  Route::get('/stats','AdminController@stats');
+
 
   // Users routes
   Route::get('/users/index','UsersController@index');
