@@ -200,11 +200,9 @@
         console.log(typeId);
         if(typeId) {
             $.ajax({
-<<<<<<< HEAD
-                url: '/orders/'+typeId+'/get',
-=======
+
+
                 url: '/admin/orders/get/'+typeId,
->>>>>>> 2b5dbf59c65e16a299cab18cd9ed0c6a0df46c83
                 type:"GET",
                 dataType:"json",
                 beforeSend: function(){
