@@ -12,19 +12,16 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="/admin/calendar">Terminarz</a></li>
-            <li><a href="/admin/stats">Statystyki</a></li>
-            <li><a href="/admin/users/index">Uzytkownicy</a></li>
             <li><a href="/admin/customers/index">Klienci</a></li>
             <li><a href="/admin/products/index">Produkty</a></li>
             <li><a href="/admin/orders/index">Zamowienia</a></li>
             <li class="dropdown">
-              <a href="/admin/orders/index" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Zamówienia <span class="caret"></span></a>
+              <a href="/admin/orders/index" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Słowniki <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
+                <li><a href="#">Parametry</a></li>
                 <li><a href="#">Another action</a></li>
               </ul>
             </li>
-            <li><a href="/admin/dictionaries/index">Słowniki</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
               <!-- Authentication Links -->

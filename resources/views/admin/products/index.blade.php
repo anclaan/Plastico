@@ -121,9 +121,8 @@
                                   data-id="{{$produkt->id}}"
                                   data-nazwa="{{$produkt->nazwa}}"
                                   data-typ="{{$produkt->typ['nazwa']}}"
-                                  data-opis="{{$produkt->opis}}"
-                                  d
-                                  <span class="btn btn-info"> Edytuj</span>
+                                  data-opis="{{$produkt->opis}}">
+                                  <span class="label label-info"> Edytuj</span>
                               </a>
                               <a href={{ action('ProductsController@destroy', $produkt->id)}}>
                                  <span class="label label-danger">Usuń</span</a>
@@ -180,7 +179,7 @@
               console.log(result.produkt.id);
               console.log(result.produkt.productType_id);
               $('#myModal #_imie').val(result.produkt.imie);
-              $('#updatemodal').attr("action", '/products/'+result.id);
+              $('#updatemodal').attr("action", '/products/'+result.produkt.id);
               $('#_nazwa').val(result.produkt.nazwa);
               $('#_typy').val(result.produkt.productType_id);
 

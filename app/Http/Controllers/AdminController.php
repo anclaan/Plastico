@@ -23,27 +23,24 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.admin');
+        return view('admin.calendar');
     }
-  
+
     public function calendar()
     {
         return view('admin.calendar');
     }
-    public function editors()
+    public function orders()
     {
-        return view('admin.editors');
+        return view('admin.orders.index');
     }
-    public function forms()
+    public function customers()
     {
-        return view('admin.forms');
+        return view('admin.customers.index');
     }
-    public function stats()
+    public function products()
     {
-        return view('admin.stats');
+        return view('admin.products.index');
     }
-    public function tables()
-    {
-        return view('admin.tables');
-    }
+
 }

@@ -27,7 +27,8 @@ class AdminLoginController extends Controller
 
       if(Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password ], $request->remember))
       {
-        return redirect()->intended(route('admin.dashboard'));
+        // return redirect()->intended(route('admin.calendar'));
+        return view('admin.calendar');
       }
       return redirect()->back()->withInput($request->only('email', 'remember'));
       // jesli sie powiedzie, przekierowanie do okreslonej lokacji

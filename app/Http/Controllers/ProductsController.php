@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\ProductType;
 use Illuminate\Http\Request;
+use Session;
+use Redirect;
 
 class ProductsController extends Controller
 {
@@ -82,12 +84,12 @@ class ProductsController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
       $product = Product::find($id);
 
       $product -> nazwa = $request -> _nazwa;
-      $product -> typ = $request -> _typ;
+      $product -> productType_id = $request -> _typy;
       $product -> opis = $request -> _opis;
 
 
