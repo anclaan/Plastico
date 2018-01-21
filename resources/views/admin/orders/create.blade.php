@@ -22,7 +22,7 @@
 
         <div class="page-content">
         	<div class="row">
-    		  @include('partials._adminSidebar')
+
 
 		  <div class="col-md-10">
         <div class="content-box-large">
@@ -36,22 +36,22 @@
                 </div>
                 <div class="modal-body">
                   <div class="form-group">
-                    {{ Form::label('typy', 'Wybierz typ produktu') }}
+                    {{ Form::label('typy', 'Typ produktu') }}
                     {!! Form::select('typy', $typy, null,['class' => 'form-control'] ) !!}
                   </div>
                   <div class="form-group">
+                    <label>Wybierz produkt</label>
                     <select name="produkty" class="form-control">
                        <option>--Produkt--</option>
                     </select>
+                  </div>
+                  <div id="parametry">
                   </div>
                   <div class="col-md-2"><span id="loader"><i class="fa fa-spinner fa-3x fa-spin"></i></span></div>
                     <div class="form-group">
                         {{ Form::label('cena', 'Cena') }}
                         {{ Form::text('cena', old('cena'), ['class'=>'form-control'])}}
                     </div>
-                    <fieldset class="params">
-
-                    </fieldset>
                     <div class="form-group">
                         {{ Form::label('opis', 'Opis') }}
                         {{ Form::textarea('opis', old('opis'), ['class'=>'form-control']) }}
@@ -223,6 +223,119 @@
         } else {
             $('select[name="produkty"]').empty();
         }
+
+        if(typeId == 1)
+        {
+          $('#parametry').html('<div class="form-group"> {{ Form::label('wysokoscOkna', 'Wysokość') }} {{ Form::text('wysokoscOkna', old('wysokoscOkna'), ['class'=>'form-control']) }}</div>'+
+          '<div class="form-group"> {{ Form::label('szerokoscOkna', 'Szerokość') }} {{ Form::text('szerokoscOkna', old('szerokoscOkna'), ['class'=>'form-control']) }}</div>'+
+          '<div class="form-group"> {{ Form::label('kolorOkna', 'Szerokość') }} {{ Form::text('kolorOkna', old('kolorOkna'), ['class'=>'form-control']) }}</div>'+
+          '<div class="form-group"> {{ Form::label('szerokoscOkna', 'Szerokość') }} {{ Form::text('szerokosc', old('szerokosc'), ['class'=>'form-control']) }}</div>'+
+          '<div class="form-group"> {{ Form::label('szerokoscOkna', 'Szerokość') }} {{ Form::text('szerokosc', old('szerokosc'), ['class'=>'form-control']) }}</div>'+
+          '<div class="form-group"> {{ Form::label('szerokoscOkna', 'Szerokość') }} {{ Form::text('szerokosc', old('szerokosc'), ['class'=>'form-control']) }}</div>'+
+          '<div class="form-group"> {{ Form::label('szerokoscOkna', 'Szerokość') }} {{ Form::text('szerokosc', old('szerokosc'), ['class'=>'form-control']) }}</div>'
+        );
+
+
+
+
+        }else if(typeId == 2)
+        {
+          $('#parametry').html('<div class="form-group> {{ Form::label('wysokosc', 'ADS') }} {{ Form::text('wysokosc', old('wysokosc'), ['class'=>'form-control']) }}</div>');
+
+
+        }
+        if(typeId == 3)
+        {
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+
+        }
+        if(typeId == 4)
+        {
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+
+        }
+        if(typeId == 5)
+        {
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+
+        }
+        if(typeId == 6)
+        {
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+
+        }
+        if(typeId == 7)
+        {
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+
+        }
+        if(typeId == 8)
+        {
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+
+        }
+        if(typeId == 9)
+        {
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+          $('#parametry').html('<div class="form-group> {{ Form::label('terminRealizacji', 'Termin realizacji') }} {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}</div>');
+
+        }
+
 
     });
       })

@@ -246,8 +246,16 @@ CREATE TABLE IF NOT EXISTS `producttypes` (
 -- Zrzucanie danych dla tabeli plastico.producttypes: ~2 rows (około)
 /*!40000 ALTER TABLE `producttypes` DISABLE KEYS */;
 INSERT INTO `producttypes` (`id`, `nazwa`, `created_at`, `updated_at`) VALUES
-	(3, 'Okno Wewnętrzne', NULL, NULL),
-	(4, 'Drzwi Zewnętrzne', NULL, NULL);
+	(1, 'Okno', NULL, NULL),
+	(2, 'Drzwi Zewnętrzne', NULL, NULL),
+  (3, 'Drzwi Wewnętrzne', NULL, NULL),
+	(4, 'Brama Garażowa', NULL, NULL),
+  (5, 'Parapet Zewnętrzny', NULL, NULL),
+	(6, 'Parapet Wewnętrzny', NULL, NULL),
+  (7, 'Roleta Zewnętrzna', NULL, NULL),
+	(8, 'Roleta Wewnętrzna', NULL, NULL),
+  (9, 'Moskitiera Wewnętrzne', NULL, NULL);
+
 /*!40000 ALTER TABLE `producttypes` ENABLE KEYS */;
 
 -- Zrzut struktury tabela plastico.users
