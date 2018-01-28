@@ -49,7 +49,9 @@ class ProductsController extends Controller
 
 
       $product -> save();
-
+      //pernamentnie
+      // Session::put('success', 'Produkt został dodany');
+      Session::flash('success', 'Produkt został dodany');
       return redirect('admin/products/index');
     }
 
@@ -61,7 +63,7 @@ class ProductsController extends Controller
      */
     public function show(Product $product)
     {
-        //
+
     }
 
     /**

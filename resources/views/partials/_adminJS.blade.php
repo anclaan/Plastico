@@ -1,0 +1,10 @@
+{!! Html::script('https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js') !!}
+{!! Html::script('vendor/jquery/dist/jquery.min.js') !!}
+{!! Html::script('vendor/bootstrap/dist/js/bootstrap.js') !!}
+{!! Html::script('vendor/moment/min/moment.min.js') !!}
+{!! Html::script('vendor/bootstrap/js/collapse.js') !!}
+{!! Html::script('vendor/bootstrap/js/transition.js') !!}
+{!! Html::script('vendor/fullcalendar/fullcalendar.min.js') !!}
+{!! Html::script('vendor/fullcalendar/locale/pl.js') !!}
+{!! Html::script('vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') !!}
+{!! Html::script('vendor/bootstrap-timepicker/js/bootstrap-timepicker.js') !!}

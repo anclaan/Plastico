@@ -15,13 +15,13 @@
             <li><a href="/admin/customers/index">Klienci</a></li>
             <li><a href="/admin/products/index">Produkty</a></li>
             <li><a href="/admin/orders/index">Zamowienia</a></li>
-            <li class="dropdown">
+            {{-- <li class="dropdown">
               <a href="/admin/orders/index" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Słowniki <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="#">Parametry</a></li>
                 <li><a href="#">Another action</a></li>
               </ul>
-            </li>
+            </li> --}}
           </ul>
           <ul class="nav navbar-nav navbar-right">
               <!-- Authentication Links -->

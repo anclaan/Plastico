@@ -9,7 +9,7 @@
 
     <div class="container">
 
-
+      @include('partials._adminMessage')
 
       @yield('content')
 

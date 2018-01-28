@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use Session;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -28,8 +29,10 @@ class AdminLoginController extends Controller
       if(Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password ], $request->remember))
       {
         // return redirect()->intended(route('admin.calendar'));
+        Session::flash('success', 'Logowanie zakończone powodzeniem!');
         return view('admin.calendar');
       }
+      Session::flash('failed', 'Nieprawidłowy login lub hasło!');
       return redirect()->back()->withInput($request->only('email', 'remember'));
       // jesli sie powiedzie, przekierowanie do okreslonej lokacji
       //jesli nie, przekierowanie na formularz logowania

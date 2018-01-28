@@ -1,147 +1,111 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Terminarz</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://code.jquery.com/ui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet" media="screen">
-     {!! Html::style('vendor/bootstrap/dist/css/bootstrap.css') !!}
-     {!! Html::style('vendor/fullcalendar/fullcalendar.min.css') !!}
-     {!! Html::style('vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') !!}
-     {!! Html::style('css/myStyles.css') !!}
-     {!! Html::style('css/styles.css') !!}
-     {!! Html::style('vendor/bootstrap-timepicker/css/bootstrap-timepicker.min.css') !!}
 
-  </head>
-  <body>
-@include('partials._adminNav')
+  @extends('admin.main')
+
+  @section('title', '| Klienci')
+
+  @section('content')
+  <div class="panel-body">
+
+  <div id='calendar'></div>
+
+  </div>
 
 
-    <div class="page-content">
-    	<div class="row">
+  {{Form::open(['route'=>'events.store', 'method'=>'post', 'role'=>'form']) }}
+    <div id = "responsive-modal" class = "modal" tabindex="-1" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h4>Dodaj nową sprawę</h4>
+          </div>
+          <div class="modal-body">
+            <fieldset class="pytanie">
+               <input class="czyKlient" type="checkbox" name="czyKlient" value="0" onchange="valueChanged()" />
+               <label for="czyKlient">Sprawa dotycząca klienta</label>
+           </fieldset>
 
-		  <div class="col-md-10">
-        <div class="row">
-		  			<div class="content-box-large">
-		  				<div class="panel-body">
-		  					  {{Form::open(['route'=>'events.store', 'method'=>'post', 'role'=>'form']) }}
-                    <div id = "responsive-modal" class = "modal" tabindex="-1" data-backdrop="static">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                              <h4>Dodaj nową sprawę</h4>
-                          </div>
-                          <div class="modal-body">
-                            <fieldset class="pytanie">
-                               <input class="czyKlient" type="checkbox" name="czyKlient" value="0" onchange="valueChanged()" />
-                               <label for="czyKlient">Sprawa dotycząca klienta</label>
-                           </fieldset>
-
-                           <fieldset class="klient">
-                             <label for="wybierzKlienta">Wybierz klienta</label></br>
-                             <select id="wybierzKlienta" name="wybierzKlienta" class="form-control"></select></br>
-                             <label for="wybierzSprawe">Wybierz typ sprawy</label></br>
-                             <select id="wybierzSprawe" name="wybierzSprawe" class="form-control"></select></br>
-                           </fieldset>
-                              <div class="form-group">
-                                  {{ Form::label('title', 'Nazwa sprawy') }}
-                                  {{ Form::text('title', old('title'), ['class'=>'form-control']) }}
-                              </div>
-                              <div class="form-group">
-                                  {{ Form::label('date_start', 'Data rozpoczęcia') }}
-                                  {{ Form::text('date_start', old('date_start'), ['class'=>'form-control', 'readonly'=>'true']) }}
-                              </div>
-                              <div class="form-group">
-                                  {{ Form::label('time_start', 'Czas rozpoczęcia') }}
-                                  {{ Form::text('time_start', old('time_start'), ['class'=>'form-control']) }}
-                              </div>
-                              <div class="form-group">
-                                  {{ Form::label('date_end', 'Data zakończenia') }}
-                                  {{ Form::text('date_end', old('date_end'), ['class'=>'form-control']) }}
-                              </div>
-                              <div class="form-group">
-                                  {{ Form::label('opis', 'Opis') }}
-                                  {{ Form::textarea('opis', old('opis'), ['class'=>'form-control']) }}
-                              </div>
-                          </div>
-                          <div class="modal-footer">
-                              <button type="button" class="btn btn default" data-dismiss="modal">Anuluj</button>
-                              {!! Form::submit('Dodaj',['class' => 'btn btn-success']) !!}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    {{ Form::close() }}
-
-
-                    <div id='calendar'></div>
-
-
-                    {!!Form::open(['route'=>['events.update',1], 'method'=>'PUT', 'id'=>'updatemodal'])!!}
-                    <div id = "modal-event" class = "modal" tabindex="-1" data-backdrop="static">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                              <h4>Edytuj sprawę</h4>
-                          </div>
-                          <div class="modal-body">
-                              <div class="form-group">
-                                  {{ Form::label('_title', 'Nazwa sprawy') }}
-                                  {{ Form::text('_title', old('_title'), ['class'=>'form-control']) }}
-                              </div>
-                              <div class="form-group">
-                                  {{ Form::label('_date_start', 'Data rozpoczęcia') }}
-                                  {{ Form::text('_date_start', old('_date_start'), ['class'=>'form-control']) }}
-                              </div>
-                              <div class="form-group">
-                                  {{ Form::label('_time_start', 'Data rozpoczęcia') }}
-                                  {{ Form::text('_time_start', old('_time_start'), ['class'=>'form-control']) }}
-                              </div>
-                              <div class="form-group">
-                                  {{ Form::label('_date_end', 'Data zakończenia') }}
-                                  {{ Form::text('_date_end', old('_date_end'), ['class'=>'form-control']) }}
-                              </div>
-
-                              <div class="form-group">
-                                  {{ Form::label('_opis', 'Opis') }}
-                                  {{ Form::text('_opis', old('_opis'), ['class'=>'form-control']) }}
-                              </div>
-                          </div>
-                          <div class="modal-footer">
-                              <meta name="csrf-token" content="{{ csrf_token() }}">
-                              <a id="delete" data-href="{{ url('events') }}" data-id="" class="btn btn-danger">Usuń</a>
-                              <button type="button" class="btn btn default" data-dismiss="modal">Anuluj</button>
-                              {!! Form::submit('Aktualizuj',['class' => 'btn btn-success']) !!}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    {{ Form::close() }}
-
-
-		  				</div>
-		  			</div>
+           <fieldset class="klient">
+             <label for="wybierzKlienta">Wybierz klienta</label></br>
+             <select id="wybierzKlienta" name="wybierzKlienta" class="form-control"></select></br>
+             <label for="wybierzSprawe">Wybierz typ sprawy</label></br>
+             <select id="wybierzSprawe" name="wybierzSprawe" class="form-control"></select></br>
+           </fieldset>
+              <div class="form-group">
+                  {{ Form::label('title', 'Nazwa sprawy') }}
+                  {{ Form::text('title', old('title'), ['class'=>'form-control']) }}
+              </div>
+              <div class="form-group">
+                  {{ Form::label('date_start', 'Data rozpoczęcia') }}
+                  {{ Form::text('date_start', old('date_start'), ['class'=>'form-control', 'readonly'=>'true']) }}
+              </div>
+              <div class="form-group">
+                  {{ Form::label('time_start', 'Czas rozpoczęcia') }}
+                  {{ Form::text('time_start', old('time_start'), ['class'=>'form-control']) }}
+              </div>
+              <div class="form-group">
+                  {{ Form::label('date_end', 'Data zakończenia') }}
+                  {{ Form::text('date_end', old('date_end'), ['class'=>'form-control']) }}
+              </div>
+              <div class="form-group">
+                  {{ Form::label('opis', 'Opis') }}
+                  {{ Form::textarea('opis', old('opis'), ['class'=>'form-control']) }}
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn default" data-dismiss="modal">Anuluj</button>
+              {!! Form::submit('Dodaj',['class' => 'btn btn-success']) !!}
           </div>
         </div>
-		  </div>
-		</div>
+      </div>
+    </div>
+  {{ Form::close() }}
 
 
-</body>
-    @include('partials._AdminFooter')
+  {!!Form::open(['route'=>['events.update',1], 'method'=>'PUT', 'id'=>'updatemodal'])!!}
+    <div id = "modal-event" class = "modal" tabindex="-1" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h4>Edytuj sprawę</h4>
+          </div>
+          <div class="modal-body">
+              <div class="form-group">
+                  {{ Form::label('_title', 'Nazwa sprawy') }}
+                  {{ Form::text('_title', old('_title'), ['class'=>'form-control']) }}
+              </div>
+              <div class="form-group">
+                  {{ Form::label('_date_start', 'Data rozpoczęcia') }}
+                  {{ Form::text('_date_start', old('_date_start'), ['class'=>'form-control']) }}
+              </div>
+              <div class="form-group">
+                  {{ Form::label('_time_start', 'Data rozpoczęcia') }}
+                  {{ Form::text('_time_start', old('_time_start'), ['class'=>'form-control']) }}
+              </div>
+              <div class="form-group">
+                  {{ Form::label('_date_end', 'Data zakończenia') }}
+                  {{ Form::text('_date_end', old('_date_end'), ['class'=>'form-control']) }}
+              </div>
 
-    {!! Html::script('https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js') !!}
-    {!! Html::script('vendor/jquery/dist/jquery.min.js') !!}
-    {!! Html::script('vendor/bootstrap/dist/js/bootstrap.js') !!}
-    {!! Html::script('vendor/moment/min/moment.min.js') !!}
-    {!! Html::script('vendor/bootstrap/js/transition.js') !!}
-    {!! Html::script('vendor/bootstrap/js/collapse.js') !!}
-    {!! Html::script('vendor/fullcalendar/fullcalendar.min.js') !!}
-    {!! Html::script('vendor/fullcalendar/locale/pl.js') !!}
-    {!! Html::script('vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') !!}
-    {!! Html::script('vendor/bootstrap-timepicker/js/bootstrap-timepicker.js') !!}
+              <div class="form-group">
+                  {{ Form::label('_opis', 'Opis') }}
+                  {{ Form::text('_opis', old('_opis'), ['class'=>'form-control']) }}
+              </div>
+          </div>
+          <div class="modal-footer">
+              <meta name="csrf-token" content="{{ csrf_token() }}">
+              <a id="delete" data-href="{{ url('events') }}" data-id="" class="btn btn-danger">Usuń</a>
+              <button type="button" class="btn btn default" data-dismiss="modal">Anuluj</button>
+              {!! Form::submit('Aktualizuj',['class' => 'btn btn-success']) !!}
+          </div>
+        </div>
+      </div>
+    </div>
+  {{ Form::close() }}
 
 
+@endsection
 
+@section('js')
   <script>
   var BASEURL = "{{ url('/') }}";
     $(document).ready(function() {
@@ -190,9 +154,9 @@
     });
 
   });
-$(".klient").hide();
+  $(".klient").hide();
   function valueChanged()
-{
+  {
     if($('.czyKlient').is(":checked")){
         $.ajax({
         type: 'GET',
@@ -243,7 +207,7 @@ $(".klient").hide();
       }
     else
         $(".klient").hide();
-}
+  }
 
 
 
@@ -332,5 +296,5 @@ $(".klient").hide();
     //     })
     //
     //         });
-</script>
-</html>
+  </script>
+@endsection
