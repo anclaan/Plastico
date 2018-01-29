@@ -132,6 +132,57 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(5, '2017_09_19_102420_create_events_table', 1);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
+CREATE TABLE IF NOT EXISTS `products` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nazwa` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `opis` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `productType_id` int(10) unsigned DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `products_productType_id_foreign` (`productType_id`),
+  CONSTRAINT `products_productType_id_foreign` FOREIGN KEY (`productType_id`) REFERENCES `producttypes` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Zrzucanie danych dla tabeli plasticobaza.products: ~8 rows (około)
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` (`id`, `nazwa`, `opis`, `productType_id`, `created_at`, `updated_at`) VALUES
+	(40, 'ALUPLAST IDEAL 8000', 'asd', 1, '2018-01-21 19:22:50', '2018-01-21 19:22:50'),
+	(42, 'asdasd', 'cost tam', 1, '2018-01-21 19:23:48', '2018-01-21 19:40:57'),
+	(43, 'Parapet Amino', 'Marmurowy', 5, '2018-01-25 18:17:15', '2018-01-25 18:17:15'),
+	(44, 'asd', 'sad', 2, '2018-01-26 11:55:03', '2018-01-26 11:55:03'),
+	(45, 'ALUPLAST IDEAL 8000', NULL, 1, '2018-01-26 18:30:42', '2018-01-26 18:30:42'),
+	(46, 'ALUPLAST IDEAL 7000', NULL, 1, '2018-01-26 18:31:59', '2018-01-26 18:31:59'),
+	(47, 'asd', NULL, 1, '2018-01-26 18:46:51', '2018-01-26 18:46:51'),
+	(48, 'Standardowa', NULL, 9, '2018-01-26 19:00:30', '2018-01-26 19:00:30');
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+
+-- Zrzut struktury tabela plasticobaza.orders
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nazwa` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kosztCalkowity` decimal(8,2) DEFAULT NULL,
+  `terminRealizacji` date DEFAULT NULL,
+  `customer_id` int(11) unsigned DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `orders_customers_id_foreign` (`customer_id`),
+  CONSTRAINT `orders_customers_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Zrzucanie danych dla tabeli plasticobaza.orders: ~8 rows (około)
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` (`id`, `nazwa`, `kosztCalkowity`, `terminRealizacji`, `customer_id`, `created_at`, `updated_at`) VALUES
+	(29, 'asd', NULL, '2017-11-29', 1, '2017-11-29 12:54:47', '2017-11-29 12:54:47'),
+	(30, 'asd', NULL, '2017-11-29', 1, '2017-11-29 13:03:17', '2017-11-29 13:03:17'),
+	(34, 'asdasd', NULL, '2018-01-26', 1, '2018-01-26 20:10:34', '2018-01-26 20:10:34'),
+	(35, 'asd', NULL, '2018-01-26', 1, '2018-01-26 20:11:19', '2018-01-26 20:11:19'),
+	(36, '123', NULL, '2018-01-26', 1, '2018-01-26 20:11:46', '2018-01-26 20:11:46'),
+	(37, '123', NULL, '2018-01-26', 1, '2018-01-26 20:13:11', '2018-01-26 20:13:11'),
+	(38, '123', NULL, '2018-01-26', 1, '2018-01-26 20:14:08', '2018-01-26 20:14:08'),
+	(39, '123', NULL, '2018-01-26', 1, '2018-01-26 20:14:13', '2018-01-26 20:14:13');
+
 -- Zrzut struktury tabela plasticobaza.orderproducts
 CREATE TABLE IF NOT EXISTS `orderproducts` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -152,32 +203,7 @@ CREATE TABLE IF NOT EXISTS `orderproducts` (
 /*!40000 ALTER TABLE `orderproducts` DISABLE KEYS */;
 /*!40000 ALTER TABLE `orderproducts` ENABLE KEYS */;
 
--- Zrzut struktury tabela plasticobaza.orders
-CREATE TABLE IF NOT EXISTS `orders` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `nazwa` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `kosztCalkowity` decimal(8,2) DEFAULT NULL,
-  `terminRealizacji` date DEFAULT NULL,
-  `dataRealizacji` date DEFAULT NULL,
-  `customer_id` int(11) unsigned DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `orders_customers_id_foreign` (`customer_id`),
-  CONSTRAINT `orders_customers_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Zrzucanie danych dla tabeli plasticobaza.orders: ~8 rows (około)
-/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` (`id`, `nazwa`, `kosztCalkowity`, `terminRealizacji`, `dataRealizacji`, `customer_id`, `created_at`, `updated_at`) VALUES
-	(29, 'asd', NULL, '2017-11-29', '2017-11-29', 1, '2017-11-29 12:54:47', '2017-11-29 12:54:47'),
-	(30, 'asd', NULL, '2017-11-29', '2017-11-29', 1, '2017-11-29 13:03:17', '2017-11-29 13:03:17'),
-	(34, 'asdasd', NULL, '2018-01-26', '2018-01-26', 1, '2018-01-26 20:10:34', '2018-01-26 20:10:34'),
-	(35, 'asd', NULL, '2018-01-26', '2018-01-26', 1, '2018-01-26 20:11:19', '2018-01-26 20:11:19'),
-	(36, '123', NULL, '2018-01-26', '2018-01-26', 1, '2018-01-26 20:11:46', '2018-01-26 20:11:46'),
-	(37, '123', NULL, '2018-01-26', '2018-01-26', 1, '2018-01-26 20:13:11', '2018-01-26 20:13:11'),
-	(38, '123', NULL, '2018-01-26', '2018-01-26', 1, '2018-01-26 20:14:08', '2018-01-26 20:14:08'),
-	(39, '123', NULL, '2018-01-26', '2018-01-26', 1, '2018-01-26 20:14:13', '2018-01-26 20:14:13');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 
 -- Zrzut struktury tabela plasticobaza.parameters
@@ -240,30 +266,7 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 /*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
 
 -- Zrzut struktury tabela plasticobaza.products
-CREATE TABLE IF NOT EXISTS `products` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `nazwa` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `opis` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `productType_id` int(10) unsigned DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `products_productType_id_foreign` (`productType_id`),
-  CONSTRAINT `products_productType_id_foreign` FOREIGN KEY (`productType_id`) REFERENCES `producttypes` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Zrzucanie danych dla tabeli plasticobaza.products: ~8 rows (około)
-/*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` (`id`, `nazwa`, `opis`, `productType_id`, `created_at`, `updated_at`) VALUES
-	(40, 'COs tasd', 'asd', 1, '2018-01-21 19:22:50', '2018-01-21 19:22:50'),
-	(42, 'asdasd', 'cost tam', 1, '2018-01-21 19:23:48', '2018-01-21 19:40:57'),
-	(43, 'Parapet Amino', 'Marmurowy', 5, '2018-01-25 18:17:15', '2018-01-25 18:17:15'),
-	(44, 'asd', 'sad', 2, '2018-01-26 11:55:03', '2018-01-26 11:55:03'),
-	(45, 'ALUPLAST IDEAL 8000', NULL, 1, '2018-01-26 18:30:42', '2018-01-26 18:30:42'),
-	(46, 'ALUPLAST IDEAL 7000', NULL, 1, '2018-01-26 18:31:59', '2018-01-26 18:31:59'),
-	(47, 'asd', NULL, 1, '2018-01-26 18:46:51', '2018-01-26 18:46:51'),
-	(48, 'Standardowa', NULL, 9, '2018-01-26 19:00:30', '2018-01-26 19:00:30');
-/*!40000 ALTER TABLE `products` ENABLE KEYS */;
 
 -- Zrzut struktury tabela plasticobaza.producttypeparams
 CREATE TABLE IF NOT EXISTS `producttypeparams` (

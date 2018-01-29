@@ -8,3 +8,4 @@
 {!! Html::script('vendor/fullcalendar/locale/pl.js') !!}
 {!! Html::script('vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') !!}
 {!! Html::script('vendor/bootstrap-timepicker/js/bootstrap-timepicker.js') !!}
+{!! Html::script('https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.16/datatables.min.js') !!}

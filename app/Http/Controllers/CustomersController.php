@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
+
 use App\Customer;
 use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Session;
 use Redirect;
 class CustomersController extends Controller
@@ -71,6 +72,8 @@ class CustomersController extends Controller
     {
         //
     }
+
+
 
     /**
      * Show the form for editing the specified resource.

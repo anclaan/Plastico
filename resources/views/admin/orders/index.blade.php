@@ -11,14 +11,13 @@
     							</div>
     						</div>
     		  				<div class="panel-body">
-    		  					<table class="table table-striped">
+    		  					<table class="table table-striped" id="tabelaZamowien">
 				              <thead>
 				                <tr>
                           <th>Id</th>
 				                  <th>Nazwa</th>
 				                  <th>Koszt Całkowity</th>
 				                  <th>Termin Realizacji</th>
-                          <th>Data Realizacji</th>
                           <th>Klient</th>
                           <th>Zarządzaj</th>
 				                </tr>
@@ -32,11 +31,10 @@
 				                  <td>{{$zamowienie->nazwa}}</td>
 				                  <td>{{$zamowienie->kosztCalkowity}}</td>
 				                  <td>{{$zamowienie->terminRealizacji}}</td>
-                          <td>{{$zamowienie->dataRealizacji}}</td>
                           <td>{{$zamowienie->customer_id}}</td>
                           <td>
-                            <a href={{ action('OrdersController@update', $zamowienie->id) }}>
-                                  <span class="btn btn-info">Edytuj</span</a>
+                            <a href={{ action('OrdersController@detailsOfOrder', $zamowienie->id) }}>
+                                 <span class="btn btn-danger">Szczegóły</span</a>
                             <a href={{ action('OrdersController@destroy', $zamowienie->id) }}>
                                  <span class="btn btn-danger">Usuń</span</a>
                           </td>
@@ -47,6 +45,9 @@
                       <a href={{ action('OrdersController@showCreateForm')}} role="button" type="button" class="btn btn-success"style="float: right;">Stwórz nowe zamówienie</a>
 		  				</div>
 		  			</div>
+
+
+
 
 @endsection
 

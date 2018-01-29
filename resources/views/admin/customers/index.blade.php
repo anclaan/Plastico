@@ -7,72 +7,10 @@
   <div class="panel-heading">
   <div class="panel-title">Klienci</div>
   </div>
-  {{Form::open(['url'=>'admin/customers/searchCustomers', 'method'=>'GET', 'role'=>'form']) }}
-  {{ csrf_field() }}
-  <div>
 
-      <div id="header">
-          <h4>Wyszukaj klienta</h4>
-      </div>
-      <div class="row " >
-        <fieldset>
-      <div class="col-md-3" id="leweWyszukiwanie">
-            <div class="form-group">
-                    {{ Form::label('imie', 'Imię:') }}
-                    {{ Form::text('imie', old('imie'), ['class'=>'form-control']) }}
-            </div>
-            <div class="form-group">
-                    {{ Form::label('nazwisko', 'Nazwisko:') }}
-                    {{ Form::text('nazwisko', old('nazwisko'), ['class'=>'form-control']) }}
-            </div>
-
-      </div>
-      <div class="col-md-3" id="leweWyszukiwanie">
-
-            <div class="form-group">
-                    {{ Form::label('telefon', 'Telefon:') }}
-                    {{ Form::text('telefon', old('telefon'), ['class'=>'form-control']) }}
-            </div>
-            <div class="form-group">
-                    {{ Form::label('email', 'E-mail:') }}
-                    {{ Form::text('email', old('email'), ['class'=>'form-control']) }}
-            </div>
-      </div>
-      <div id="praweWyszukiwanie" class="col-md-3">
-
-            <div class="form-group">
-                    {{ Form::label('nip', 'NIP:') }}
-                    {{ Form::text('nip', old('nip'), ['class'=>'form-control']) }}
-            </div>
-            <div class="form-group">
-                    {{ Form::label('adres', 'Adres') }}
-                    {{ Form::text('adres', old('adres'), ['class'=>'form-control']) }}
-            </div>
-</div>
-
-        <div id="praweWyszukiwanie" class="col-md-3">
-
-              <div class="form-group">
-                      {{ Form::label('kod', 'Kod Pocztowy') }}
-                      {{ Form::text('kod', old('kod'), ['class'=>'form-control']) }}
-              </div>
-              <div class="form-group">
-                      {{ Form::label('poczta', 'Poczta') }}
-                      {{ Form::text('poczta', old('poczta'), ['class'=>'form-control']) }}
-              </div>
-
-
-            </div>
-        <div class="modal-footer">
-            {!! Form::submit('Szukaj',['class' => 'btn btn-success']) !!}
-        </div>
-      </div>
-    </fieldset>
-    </div>
-  {{ Form::close() }}
   <div class="panel-body">
 
-  	<table class="table">
+  	<table class="table table-striped" id="tabelaKlientow">
           <thead>
             <tr>
               <th>Id</th>

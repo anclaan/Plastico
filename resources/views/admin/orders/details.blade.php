@@ -1,148 +1,129 @@
 @extends('admin.main')
 
-@section('title', '| Klienci')
+@section('title', '| Szczegóły zamówienia')
 
 @section('content')
 
-
-
-
-
-
-{{Form::open(['route'=>'orders.create', 'method'=>'GET', 'role'=>'form']) }}
-<div id = "responsive-modal" class = "modal" tabindex="-1" data-backdrop="static">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-          <h4>Dodawanie produktu do zamówienia</h4>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          {{ Form::label('typy', 'Typ produktu') }}
-          {!! Form::select('typy', $typy, null,['class' => 'form-control'] ) !!}
+  {{Form::open(['route'=>'orders.create', 'method'=>'GET', 'role'=>'form']) }}
+  <div id = "responsive-modal" class = "modal" tabindex="-1" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h4>Dodawanie produktu do zamówienia</h4>
         </div>
-        <div class="form-group">
-          <label>Wybierz produkt</label>
-          <select name="produkty" class="form-control">
-             <option>--Produkt--</option>
-          </select>
-        </div>
-        <div id="parametry"></div>
+        <div class="modal-body">
           <div class="form-group">
-              {{ Form::label('cena', 'Cena') }}
-              {{ Form::text('cena', old('cena'), ['class'=>'form-control'])}}
+            {{ Form::label('typy', 'Typ produktu') }}
+            {!! Form::select('typy', $typy, null,['class' => 'form-control'] ) !!}
           </div>
           <div class="form-group">
-              {{ Form::label('opis', 'Dodatki/Opis') }}
-              {{ Form::textarea('opis', old('opis'), ['class'=>'form-control']) }}
+            <label>Wybierz produkt</label>
+            <select name="produkty" class="form-control">
+               <option>--Produkt--</option>
+            </select>
+          </div>
+          <div id="parametry"></div>
+            <div class="form-group">
+                {{ Form::label('cena', 'Cena') }}
+                {{ Form::text('cena', old('cena'), ['class'=>'form-control'])}}
+            </div>
+            <div class="form-group">
+                {{ Form::label('opis', 'Dodatki/Opis') }}
+                {{ Form::textarea('opis', old('opis'), ['class'=>'form-control']) }}
+            </div>
+          </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn default" data-dismiss="modal">Anuluj</button>
+            {!! Form::submit('Dodaj',['class' => 'btn btn-success']) !!}
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ Form::close() }}
+
+<div>
+{{Form::open(['route'=>'customers.create', 'method'=>'GET', 'role'=>'form']) }}
+
+      <div id = "content" class="col-md-3">
+          <div class="modal-header">
+              <h4>Nowe zamówienie</h4>
+          </div>
+          <div id="form-body" style="background color: white;">
+              <div class="form-group">
+                  {{ Form::label('nazwa', 'Numer zamówienia') }}
+                  {{ Form::text('nazwa', $order->nazwa, ['class'=>'form-control']) }}
+              </div>
+              <div class="form-group">
+                  {{ Form::label('klient', 'Klient') }}
+                  <select class="form-control" name="klient">
+                  @foreach($klienci as $klient)
+                    <option value="{{$klient->id}}">{{$klient->imie}} {{$klient->nazwisko}}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="form-group">
+                  {{ Form::label('terminRealizacji', 'Termin realizacji') }}
+                  {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}
+              </div>
+              <div class="form-group">
+                  {{ Form::label('cena', 'Koszt całkowity') }}
+                  {{ Form::text('cena', old('cena'), ['class'=>'form-control']) }}
+              </div>
+          </div>
+          <a role="button" id="nowyProdukt" type="button" class="btn btn-info">Dodaj produkt</a>
+
+        </div>
+
+
+
+
+        <div id = "produkty" class="col-md-9">
+          <div class="modal-header">
+              <h4>Lista produktów</h4>
+          </div>
+          <div class="panel-body">
+            <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Lp.</th>
+                      {{-- <th>Typ produktu</th> --}}
+                      <th>Nazwa produktu</th>
+                      <th>Cena</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @php ($i = 1)
+
+                    @foreach ($ops as $op)
+                      {{-- {{dd($op)}} --}}
+                    <tr>
+                        <td>
+                          {{$i}}
+                        </td>
+                        {{-- <td>
+
+                        </td> --}}
+                        <td>
+                          {{$op->typ['nazwa']}}
+                        </td>
+                        <td>
+                          {{$op->cenaProduktu}} zł
+                        </td>
+                        <td>
+                          <span class="glyphicon glyphicon-remove"  style="color:red;"></span>
+
+                        </a>
+                          </th>
+                      </tr>
+                      @endforeach
+                  </tbody>
+                </table>
           </div>
         </div>
       <div class="modal-footer">
           <button type="button" class="btn btn default" data-dismiss="modal">Anuluj</button>
           {!! Form::submit('Dodaj',['class' => 'btn btn-success']) !!}
-      </div>
-    </div>
-  </div>
-</div>
-{{ Form::close() }}
-<div>
-{{Form::open(['url'=>'admin/orders/store', 'method'=>'GET', 'role'=>'form']) }}
-{{ csrf_field() }}
-
-<div id = "content" class="col-md-3">
-    <div class="modal-header">
-        <h4>Nowe zamówienie</h4>
-    </div>
-    <div id="form-body" style="background color: white;">
-        <div class="form-group">
-            {{ Form::label('nazwa', 'Numer zamówienia') }}
-            {{ Form::text('nazwa', old('nazwa'), ['class'=>'form-control']) }}
-        </div>
-        <div class="form-group">
-          {{-- {{ Form::label('klient', 'Klient') }}
-          {!! Form::select('klient', $klienci, null,['class' => 'form-control'] ) !!} --}}
-          {{ Form::label('klient', 'Klient') }}
-          <select class="form-control" name="klient">
-            @foreach($klienci as $klient)
-              <option value="{{$klient->id}}">{{$klient->imie}} {{$klient->nazwisko}}</option>
-            @endforeach
-          </select>
-        </div>
-        <div class="form-group">
-            {{ Form::label('terminRealizacji', 'Termin realizacji') }}
-            {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}
-        </div>
-        <div class="form-group">
-                {{ Form::label('cena', 'Koszt całkowity') }}
-                {{ Form::text('cena', old('cena'), ['class'=>'form-control']) }}
-        </div>
-    </div>
-    <a role="button" id="nowyProdukt" type="button" class="btn btn-info">Dodaj produkt</a>
-
-  </div>
-
-
-
-
-  <div id = "produkty" class="col-md-9">
-    <div class="modal-header">
-        <h4>Lista produktów</h4>
-    </div>
-    <div class="panel-body">
-      <table class="table">
-            <thead>
-              <tr>
-                <th>Lp.</th>
-                <th>Typ produktu</th>
-                <th>Nazwa produktu</th>
-                <th>Cena</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-
-              @foreach($collection->chunk(10) as $chunk)
-                  {{-- {{dd($chunk[0])}} --}}
-
-                @php ($i = 1)
-
-                @foreach($chunk as $item)
-                  <tr style="height:15px;">
-                      <td>{{$i}}</td>
-                      <td>
-                          @foreach($item['typ'] as $typ)
-                            {{$typ['nazwa']}}
-                          @endforeach
-                      </td>
-                      <td>
-                          @foreach($item['produkt'] as $produkt)
-                            {{$produkt['nazwa']}}
-                          @endforeach
-                      </td>
-                      <td>{{$item['cena']}} zł</td>
-                      <td>
-
-                      <a  href={{ action('OrdersController@deleteProductFromListOfOrderProducts', ($i-1)) }}>
-                        <span class="glyphicon glyphicon-remove"  style="color:red;"></span>
-                      </a>
-
-
-                        </td>
-                  </tr>
-                  @php ($i++)
-                @endforeach
-
-              @endforeach
-
-            </tbody>
-          </table>
-    </div>
-  </div>
-
-      <div class="modal-footer">
-            <a href={{ action('OrdersController@clearListOfOrderProducts')}} role="button" type="button" class="btn btn-danger">Anuluj</a>
-
-          {!! Form::submit('Utwórz zamówienie',['class' => 'btn btn-success']) !!}
       </div>
 
 {{ Form::close() }}

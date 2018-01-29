@@ -9,9 +9,9 @@
 
       <div class="page-content">
         <div class="row">
-          <div class="col-md-10">
+          <div class="col-md-10 col-md-offset-1" id="contentBox">
             <div class="row">
-              <div class="content-box-large">
+              <div class="content-box-large" id="boxLarge" style="min-height: 1080px;">
                 @include('partials._adminMessage')
                 @yield('content')
               </div>

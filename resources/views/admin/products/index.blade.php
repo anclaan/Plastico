@@ -8,7 +8,7 @@
 	<div class="panel-title" style="text-align: center;"><h1>Produkty</h1></div>
 </div>
 <div class="panel-body">
-	<table class="table" id="tabelaAdmin">
+	<table class="table table-striped" id="tabelaProduktow">
     <thead>
       <tr>
         <th>Id</th>
@@ -21,6 +21,7 @@
 
     <tbody>
     @foreach ($produkty as $produkt)
+			
       <tr>
         <td>{{$produkt->id}}</td>
         <td>{{$produkt->nazwa}}</td>

@@ -1,6 +1,24 @@
 <script>
   $(document).ready(function()
   {
+
+    $('#tabelaProduktowWZamowieniu').DataTable({
+
+      "language": {
+           "lengthMenu": "Pokaż _MENU_ rekordów",
+           "zeroRecords": "Brak wyników",
+           "search": "Szukaj:",
+           "info": "Strona  _PAGE_ z _PAGES_",
+           "infoEmpty": "No records available",
+           "infoFiltered": "(filtered from _MAX_ total records)",
+           "paginate": {
+                        "first":      "Pierwsza",
+                        "last":       "Ostatna",
+                        "next":       "Następna",
+                        "previous":   "Poprzednia"
+                      }
+       }
+    });
     $('#terminRealizacji').datetimepicker({
         format: 'YYYY-MM-DD',
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use App\Order;
 use App\Customer;
 use App\Product;
@@ -9,7 +10,8 @@ use App\ProductType;
 use App\OrderProducts;
 use App\ParamValues;
 use Illuminate\Http\Request;
-use Session;
+use Illuminate\Support\Facades\DB;
+
 
 class OrdersController extends Controller
 {
@@ -26,10 +28,11 @@ class OrdersController extends Controller
     public function index()
     {
       $zamowienia = Order::all();
-      $produkty = Product::all();
+
+      $klienci = Customer::all();
 
 
-      return view('admin.orders.index')->with('zamowienia', $zamowienia);
+      return view('admin.orders.index')->with(array('klienci' => $klienci,'zamowienia' => $zamowienia));
     }
     public function showCreateForm()
     {
@@ -44,6 +47,7 @@ class OrdersController extends Controller
         return view('admin/orders/create')->with(array('klienci' => $klienci,'typy' => $typy,'collection'=> $collection));
     }
 
+
     public function getProducts($id)
     {
 
@@ -51,6 +55,21 @@ class OrdersController extends Controller
         $products = Product::where("productType_id",$id)->pluck("nazwa","id");
 
         return json_encode($products);
+    }
+
+    public function detailsOfOrder($id)
+    {
+        $order = Order::find($id);
+        // $orderProducts = DB::table('orderproducts')->where('order_id', $id)->get();
+        // $ops = DB::table('orderproducts')->where('order_id', $id)->get();
+
+        $ops = OrderProducts::with('typ')->where('user_id', $user_id);
+
+        $klienci = Customer::all();
+        $typy = ProductType::pluck('nazwa','id');
+
+
+        return view('admin.orders.details')->with(array('klienci' => $klienci,'typy' => $typy,'order' => $order, 'ops' => $ops));
     }
 
 
@@ -266,7 +285,6 @@ class OrdersController extends Controller
       $order = new Order();
       $order -> nazwa = $request -> nazwa;
       $order -> terminRealizacji = $request -> terminRealizacji;
-      $order -> dataRealizacji = $request -> dataRealizacji;
       $order -> customer_id = $request -> klient;
 
       $session = Session::all();
@@ -418,10 +436,10 @@ class OrdersController extends Controller
           $paramValue3 -> orderProduct_id = $idOrderProduct;
           $paramValue3 -> producttypeparam_id = 14;
 
-          $paramValue5 = new ParamValues();
-          $paramValue5 -> value = $klamki;
-          $paramValue5 -> orderProduct_id = $idOrderProduct;
-          $paramValue5 -> producttypeparam_id = 15;
+          $paramValue4 = new ParamValues();
+          $paramValue4 -> value = $klamki;
+          $paramValue4 -> orderProduct_id = $idOrderProduct;
+          $paramValue4 -> producttypeparam_id = 15;
 
 
 
@@ -456,10 +474,10 @@ class OrdersController extends Controller
           $paramValue3 -> orderProduct_id = $idOrderProduct;
           $paramValue3 -> producttypeparam_id = 18;
 
-          $paramValue5 = new ParamValues();
-          $paramValue5 -> value = $typBramy;
-          $paramValue5 -> orderProduct_id = $idOrderProduct;
-          $paramValue5 -> producttypeparam_id = 19;
+          $paramValue4 = new ParamValues();
+          $paramValue4 -> value = $typBramy;
+          $paramValue4 -> orderProduct_id = $idOrderProduct;
+          $paramValue4 -> producttypeparam_id = 19;
 
 
           $paramValue1->save();
@@ -493,10 +511,10 @@ class OrdersController extends Controller
           $paramValue3 -> orderProduct_id = $idOrderProduct;
           $paramValue3 -> producttypeparam_id = 22;
 
-          $paramValue5 = new ParamValues();
-          $paramValue5 -> value = $zakonczenie;
-          $paramValue5 -> orderProduct_id = $idOrderProduct;
-          $paramValue5 -> producttypeparam_id = 23;
+          $paramValue4 = new ParamValues();
+          $paramValue4 -> value = $zakonczenie;
+          $paramValue4 -> orderProduct_id = $idOrderProduct;
+          $paramValue4 -> producttypeparam_id = 23;
 
 
           $paramValue1->save();
@@ -531,10 +549,10 @@ class OrdersController extends Controller
           $paramValue3 -> orderProduct_id = $idOrderProduct;
           $paramValue3 -> producttypeparam_id = 26;
 
-          $paramValue5 = new ParamValues();
-          $paramValue5 -> value = $zakonczenie;
-          $paramValue5 -> orderProduct_id = $idOrderProduct;
-          $paramValue5 -> producttypeparam_id = 27;
+          $paramValue4 = new ParamValues();
+          $paramValue4 -> value = $zakonczenie;
+          $paramValue4 -> orderProduct_id = $idOrderProduct;
+          $paramValue4 -> producttypeparam_id = 27;
 
           $paramValue1->save();
           $paramValue2->save();
@@ -568,10 +586,10 @@ class OrdersController extends Controller
           $paramValue3 -> orderProduct_id = $idOrderProduct;
           $paramValue3 -> producttypeparam_id = 30;
 
-          $paramValue5 = new ParamValues();
-          $paramValue5 -> value = $tworzywo;
-          $paramValue5 -> orderProduct_id = $idOrderProduct;
-          $paramValue5 -> producttypeparam_id = 31;
+          $paramValue4 = new ParamValues();
+          $paramValue4 -> value = $tworzywo;
+          $paramValue4 -> orderProduct_id = $idOrderProduct;
+          $paramValue4 -> producttypeparam_id = 31;
 
           $paramValue5 = new ParamValues();
           $paramValue5 -> value = $kolorRolety;
@@ -611,10 +629,10 @@ class OrdersController extends Controller
           $paramValue3 -> orderProduct_id = $idOrderProduct;
           $paramValue3 -> producttypeparam_id = 35;
 
-          $paramValue5 = new ParamValues();
-          $paramValue5 -> value = $kolorMaterialu;
-          $paramValue5 -> orderProduct_id = $idOrderProduct;
-          $paramValue5 -> producttypeparam_id = 36;
+          $paramValue4 = new ParamValues();
+          $paramValue4 -> value = $kolorMaterialu;
+          $paramValue4 -> orderProduct_id = $idOrderProduct;
+          $paramValue4 -> producttypeparam_id = 36;
 
 
           $paramValue1->save();
@@ -648,10 +666,11 @@ class OrdersController extends Controller
           $paramValue3 -> orderProduct_id = $idOrderProduct;
           $paramValue3 -> producttypeparam_id = 39;
 
-          $paramValue5 = new ParamValues();
-          $paramValue5 -> value = $klipsy;
-          $paramValue5 -> orderProduct_id = $idOrderProduct;
-          $paramValue5 -> producttypeparam_id = 40;
+          $paramValue4 = new ParamValues();
+          $paramValue4 -> value = $klipsy;
+          $paramValue4 -> orderProduct_id = $idOrderProduct;
+          $paramValue4 -> producttypeparam_id = 40;
+
           $paramValue1->save();
           $paramValue2->save();
           $paramValue3->save();

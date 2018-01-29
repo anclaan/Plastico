@@ -17,11 +17,16 @@ class Order extends Model
    * @var [type]
    */
   protected $fillable = [
-    'nazwa', 'kosztCalkowity','terminRealizacji','dataRealizacji','customer_id'
+    'nazwa', 'kosztCalkowity','terminRealizacji','customer_id'
   ];
+  // public function typ()
+  // {
+  //   return $this->belongsTo('App\ProductType','productType_id');
+  //
+  // }
   public function typ()
   {
-    return $this->belongsTo('App\ProductType','productType_id');
+    return $this->belongsToMany('App\Order', 'orderproduct', 'product_id', 'order_id');
 
   }
 }

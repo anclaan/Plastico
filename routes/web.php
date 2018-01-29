@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth:admin']], function (){
     // Route::get('/customers/{id}/edit','CustomersController@edit');
     // Route::post('/customers/{id}/update','CustomersController@update');
     Route::get('/customers/{id}/destroy','CustomersController@destroy');
-    Route::get('/customers/searchCustomers', 'OrdersController@searchCustomers');
+
 
     // Events routes
     Route::get('/events/create','EventsController@create');
@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth:admin']], function (){
     Route::get('/orders/get/{id}', 'OrdersController@getProducts');
     Route::get('/orders/clear', 'OrdersController@clearListOfOrderProducts');
     Route::get('/orders/{id}/clear', 'OrdersController@deleteProductFromListOfOrderProducts');
+    Route::get('/orders/details/{id}', 'OrdersController@detailsOfOrder');
 
     // Product routes
     Route::get('/products/index','ProductsController@index');
@@ -76,6 +77,6 @@ Route::get('/home', 'HomeController@index')->name('home');
   //   });
 Route::resource('events', 'EventsController',['only' => ['index', 'store','update','destroy','create']]);
 Route::resource('products', 'ProductsController',['only' => ['index', 'store','create','addProducts','update','edit']]);
-Route::resource('orders', 'OrdersController',['only' => ['index', 'getProducts','store','addOrder','create']]);
-Route::resource('customers', 'CustomersController',['only' => ['index', 'store','create','update','edit']]);
+Route::resource('orders', 'OrdersController',['only' => ['index', 'getProducts','store','detailsOfOrder','addOrder','create']]);
+Route::resource('customers', 'CustomersController',['only' => ['index', 'store','create','update','edit','searchCustomers']]);
 Route::resource('users', 'UsersController',['only' => ['index', 'store','create']]);

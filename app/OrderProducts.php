@@ -19,9 +19,9 @@ class OrderProducts extends Model
   protected $fillable = [
     'cenaProduktu', 'order_id','product_id','opis'
   ];
-  // public function typ()
-  // {
-  //   return $this->belongsTo('App\ProductType','productType_id');
-  //
-  // }
+  public function typ()
+  {
+    return $this->belongsToMany('App\Product', 'product_id');
+
+  }
 }

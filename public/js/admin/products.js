@@ -1,8 +1,29 @@
 $(document).ready(function()
   {
+    $('#tabelaProduktow').DataTable({
+
+      "language": {
+           "lengthMenu": "Pokaż _MENU_ rekordów",
+           "zeroRecords": "Brak wyników",
+           "search": "Szukaj:",
+           "info": "Strona  _PAGE_ z _PAGES_",
+           "infoEmpty": "No records available",
+           "infoFiltered": "(filtered from _MAX_ total records)",
+           "paginate": {
+                        "first":      "Pierwsza",
+                        "last":       "Ostatna",
+                        "next":       "Następna",
+                        "previous":   "Poprzednia"
+                      }
+       }
+    });
+
+
     $('#dodajProdukt').on('click',function(){
       $('#responsive-modal').modal('show')
     });
+
+
     $('.button').on('click', function ()
   {
         var url = '/products';
