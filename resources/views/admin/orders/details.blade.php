@@ -95,7 +95,7 @@
                   <tbody>
                     @php ($i = 1)
 
-                    @foreach ($ops as $op)
+                    @foreach ($orderProducts as $op)
                       {{-- {{dd($op)}} --}}
                     <tr>
                         <td>
@@ -105,7 +105,7 @@
 
                         </td> --}}
                         <td>
-                          {{$op->typ['nazwa']}}
+                          {{$op->produkt['nazwa']}}
                         </td>
                         <td>
                           {{$op->cenaProduktu}} zł

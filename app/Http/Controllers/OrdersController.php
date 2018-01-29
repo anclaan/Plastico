@@ -61,15 +61,16 @@ class OrdersController extends Controller
     {
         $order = Order::find($id);
         // $orderProducts = DB::table('orderproducts')->where('order_id', $id)->get();
+        $orderProducts = OrderProducts::where('order_id','=',$id)->get();
         // $ops = DB::table('orderproducts')->where('order_id', $id)->get();
 
-        $ops = OrderProducts::with('typ')->where('user_id', $user_id);
+
 
         $klienci = Customer::all();
         $typy = ProductType::pluck('nazwa','id');
 
 
-        return view('admin.orders.details')->with(array('klienci' => $klienci,'typy' => $typy,'order' => $order, 'ops' => $ops));
+        return view('admin.orders.details')->with(array('klienci' => $klienci,'typy' => $typy,'order' => $order, 'orderProducts' => $orderProducts));
     }
 
 
