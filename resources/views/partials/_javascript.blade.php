@@ -1,4 +1,18 @@
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- JS -->
+
+<script "text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+<script "text/javascript" src="{{ asset('js/bootstrap1.min.js') }}"></script>
+<script "text/javascript" src="{{ asset('js/scripts.js') }}"></script>
+<!-- Isotope - Portfolio Sorting -->
+<script "text/javascript" src="{{ asset('js/jquery.isotope.js') }}"></script>
+<!-- Mobile Menu - Slicknav -->
+<script "text/javascript" src="{{ asset('js/jquery.slicknav.js') }}"></script>
+<!-- Animate on Scroll-->
+<script "text/javascript" src="{{ asset('js/jquery.visible.js') }}"></script>
+<!-- Sticky Div -->
+<script "text/javascript" src="{{ asset('js/jquery.sticky.js') }}"></script>
+<!-- Slimbox2-->
+<script "text/javascript" src="{{ asset('js/slimbox2.js') }}"></script>
+<!-- Modernizr -->
+<script "text/javascript" src="{{ asset('js/modernizr.custom.js') }}"></script>
+<!-- End JS -->
