@@ -15,14 +15,12 @@
                     <br>
 
                 </p>
-                <p>Błaszki,
-                    <br>Ul. Sulwińskiego 29,
-                    </p>
+
             </div>
             <!-- End Contact Details -->
             <!-- Sample Menu -->
             <div class="col-md-3 margin-bottom-20">
-                <h3 class="margin-bottom-10">Przykładowe menu</h3>
+                <h3 class="margin-bottom-10">Na skróty</h3>
                 <ul class="menu">
                     <li>
                         <a class="fa-tasks" href="#">Okna</a>
@@ -43,14 +41,12 @@
             <div class="col-md-1"></div>
             <!-- Disclaimer -->
             <div class="col-md-3 margin-bottom-20 padding-vert-30 text-center">
-                <h3 class="color-gray margin-bottom-10">Chcesz być na bieżąco?</h3>
-                <p>
-                    Zarejestruj się aby otrzymywać najświeższe informacje
-                    <br>o produkach i promocjach
+                <h3 class="color-gray margin-bottom-10">Odwiedź nas w siedzibie firmy!</h3>
+                <p>Błaszki,
+                <br>Ul. Sulwińskiego 29,
                 </p>
-                <input type="email">
-                <br>
-                <button class="btn btn-primary btn-lg margin-top-20" type="button">Subskrybuj</button>
+                <h3 class="color-gray margin-bottom-10">Zapraszamy!</h3>
+
             </div>
             <!-- End Disclaimer -->
             <div class="clearfix"></div>
@@ -61,24 +57,9 @@
 <div id="footer">
     <div class="container">
         <div class="row">
-            <div id="footermenu" class="col-md-8">
-                <ul class="list-unstyled list-inline">
-                    <li>
-                        <a href="#" target="_blank">Sample Link</a>
-                    </li>
-                    <li>
-                        <a href="#" target="_blank">Sample Link</a>
-                    </li>
-                    <li>
-                        <a href="#" target="_blank">Sample Link</a>
-                    </li>
-                    <li>
-                        <a href="#" target="_blank">Sample Link</a>
-                    </li>
-                </ul>
-            </div>
+
             <div id="copyright" class="col-md-4">
-                <p class="pull-right">(c) 2014 Your Copyright Info</p>
+                <p class="pull-right">(c) 2017 Made by Bartek</p>
             </div>
         </div>
     </div>

@@ -255,23 +255,29 @@ class OrdersController extends Controller
         Session::push('cart', $item);
       }
 
+      $staraCena = Session::get('cena');
+      $cenaProduktu = $request->cena;
+      $nowaCena = $staraCena + $cenaProduktu;
+      Session::put('cena', $nowaCena);
+      $cena = Session::get('cena');
+
+
+
+
+      Session::flash('message', 'Produkt został dodany do zamówienia!');
+
+      $klienci = Customer::all();
+      $typy = ProductType::pluck('nazwa','id');
 
       $produkty=Session::get('cart');
       $collection=collect($produkty);
-
-      $session=Session::all();
-      // dd($collection);
-      // $produkty = $request -> all();
-      // $listaProduktow = collect([1,2,3,4]);
-      // Session::put('lista', $listaProduktow);
-      // dd($produkty);
-      Session::flash('message', 'Produkt został dodany do zamówienia!');
-
-      // if($session){
-      //   return view('admin/orders/create')->with(array('session' => $session,'klienci' => $klienci,'typy' => $typy));
-      // }
-      // return view('admin/orders/create')->with(array('klienci' => $klienci,'typy' => $typy,'collection' => $collection));
-      return redirect()->action('OrdersController@showCreateForm');
+      $koszt=0;
+      foreach ($collection as $key => $value){
+        $cena = floatval($value['cena']);
+        $koszt = $koszt+$cena;
+      }
+      // return redirect()->action('OrdersController@showCreateForm');
+      return view('admin/orders/create')->with(array('koszt' => $koszt, 'klienci' => $klienci, 'typy' => $typy, 'collection' => $collection));
     }
 
     /**
@@ -282,11 +288,19 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
+      $produkty=Session::get('cart');
+      $collection=collect($produkty);
+      $koszt=0;
+      foreach ($collection as $key => $value){
+        $cena = floatval($value['cena']);
+        $koszt = $koszt+$cena;
+      }
       //dodawanie nowego zamowienia
       $order = new Order();
       $order -> nazwa = $request -> nazwa;
       $order -> terminRealizacji = $request -> terminRealizacji;
       $order -> customer_id = $request -> klient;
+      $order -> kosztCalkowity = $koszt;
 
       $session = Session::all();
       $order -> save();
@@ -682,7 +696,7 @@ class OrdersController extends Controller
 
 
 
-
+      $this->clearListOfOrderProducts();
 
       return redirect()->action('OrdersController@index');
     }
@@ -727,7 +741,7 @@ class OrdersController extends Controller
         Session::forget('cart');
         $zamowienia = Order::all();
 
-
+        //dodac Lp. jako index usuwanego produktu
         return view('admin.orders.index')->with('zamowienia', $zamowienia);
     }
     /**

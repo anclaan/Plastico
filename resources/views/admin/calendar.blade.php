@@ -4,6 +4,7 @@
   @section('title', '| Klienci')
 
   @section('content')
+    <h2>Terminarz spraw</h2>
   <div class="panel-body">
 
   <div id='calendar'></div>
@@ -88,14 +89,14 @@
 
               <div class="form-group">
                   {{ Form::label('_opis', 'Opis') }}
-                  {{ Form::text('_opis', old('_opis'), ['class'=>'form-control']) }}
+                  {{ Form::textarea('_opis', old('_opis'), ['class'=>'form-control']) }}
               </div>
           </div>
           <div class="modal-footer">
               <meta name="csrf-token" content="{{ csrf_token() }}">
               <a id="delete" data-href="{{ url('events') }}" data-id="" class="btn btn-danger">Usuń</a>
               <button type="button" class="btn btn default" data-dismiss="modal">Anuluj</button>
-              {!! Form::submit('Aktualizuj',['class' => 'btn btn-success']) !!}
+              {!! Form::submit('Aktualizuj',['class' => 'btn btn-info']) !!}
           </div>
         </div>
       </div>

@@ -24,9 +24,9 @@ class Order extends Model
   //   return $this->belongsTo('App\ProductType','productType_id');
   //
   // }
-  public function typ()
+  public function klient()
   {
-    return $this->belongsToMany('App\Order', 'orderproduct', 'product_id', 'order_id');
+    return $this->belongsTo('App\Customer', 'customer_id');
 
   }
 }

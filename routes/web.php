@@ -66,7 +66,7 @@ Route::group(['middleware' => ['auth:admin']], function (){
 Route::get('/', 'PagesController@getIndex');
 Route::get('oferta', 'PagesController@getOferta');
 Route::get('galeria', 'PagesController@getGaleria');
-Route::get('oNas', 'PagesController@getONas');
+Route::get('info', 'PagesController@getONas');
 Route::get('kontakt', 'PagesController@getKontakt');
 Route::get('/home', 'HomeController@index')->name('home');
 

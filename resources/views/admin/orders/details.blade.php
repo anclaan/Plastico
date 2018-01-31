@@ -44,9 +44,10 @@
 <div>
 {{Form::open(['route'=>'customers.create', 'method'=>'GET', 'role'=>'form']) }}
 
+      <h2>Szczegóły zamówienia</h2>
       <div id = "content" class="col-md-3">
           <div class="modal-header">
-              <h4>Nowe zamówienie</h4>
+              <h4>Dane zamówienia</h4>
           </div>
           <div id="form-body" style="background color: white;">
               <div class="form-group">
@@ -116,6 +117,7 @@
                         </a>
                           </th>
                       </tr>
+                      @php ($i++)
                       @endforeach
                   </tbody>
                 </table>

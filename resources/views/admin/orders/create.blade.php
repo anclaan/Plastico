@@ -48,10 +48,10 @@
 <div>
 {{Form::open(['url'=>'admin/orders/store', 'method'=>'GET', 'role'=>'form']) }}
 {{ csrf_field() }}
-
+<h2>Nowe zamówienie</h2>
 <div id = "content" class="col-md-3">
     <div class="modal-header">
-        <h4>Nowe zamówienie</h4>
+        <h4>Dane zamówienia</h4>
     </div>
     <div id="form-body" style="background color: white;">
         <div class="form-group">
@@ -72,13 +72,22 @@
             {{ Form::label('terminRealizacji', 'Termin realizacji') }}
             {{ Form::text('terminRealizacji', old('terminRealizacji'), ['class'=>'form-control']) }}
         </div>
-        <div class="form-group">
-                {{ Form::label('cena', 'Koszt całkowity') }}
-                {{ Form::text('cena', old('cena'), ['class'=>'form-control']) }}
-        </div>
+        {{-- <div class="form-group">
+            {{ Form::label('kosztCalkowity', 'Koszt Całkowity') }}
+            @if(isset($koszt))
+            {{ Form::text('kosztCalkowity', $koszt, ['class'=>'form-control']) }}
+            @else
+            {{ Form::text('kosztCalkowity', 0, ['class'=>'form-control']) }}
+            @endif
+        </div> --}}
+
     </div>
     <a role="button" id="nowyProdukt" type="button" class="btn btn-info">Dodaj produkt</a>
-
+    @if(isset($koszt))
+      <h2>Koszt Całkowity: {{$koszt}}zł</h2>
+    @else
+      <h2>Koszt Całkowity: 0zł</h2>
+    @endif
   </div>
 
 

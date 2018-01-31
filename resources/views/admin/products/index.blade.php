@@ -4,11 +4,9 @@
 
 @section('content')
 
-<div class="panel-heading">
-	<div class="panel-title" style="text-align: center;"><h1>Produkty</h1></div>
-</div>
+<h2>Produkty</h2>
 <div class="panel-body">
-	<table class="table table-striped" id="tabelaProduktow">
+	<table class="table table-striped table-bordered" id="tabelaProduktow">
     <thead>
       <tr>
         <th>Id</th>
@@ -21,28 +19,28 @@
 
     <tbody>
     @foreach ($produkty as $produkt)
-			
+
       <tr>
         <td>{{$produkt->id}}</td>
         <td>{{$produkt->nazwa}}</td>
         <td>{{$produkt->typ['nazwa']}}</td>
         <td>{{$produkt->opis}}</td>
-        <td style="width:10%;">
+        <td style="width:128px;">
           <a id ="edit-modal" class="button"
                 data-id="{{$produkt->id}}"
                 data-nazwa="{{$produkt->nazwa}}"
                 data-typ="{{$produkt->typ['nazwa']}}"
                 data-opis="{{$produkt->opis}}">
-                <span class="label label-info"> Edytuj</span>
+                <span class="btn btn-info"> Edytuj</span>
             </a>
             <a href={{ action('ProductsController@destroy', $produkt->id)}}>
-               <span class="label label-danger">Usuń</span</a>
+               <span class="btn btn-danger">Usuń</span</a>
         </td>
       </tr>
     @endforeach
     </tbody>
   </table>
-  <a id="dodajProdukt" role="button" type="button" class="btn btn-success"style="float: right;">Dodaj nowy produkt</a>
+  <a id="dodajProdukt" role="button" type="button" class="btn btn-success"style="float: left;">Dodaj nowy produkt</a>
 </div>
 
 

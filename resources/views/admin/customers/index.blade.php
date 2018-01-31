@@ -3,14 +3,12 @@
 @section('title', '| Klienci')
 
 @section('content')
+<h2>Klienci</h2>
 
-  <div class="panel-heading">
-  <div class="panel-title">Klienci</div>
-  </div>
 
   <div class="panel-body">
 
-  	<table class="table table-striped" id="tabelaKlientow">
+  	<table class="table table-striped table-bordered" id="tabelaKlientow">
           <thead>
             <tr>
               <th>Id</th>
@@ -44,7 +42,7 @@
                 {{-- <a role="button" type="button" id={{$klient->id}} class="btn btn-success"></a> --}}
                 {{-- <input id={{$klient->id}} type="button" value="edytuj" class="edycja"/> --}}
                 {{-- <button class="btn btn-success btn-edit" data-id="{{$klient->id}}">Edytuj</button> --}}
-                <td><a id ="edit-modal" class="button"
+                <td style="width:128px;"><a id ="edit-modal" class="button"
                       data-id="{{$klient->id}}"
                       data-imie="{{$klient->imie}}"
                       data-nazwisko="{{$klient->nazwisko}}"
@@ -63,7 +61,7 @@
           @endforeach
           </tbody>
         </table>
-          <a role="button" id="dodajKlienta" type="button" class="btn btn-success"style="float: right;">Dodaj nowego klienta</a>
+          <a role="button" id="dodajKlienta" type="button" class="btn btn-success"style="float: left;">Dodaj nowego klienta</a>
   </div>
   </div>
 
