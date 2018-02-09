@@ -194,6 +194,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `terminRealizacji` date DEFAULT NULL,
   `dataRealizacji` date DEFAULT NULL,
   `customer_id` int(11) unsigned DEFAULT NULL,
+  `czyAktywne` 
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),

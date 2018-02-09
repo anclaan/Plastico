@@ -24,7 +24,7 @@
         <td>{{$produkt->id}}</td>
         <td>{{$produkt->nazwa}}</td>
         <td>{{$produkt->typ['nazwa']}}</td>
-        <td>{{$produkt->opis}}</td>
+        <td style="max-width: 800px;">{{$produkt->opis}}</td>
         <td style="width:128px;">
           <a id ="edit-modal" class="button"
                 data-id="{{$produkt->id}}"
