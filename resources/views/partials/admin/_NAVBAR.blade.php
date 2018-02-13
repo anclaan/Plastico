@@ -7,7 +7,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="index.html">Panel Administracyjny PLASTICO</a>
+              <a class="navbar-brand" href="/admin/calendar">Panel Administracyjny PLASTICO</a>
           </div>
           <!-- Top Menu Items -->
           <ul class="nav navbar-right top-nav">
@@ -26,16 +26,16 @@
           <div class="collapse navbar-collapse navbar-ex1-collapse">
               <ul class="nav navbar-nav side-nav">
                   <li>
-                      <a href="/admin/calendar"><i class="fa fa-fw fa-dashboard"></i>Terminarz</a>
+                      <a href="/admin/calendar"><i class="fa fa-calendar"></i>  Terminarz</a>
                   </li>
                   <li>
-                      <a href="/admin/customers/index"><i class="fa fa-user"></i> Klienci</a>
+                      <a href="/admin/customers/index"><i class="fa fa-group"></i>  Klienci</a>
                   </li>
                   <li>
-                      <a href="/admin/products/index"><i class="fa fa-fw fa-table"></i>Produkty</a>
+                      <a href="/admin/products/index"><i class="fa fa-cube"></i>  Produkty</a>
                   </li>
                   <li>
-                      <a href="/admin/orders/index"><i class="fa fa-fw fa-edit"></i>Zamowienia</a>
+                      <a href="/admin/orders/index"><i class="fa fa-cart-arrow-down"></i>  Zamowienia</a>
                   </li>
 
                   {{-- <li>

@@ -6,10 +6,9 @@
 
 	<h2>Zamówienia</h2>
 		<div class="panel-body">
-			<table class="table table-striped table-bordered" id="tabelaZamowien">
+			<table class="table table-striped table-bordered" id="tabelaZamowien" style="font-size: 15px;">
         <thead>
           <tr>
-            <th>Id</th>
             <th>Nazwa</th>
             <th>Koszt Całkowity</th>
             <th>Termin Realizacji</th>
@@ -22,7 +21,6 @@
 
         @foreach ($zamowienia as $zamowienie)
           <tr>
-            <td>{{$zamowienie->id}}</td>
             <td>{{$zamowienie->nazwa}}</td>
             <td>{{$zamowienie->kosztCalkowity}}</td>
             <td>{{$zamowienie->terminRealizacji}}</td>

@@ -127,10 +127,17 @@ ul.alert-dropdown {
         bottom: 0;
         overflow-x: hidden;
         padding-bottom: 40px;
+        font-size: 17px;
+
     }
 
     .side-nav>li>a {
         width: 225px;
+    }
+
+    .side-nav>li {
+        border-bottom: 1px solid white;
+        color: white;
     }
 
     .side-nav li a:hover,

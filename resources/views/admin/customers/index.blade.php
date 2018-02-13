@@ -8,10 +8,9 @@
 
   <div class="panel-body">
 
-  	<table class="table table-striped table-bordered" id="tabelaKlientow">
+  	<table class="table table-striped table-bordered" id="tabelaKlientow" style="font-size: 15px;">
           <thead>
             <tr>
-              <th>Id</th>
               <th>Imie</th>
               <th>Nazwisko</th>
               <th>Telefon</th>
@@ -27,7 +26,6 @@
           <tbody>
           @foreach ($klienci as $klient)
             <tr>
-              <td>{{$klient->id}}</td>
               <td>{{$klient->imie}}</td>
               <td>{{$klient->nazwisko}}</td>
               <td>{{$klient->telefon}}</td>

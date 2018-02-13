@@ -6,10 +6,9 @@
 
 <h2>Produkty</h2>
 <div class="panel-body">
-	<table class="table table-striped table-bordered" id="tabelaProduktow">
+	<table class="table table-striped table-bordered" id="tabelaProduktow" style="font-size: 15px;">
     <thead>
       <tr>
-        <th>Id</th>
         <th>Nazwa</th>
         <th>Typ produktu</th>
         <th>Opis</th>
@@ -21,8 +20,7 @@
     @foreach ($produkty as $produkt)
 
       <tr>
-        <td>{{$produkt->id}}</td>
-        <td>{{$produkt->nazwa}}</td>
+        <td style="font-weight: bold;">{{$produkt->nazwa}}</td>
         <td>{{$produkt->typ['nazwa']}}</td>
         <td style="max-width: 800px;">{{$produkt->opis}}</td>
         <td style="width:128px;">
