@@ -20,18 +20,10 @@
                             <h3>Adres siedziby firmy: Błaszki, ul. Sulwińskiego 29</h3> --}}
 
 
-                                        <form class="form-horizontal" action="" method="post">
+                                        <form class="form-horizontal" action="{{ url('kontakt') }}" method="POST">
                                         <fieldset>
                                           <legend class="text-center" style="padding-left: 160px;">Napisz do Nas!</legend>
-
-                                          <!-- Name input-->
-                                          <div class="form-group">
-                                            <label class="col-md-3 control-label" for="name">Imie</label>
-                                            <div class="col-md-9">
-                                              <input id="name" name="name" type="text" placeholder="Twoje imie" class="form-control">
-                                            </div>
-                                          </div>
-
+                                            {{ csrf_field() }}
                                           <!-- Email input-->
                                           <div class="form-group">
                                             <label class="col-md-3 control-label" for="email">Adres E-mail</label>
@@ -40,11 +32,19 @@
                                             </div>
                                           </div>
 
+                                          <!-- Subject input-->
+                                          <div class="form-group">
+                                            <label class="col-md-3 control-label" for="temat">Temat</label>
+                                            <div class="col-md-9">
+                                              <input id="temat" name="temat" type="text" placeholder="Temat wiadomości" class="form-control">
+                                            </div>
+                                          </div>
+
                                           <!-- Message body -->
                                           <div class="form-group">
-                                            <label class="col-md-3 control-label" for="message">Wiadomość</label>
+                                            <label class="col-md-3 control-label" for="wiadomosc">Wiadomość</label>
                                             <div class="col-md-9">
-                                              <textarea class="form-control" id="message" name="message" placeholder="Tutaj możesz wpisać treść wiadomości..." rows="5"></textarea>
+                                              <textarea class="form-control" id="wiadomosc" name="wiadomosc" placeholder="Tutaj możesz wpisać treść wiadomości..." rows="5"></textarea>
                                             </div>
                                           </div>
 

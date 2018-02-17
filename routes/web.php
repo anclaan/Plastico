@@ -70,6 +70,8 @@ Route::get('info', 'PagesController@getONas');
 Route::get('kontakt', 'PagesController@getKontakt');
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::post('kontakt', 'PagesController@sendMail');
+
 
   // Route::get('admin/calendar',function()
   //   {
