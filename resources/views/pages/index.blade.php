@@ -51,12 +51,12 @@
                     <div class="row margin-vert-30">
                         <!-- Main Text -->
                         <div class="col-md-12">
-                            <h2 class="text-center">Witamy na stronie Plastico!!</h2>
-                            <p class="text-center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
-                                lobortis nisl ut aliquip ex ea commodo consequat.</p>
-                            <p class="text-center">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit
-                                augue duis dolore te feugait nulla facilisi. Cras non sem sem, at eleifend mi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Curabitur eget nisl
-                                a risus.</p>
+                            <h1 class="text-center">Witamy na stronie Plastico!!</h1>
+                            <pstyle="font-size:20px;">Jesteśmy przediębiorstwem trudniącym się sprzedażą drzwi i okien od najlepszych firm w kraju.
+                              Przedsiębiorstwo wszystkim klientom gwarantuje wszechstronną pomoc przy kupowaniu, a na dodatek pełen zakres
+                               obsługi - włączając w to wykonanie montażu, a także techniczny serwis i o wiele więcej.
+                                Klienci firmy cenią również atrakcyjne finansowe warunki kooperacji, a także sprawną realizację wszystkich zleceń</p>
+
                         </div>
                         <!-- End Main Text -->
                     </div>
@@ -75,7 +75,7 @@
                                             <img alt="image1" src="{{ asset('img/frontpage/veka.jpg') }}">
                                             <figcaption>
                                                 <h3>Okna Veka</h3>
-                                                <span>Vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui et everti tamquam suavitate mea.</span>
+                                                <span>Veka posiada ponad 40 letnie doświadczenie i jest czołowym na świecie producentem profili okiennych z PCV. Produkty tej firmy  zaliczane są do najwyższej klasy A.</span>
                                             </figcaption>
                                         </figure>
                                     </a>
@@ -88,7 +88,7 @@
                                             <img alt="image2" src="{{ asset('img/frontpage/salamander.jpg') }}">
                                             <figcaption>
                                                 <h3>Okna Salamander</h3>
-                                                <span>Vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui et everti tamquam suavitate mea.</span>
+                                                <span>Koncern Salamander działa na polskim rynku od prawie dwóch dekad. Firma dysponuje dwoma rodajami systemów okiennych: Brügmann bluEvolution i Salamander.</span>
                                             </figcaption>
                                         </figure>
                                     </a>
@@ -101,7 +101,7 @@
                                             <img alt="image3" src="{{ asset('img/frontpage/aluplast.jpg') }}">
                                             <figcaption>
                                                 <h3>Okna Aluplast</h3>
-                                                <span>Vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui et everti tamquam suavitate mea.</span>
+                                                <span>Frima Aluplast charakteryzuje się bogactwem oferty jak i innowacyjnością. Firma praktycznie co roku wprowadza na rynek nowe rozwiązania aby spełnić wymagania klientów. Zróżnicowana oferta pozwala wybrać okna o różnej kombinacji profili.</span>
                                             </figcaption>
                                         </figure>
                                     </a>
@@ -115,7 +115,7 @@
                                             <img alt="image5" src="{{ asset('img/frontpage/zew.jpg') }}">
                                             <figcaption>
                                                 <h3>Drzwi zewnętrzne</h3>
-                                                <span>Vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui et everti tamquam suavitate mea.</span>
+                                                <span>Oferujemy drzwi zewnętrze firm PORTO oraz LUNA. Nasi klinci mają możliwość dostosowywania drzwi do własnych potrzeb. Dostępnę są takie opcje jak zmiana futryny, klamek, dobór wizjera, możliwość skracania drzwi. </span>
                                             </figcaption>
                                         </figure>
                                     </a>
@@ -128,7 +128,7 @@
                                             <img alt="image6" src="{{ asset('img/frontpage/wew.jpg') }}">
                                             <figcaption>
                                                 <h3>Drzwi wewnętrzne</h3>
-                                                <span>Vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui et everti tamquam suavitate mea.</span>
+                                                <span>Oferujemy drzwi wewnętrze firm PORTO oraz LUNA. Nasi klinci mają możliwość dostosowywania drzwi do własnych potrzeb. Dostępnę są takie opcje jak zmiana futryny, klamek, dobór wizjera, możliwość skracania drzwi. </span>
                                             </figcaption>
                                         </figure>
                                     </a>
@@ -148,17 +148,7 @@
                                 </li>
                                 <!-- //Portfolio Item// -->
                                 <!-- Portfolio Item -->
-                                <li class="portfolio-item col-sm-6 col-xs-6 padding-20">
-                                    <a href="#">
-                                        <figure class="animate fadeInRight">
-                                            <img alt="image6" src="{{ asset('img/frontpage/ogrodzeniowe.jpg') }}">
-                                            <figcaption>
-                                                <h3>Bramy ogrodzeniowe</h3>
-                                                <span>Vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui et everti tamquam suavitate mea.</span>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </li>
+
                                 <!-- //Portfolio Item// -->
                                 <!-- Portfolio Item -->
                                 <li class="portfolio-item col-sm-6 col-xs-6 padding-20">
@@ -167,7 +157,7 @@
                                             <img alt="image6" src="{{ asset('img/frontpage/rolety.jpg') }}">
                                             <figcaption>
                                                 <h3>Rolety</h3>
-                                                <span>Vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui et everti tamquam suavitate mea.</span>
+                                                <span>W naszej ofercie można znaleźć rolety od wielu czołowych firm. Są to producenci z wieloletnim doświadczeniem oraz gwarancją jakości wyrabianych produktów. W ofercie dostępne są rolety wewnętrze i zewnętrze.</span>
                                             </figcaption>
                                         </figure>
                                     </a>
@@ -180,7 +170,7 @@
                                             <img alt="image6" src="{{ asset('img/frontpage/moskitiery.jpg') }}">
                                             <figcaption>
                                                 <h3>Moskitiery</h3>
-                                                <span>Vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui et everti tamquam suavitate mea.</span>
+                                                <span>Posiadamy w ofercie także moskitiery najwyższej jakości, produkowane w naszej firmie.</span>
                                             </figcaption>
                                         </figure>
                                     </a>

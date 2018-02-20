@@ -7,7 +7,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="/admin/calendar">Panel Administracyjny PLASTICO</a>
+              <a class="navbar-brand" style="font-size:25px; color:white;" href="/admin/calendar">  PLASTICO - Panel Administracyjny</a>
           </div>
           <!-- Top Menu Items -->
           <ul class="nav navbar-right top-nav">
@@ -29,26 +29,38 @@
                       <a href="/admin/calendar"><i class="fa fa-calendar"></i>  Terminarz</a>
                   </li>
                   <li>
-                      <a href="/admin/customers/index"><i class="fa fa-group"></i>  Klienci</a>
-                  </li>
-                  <li>
-                      <a href="/admin/products/index"><i class="fa fa-cube"></i>  Produkty</a>
-                  </li>
-                  <li>
-                      <a href="/admin/orders/index"><i class="fa fa-cart-arrow-down"></i>  Zamowienia</a>
-                  </li>
-
-                  {{-- <li>
-                      <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                      <ul id="demo" class="collapse">
+                      <a href="javascript:;" data-toggle="collapse" data-target="#klienci"><i class="fa fa-group"></i> Klienci <i class="fa fa-fw fa-caret-down"></i></a>
+                      <ul id="klienci" class="collapse">
                           <li>
-                              <a href="#">Dropdown Item</a>
+                              <a href="/admin/customers/index">Aktualni klienci</a>
                           </li>
                           <li>
-                              <a href="#">Dropdown Item</a>
+                              <a href="/admin/customers/archive">Archwium</a>
                           </li>
                       </ul>
-                  </li> --}}
+                  </li>
+                  <li>
+                      <a href="javascript:;" data-toggle="collapse" data-target="#produkty"><i class="fa fa-cube"></i> Produkty <i class="fa fa-fw fa-caret-down"></i></a>
+                      <ul id="produkty" class="collapse">
+                          <li>
+                              <a href="/admin/products/index">Aktualne produkty</a>
+                          </li>
+                          <li>
+                              <a href="/admin/products/archive">Archwium</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                      <a href="javascript:;" data-toggle="collapse" data-target="#zamowienia"><i class="fa fa-cart-arrow-down"></i> Zamowienia <i class="fa fa-fw fa-caret-down"></i></a>
+                      <ul id="zamowienia" class="collapse">
+                          <li>
+                              <a href="/admin/orders/index">Aktualne zamówienia</a>
+                          </li>
+                          <li>
+                              <a href="/admin/orders/archive">Archwium</a>
+                          </li>
+                      </ul>
+                  </li>
 
               </ul>
           </div>

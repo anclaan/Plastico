@@ -3,9 +3,8 @@
 @section('title', '| Produkty')
 
 @section('content')
-	<a id="dodajProdukt" role="button" id='nowy' type="button" class="btn btn-success" style="float: right; margin-top: 20px; margin-right: 15px; ">Dodaj nowy produkt</a>
 <div style="border-bottom-style: solid;">
-<h1>Produkty</h1>
+	<h1>Archiwum - produkty</h1>
 </div>
 <div class="panel-body">
 	<table class="table table-striped table-bordered" id="tabelaProduktow" style="font-size: 15px;">
@@ -25,7 +24,7 @@
         <td style="font-weight: bold;">{{$produkt->nazwa}}</td>
         <td>{{$produkt->typ['nazwa']}}</td>
         <td style="max-width: 800px;">{{$produkt->opis}}</td>
-        <td style="min-width:160px;">
+        <td style="width:128px;">
           <a id ="edit-modal" class="button"
                 data-id="{{$produkt->id}}"
                 data-nazwa="{{$produkt->nazwa}}"
@@ -33,48 +32,16 @@
                 data-opis="{{$produkt->opis}}">
                 <span class="btn btn-info"> Edytuj</span>
             </a>
-            <a href={{ action('ProductsController@archiveProduct', $produkt->id)}}>
-               <span class="btn btn-warning">Archiwizuj</span</a>
         </td>
       </tr>
     @endforeach
     </tbody>
   </table>
-
 </div>
 
 
 
 
-{{Form::open(['route'=>'products.create', 'method'=>'GET', 'role'=>'form']) }}
-<div id = "responsive-modal" class = "modal" tabindex="-1" data-backdrop="static">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-          <h4>Dodaj nowy produkt</h4>
-      </div>
-      <div class="modal-body">
-      <div class="form-group">
-              {{ Form::label('nazwa', 'Nazwa produktu') }}
-              {{ Form::text('nazwa', old('nazwa'), ['class'=>'form-control']) }}
-          </div>
-          <div class="form-group">
-            {{ Form::label('typy', 'Typ produktu') }}
-            {!! Form::select('typy', $typy, null,['class' => 'form-control'] ) !!}
-          </div>
-          <div class="form-group">
-              {{ Form::label('opis', 'Opis produktu') }}
-              {{ Form::textarea('opis', old('opis'), ['class'=>'form-control']) }}
-          </div>
-      </div>
-      <div class="modal-footer">
-          <button type="button" class="btn btn default" data-dismiss="modal">Anuluj</button>
-          {!! Form::submit('Dodaj',['class' => 'btn btn-success']) !!}
-      </div>
-    </div>
-  </div>
-</div>
-{{ Form::close() }}
 
 {!!Form::open(['route'=>['products.update',1], 'method'=>'PUT', 'id'=>'updatemodal'])!!}
 <div id = "myModal" class = "modal fade" tabindex="-1" data-backdrop="static">

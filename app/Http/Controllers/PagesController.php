@@ -18,6 +18,33 @@ class PagesController extends Controller {
   public function getOferta(){
     return view('pages.oferta');
   }
+  public function oknaVeka(){
+    return view('pages.okna.veka');
+  }
+  public function oknaSalamander(){
+    return view('pages.okna.salamander');
+  }
+  public function oknaAluplast(){
+    return view('pages.okna.aluplast');
+  }
+  public function drzwiZewnetrzne(){
+    return view('pages.drzwi.zewnetrzne');
+  }
+  public function drzwiWewnetrzne(){
+    return view('pages.drzwi.wewnetrzne');
+  }
+  public function bramy(){
+    return view('pages.bramy');
+  }
+  public function paraperty(){
+    return view('pages.paraperty');
+  }
+  public function rolety(){
+    return view('pages.rolety');
+  }
+  public function moskitiery(){
+    return view('pages.moskitiery');
+  }
 
   public function getGaleria(){
     return view('pages.galeria');

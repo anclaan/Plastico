@@ -3,9 +3,9 @@
 @section('title', '| Klienci')
 
 @section('content')
-  <a role="button" id="dodajKlienta" type="button" class="btn btn-success"style="float: right; margin-top: 20px; margin-right: 15px;">Dodaj nowego klienta</a>
+
 <div style="border-bottom-style: solid;">
-	<h1>Klienci</h1>
+	<h1>Archiwum - klienci</h1>
 </div>
 
   <div class="panel-body">
@@ -42,7 +42,7 @@
                 {{-- <a role="button" type="button" id={{$klient->id}} class="btn btn-success"></a> --}}
                 {{-- <input id={{$klient->id}} type="button" value="edytuj" class="edycja"/> --}}
                 {{-- <button class="btn btn-success btn-edit" data-id="{{$klient->id}}">Edytuj</button> --}}
-                <td><a id ="edit-modal" class="button"
+                <td style="width:128px;"><a id ="edit-modal" class="button"
                       data-id="{{$klient->id}}"
                       data-imie="{{$klient->imie}}"
                       data-nazwisko="{{$klient->nazwisko}}"
@@ -54,68 +54,14 @@
                       data-poczta="{{$klient->poczta}}">
         							<span class="btn btn-info"> Edytuj</span>
         						</a>
-                <a id="usun" href={{ action('CustomersController@archiveClient', $klient->id) }}>
-                     <span class="btn btn-warning">Archiwizuj</span></a>
+
               </td>
             </tr>
           @endforeach
           </tbody>
         </table>
-          <a role="button" id="dodajKlienta" type="button" class="btn btn-success"style="float: left;">Dodaj nowego klienta</a>
   </div>
   </div>
-
-
-  {{Form::open(['route'=>'customers.create', 'method'=>'GET', 'role'=>'form']) }}
-      <div id = "responsive-modal" class = "modal" tabindex="-1" data-backdrop="static">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-                <h4>Dodaj nową sprawę</h4>
-            </div>
-            <div class="modal-body">
-
-                <div class="form-group">
-                    {{ Form::label('imie', 'Imię') }}
-                    {{ Form::text('imie', old('imie'), ['class'=>'form-control']) }}
-                </div>
-                <div class="form-group">
-                    {{ Form::label('nazwisko', 'Nazwisko') }}
-                    {{ Form::text('nazwisko', old('nazwisko'), ['class'=>'form-control']) }}
-                </div>
-                <div class="form-group">
-                    {{ Form::label('telefon', 'Nr Telefonu') }}
-                    {{ Form::text('telefon', old('telefon'), ['class'=>'form-control']) }}
-                </div>
-                <div class="form-group">
-                    {{ Form::label('email', 'E-mail') }}
-                    {{ Form::text('email', old('email'), ['class'=>'form-control']) }}
-                </div>
-                <div class="form-group">
-                    {{ Form::label('nip', 'NIP') }}
-                    {{ Form::text('nip', old('nip'), ['class'=>'form-control']) }}
-                </div>
-                <div class="form-group">
-                    {{ Form::label('adres', 'Adres') }}
-                    {{ Form::text('adres', old('adres'), ['class'=>'form-control']) }}
-                </div>
-                <div class="form-group">
-                    {{ Form::label('kod', 'Kod Pocztowy') }}
-                    {{ Form::text('kod', old('kod'), ['class'=>'form-control']) }}
-                </div>
-                <div class="form-group">
-                    {{ Form::label('poczta', 'Poczta') }}
-                    {{ Form::text('poczta', old('poczta'), ['class'=>'form-control']) }}
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn default" data-dismiss="modal">Anuluj</button>
-                {!! Form::submit('Dodaj',['class' => 'btn btn-success']) !!}
-            </div>
-          </div>
-        </div>
-      </div>
-      {{ Form::close() }}
 
         {!!Form::open(['route'=>['customers.update',1], 'method'=>'PUT', 'id'=>'updatemodal'])!!}
         <div id = "myModal" class = "modal fade" tabindex="-1" data-backdrop="static">

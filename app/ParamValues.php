@@ -19,9 +19,9 @@ class ParamValues extends Model
   protected $fillable = [
     'value', 'orderProduct_id','producttypeparam_id','opis'
   ];
-  // public function typ()
-  // {
-  //   return $this->belongsTo('App\ProductType','productType_id');
-  //
-  // }
+  public function typ()
+  {
+    return $this->belongsTo('App\ProductType','productType_id');
+  
+  }
 }

@@ -17,7 +17,7 @@ class Order extends Model
    * @var [type]
    */
   protected $fillable = [
-    'nazwa', 'kosztCalkowity','terminRealizacji','customer_id'
+    'nazwa', 'kosztCalkowity','terminRealizacji','customer_id','status_id'
   ];
   // public function typ()
   // {
@@ -27,6 +27,11 @@ class Order extends Model
   public function klient()
   {
     return $this->belongsTo('App\Customer', 'customer_id');
+
+  }
+  public function status()
+  {
+    return $this->belongsTo('App\OrderStatus', 'status_id');
 
   }
 }

@@ -39,16 +39,16 @@
                             <a href="/" class="fa-home">Strona Główna</a>
                         </li>
                         <li>
-                            <span class="fa-gears">Okna</span>
+                            <span>Okna</span>
                             <ul>
                               <li>
-                                  <a href="/kontakt">Veka</a>
+                                  <a href="/okna/veka">Veka</a>
                               </li>
                               <li>
-                                  <a href="/kontakt">Aluplast</a>
+                                  <a href="/okna/aluplast">Aluplast</a>
                               </li>
                               <li>
-                                  <a href="/kontakt">Salamander</a>
+                                  <a href="/okna/salamander">Salamander</a>
                               </li>
                                 <li>
                                     <a href="#">Montaż</a>
@@ -56,13 +56,13 @@
                             </ul>
                         </li>
                         <li>
-                            <span class="fa-copy">Drzwi</span>
+                            <span>Drzwi</span>
                             <ul>
                               <li>
-                                  <a href="/kontakt">Wewnętrzne</a>
+                                  <a href="/drzwi/wewnetrzne">Wewnętrzne</a>
                               </li>
                               <li>
-                                  <a href="/kontakt">Zewnętrzne</a>
+                                  <a href="/drzwi/zewnetrzne">Zewnętrzne</a>
                               </li>
                                 <li>
                                   <a href="#">Montaż</a>
@@ -70,29 +70,29 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="/kontakt" class="fa-comment">Bramy garażowe</a>
+                            <a href="/bramy">Bramy garażowe</a>
                         </li>
                         <li>
 
-                            <span class="fa-th">Inne</span>
+                            <span class=>Inne</span>
                             <ul>
                               <li>
-                                  <a href="/kontakt">Parapety</a>
+                                  <a href="/paraperty">Parapety</a>
                               </li>
                               <li>
-                                  <a href="/kontakt">Rolety</a>
+                                  <a href="/rolety">Rolety</a>
                               </li>
                               <li>
-                                  <a href="/kontakt">Moskitiery</a>
+                                  <a href="/moskitiery">Moskitiery</a>
                               </li>
                             </ul>
                         </li>
 
                         <li>
-                            <a href="/kontakt" class="fa-comment">Kontakt</a>
+                            <a href="/kontakt">Kontakt</a>
                         </li>
                         <li>
-                            <a href="/info" class="fa-comment">O Nas</a>
+                            <a href="/info">O Nas</a>
                         </li>
 
                     </ul>

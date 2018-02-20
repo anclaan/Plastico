@@ -48,7 +48,9 @@
 <div>
 {{Form::open(['url'=>'admin/orders/store', 'method'=>'GET', 'role'=>'form']) }}
 {{ csrf_field() }}
-<h2>Nowe zamówienie</h2>
+<div style="border-bottom-style: solid;">
+	<h1>Nowe zamówienie</h1>
+</div>
 <div id = "content" class="col-md-3">
     <div class="modal-header">
         <h4>Dane zamówienia</h4>
@@ -84,9 +86,10 @@
     </div>
     <a role="button" id="nowyProdukt" type="button" class="btn btn-info">Dodaj produkt</a>
     @if(isset($koszt))
-      <h2>Koszt Całkowity: {{$koszt}}zł</h2>
+      <h2>Koszt całkowity:</br>
+      {{$koszt}} zł</h2>
     @else
-      <h2>Koszt Całkowity: 0zł</h2>
+      <h2>Koszt całkowity: 0 zł</h2>
     @endif
   </div>
 

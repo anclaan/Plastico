@@ -41,11 +41,55 @@
   </div>
   {{ Form::close() }}
 
-<div>
-{{Form::open(['route'=>'customers.create', 'method'=>'GET', 'role'=>'form']) }}
+  {{Form::open(['route'=>['orders.create',1], 'method'=>'PUT', 'id'=>'updatemodal']) }}
+  <div id = "changeStatusM" class = "modal" tabindex="-1" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h4>Zmiana statusu zamówienia: {{ $order->nazwa}}</h4>
+        </div>
 
-      <h2>Szczegóły zamówienia</h2>
+        <div class="modal-body">
+
+          <div class="form-group">
+            {{ Form::label('id', 'Id:') }}
+            {{ Form::text('id', old($order->id), ['class'=>'form-control']) }}
+          </div>
+
+          <div class="form-group">
+            {{ Form::label('status', 'Status:') }}
+            {{ Form::select('status', ['Wszystkie','Przyjęte do realizacji', 'Wysłane do producenta', 'Gotowe do montażu', 'Oczekujące na zapłatę', 'Zakończone', 'Anulowane']) }}
+          </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Anuluj</button>
+            {!! Form::submit('Zapisz',['class' => 'btn btn-success']) !!}
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ Form::close() }}
+
+<div>
+{{-- {{Form::open(['route'=>'customers.create', 'method'=>'GET', 'role'=>'form']) }} --}}
+<button type="button"  class="btn btn-info" style="float:right;" data-dismiss="modal">Powrót do listy zamówień</button>
+      <div style="border-bottom-style: solid;">
+          <h1>Szczegóły zamówienia {{ $order->nazwa }}</h1>
+      </div>
+      <div>
+      <h2>Status zamówienia:
+         @if($order->status_id == 1 || $order->status_id == 2 || $order->status_id == 3 )
+              <p style="color:green; font:bold;">{{$order->status['nazwa']}}</p>
+         @else
+              <p style="color:red;">{{$order->status['nazwa']}}</p>
+         @endif
+      </h2>
+      <button type="button" id="zmienStatus" class="btn btn-default" data-dismiss="modal">Zmień status</button>
+    </div>
+
       <div id = "content" class="col-md-3">
+
           <div class="modal-header">
               <h4>Dane zamówienia</h4>
           </div>
@@ -71,8 +115,8 @@
                   {{ Form::text('cena', old('cena'), ['class'=>'form-control']) }}
               </div>
           </div>
-          <a role="button" id="nowyProdukt" type="button" class="btn btn-info">Dodaj produkt</a>
-
+          <a role="button" id="nowyProdukt" type="button" class="btn btn-default">Dodaj produkt</a>
+          <h2>Koszt całkowity: {{$order->kosztCalkowity}} zł</h2>
         </div>
 
 
@@ -87,7 +131,7 @@
                   <thead>
                     <tr>
                       <th>Lp.</th>
-                      {{-- <th>Typ produktu</th> --}}
+                      <th>Typ produktu</th>
                       <th>Nazwa produktu</th>
                       <th>Cena</th>
                       <th></th>
@@ -95,16 +139,16 @@
                   </thead>
                   <tbody>
                     @php ($i = 1)
-
+{{-- {{dd($orderProducts)}} --}}
                     @foreach ($orderProducts as $op)
-                      {{-- {{dd($op)}} --}}
+
                     <tr>
                         <td>
                           {{$i}}
                         </td>
-                        {{-- <td>
-
-                        </td> --}}
+                        <td>
+                          {{$op->typy['nazwa']}}
+                        </td>
                         <td>
                           {{$op->produkt['nazwa']}}
                         </td>
@@ -124,11 +168,22 @@
           </div>
         </div>
       <div class="modal-footer">
-          <button type="button" class="btn btn default" data-dismiss="modal">Anuluj</button>
-          {!! Form::submit('Dodaj',['class' => 'btn btn-success']) !!}
+
+        @if($order->status_id == 1)
+          <a href={{ route('changeStatus',['id'=>$order->id,'status'=>2])}} type="button" class="btn btn-success" id='wyslane' style="float:left;" data-dismiss="modal">Oznacz jako "Wysłane do producenta"</a>
+        @elseif($order->status_id == 2)
+          <a href={{ route('changeStatus',['id'=>$order->id,'status'=>3])}} type="button" class="btn btn-success" id='gotowe' style="float:left;" data-dismiss="modal">Oznacz jako "Gotowe do montażu"</a>
+        @elseif($order->status_id == 3)
+          <a href={{ route('changeStatus',['id'=>$order->id,'status'=>4])}} type="button" class="btn btn-danger"  id='oczekujace' style="float:left;" data-dismiss="modal">Oznacz jako "Oczekujące na zapłatę"</a>
+          <a href={{ route('changeStatus',['id'=>$order->id,'status'=>5])}} type="button" class="btn btn-success" id='zakonczone' style="float:left;" data-dismiss="modal">Oznacz jako "Zakończone"</a>
+        @elseif($order->status_id == 4)
+          <a href={{ route('changeStatus',['id'=>$order->id,'status'=>5])}} type="button" class="btn btn-success" id='zakonczone' style="float:left;" data-dismiss="modal">Oznacz jako "Zakończone"</a>
+        @endif
+
+        <a href={{ route('changeStatus',['id'=>$order->id,'status'=>6])}} type="button" style="float:right;" id='anulowane' class="btn btn-danger" >Anuluj zamówienie</a>
       </div>
 
-{{ Form::close() }}
+{{-- {{ Form::close() }} --}}
 </div>
 
 
@@ -138,6 +193,39 @@
   <script>
     $(document).ready(function()
     {
+
+      $('#zmienStatus').on('click',function(){
+
+        var url = '/orders';
+        var id =$(this).data('id');
+
+        $('#changeStatusM').modal('show');
+
+        $.ajax({
+        type: 'GET',
+        url: '/orders/'+id+'/changeStatusManually',
+        success: function()
+        {
+
+
+
+        },
+        error: function(result)
+        {
+          $('#modal-event').modal('hide');
+          alert(result.message);
+
+        },
+        complete: function () {
+              //  window.location.reload();
+            }
+
+
+
+      })
+
+      });
+
 
       $('#tabelaProduktowWZamowieniu').DataTable({
 

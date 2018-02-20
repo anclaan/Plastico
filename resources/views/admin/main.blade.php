@@ -13,7 +13,7 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12"  style="border-bottom-style: solid; margin-top: -100px;">
           @include('partials.admin._adminMessage')
         <!-- Page Heading -->
 

@@ -16,7 +16,15 @@
 
                         <div class="col-md-10">
 
-                          <legend class="text-center" style="padding-left: 160px;">Napisz do Nas!</legend>
+                          <h2 class="text-center" style="padding-left: 160px; ">PLASTICO</h2>
+                          <p class="text-center" style="padding-left: 160px;">"Sieradzkie Centrum Okien Plastico Jendrzej Urbański" to przedsiębiorstwo trudniące się sprzedażą drzwi i okien od najlepszych firm w kraju. Przedsiębiorstwo wszystkim klientom gwarantuje wszechstronną pomoc przy kupowaniu, a na dodatek pełen zakres obsługi - włączając w to wykonanie montażu, a także techniczny serwis i o wiele więcej. Klienci firmy cenią również atrakcyjne finansowe warunki kooperacji, a także sprawną realizację wszystkich zleceń. Jeżeli pragniesz nawiązać kontakt przez telefon, wybierz numer (43) 829-25-57.</p>
+                          <p class="text-center" style="padding-left: 160px;" >
+                      "Sieradzkie Centrum Okien Plastico Jendrzej Urbański" mieści się w ewidencji działalności gospodarczej pod numerem: 8271795062.
+                      Koordynaty siedziby przedsiębiorstwa to: 51.65408N, 18.434552E.
+                    </p>
+                    <p class="text-center" style="padding-left: 160px;" >
+                      Siedziba przedsiębiorstwa mieści się pod adresem: Plac Sulwińskiego 29, 98-235 Błaszki.
+                    </p>
 
                         </div>
                         <div class="col-md-1">

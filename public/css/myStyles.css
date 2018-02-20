@@ -59,7 +59,7 @@
 
 .page-content {
 
-  min-height: 1080px;
+  min-height: 900px;
   background-image:url("/img/back.jpg");
 }
 
@@ -72,6 +72,7 @@
 
 .table>th {
   height: 20px;
+
 
 
 }

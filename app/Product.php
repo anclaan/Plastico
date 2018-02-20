@@ -19,7 +19,7 @@ class Product extends Model
    * @var [type]
    */
    protected $fillable = [
-    'nazwa','opis', 'productType_id'
+    'nazwa','opis', 'productType_id','czyAktywny'
     ];
 
     public function typy()

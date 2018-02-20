@@ -27,48 +27,89 @@ class OrdersController extends Controller
 
     public function index()
     {
-      $zamowienia = Order::all();
-
+      $zamowienia = Order::where('czyAktywne','=',1)->get();
       $klienci = Customer::all();
-
 
       return view('admin.orders.index')->with(array('klienci' => $klienci,'zamowienia' => $zamowienia));
     }
+
+
+    public function archive()
+    {
+      $zamowienia = Order::where('czyAktywne','=',0)->get();;
+      $klienci = Customer::all();
+
+      return view('admin.orders.archive')->with(array('klienci' => $klienci,'zamowienia' => $zamowienia));
+    }
+    public function changeStatus($id, $status)
+    {
+      $order = Order::find($id);
+      $order -> status_id = $status;
+      $order -> save();
+      $orderProducts = OrderProducts::where('order_id','=',$id)->get();
+      $klienci = Customer::all();
+      $typy = ProductType::pluck('nazwa','id');
+
+      return view('admin.orders.details')->with(array('klienci' => $klienci,'typy' => $typy,'order' => $order, 'orderProducts' => $orderProducts));
+
+    }
+
+    public function changeStatusManually(Request $request)
+    {
+      $order = Order::where('nazwa','=',$request -> nazwa);
+      $order -> status_id = $status;
+      $order -> save();
+      $orderProducts = OrderProducts::where('order_id','=',$id)->get();
+      $klienci = Customer::all();
+      $typy = ProductType::pluck('nazwa','id');
+
+      return view('admin.orders.details')->with(array('klienci' => $klienci,'typy' => $typy,'order' => $order, 'orderProducts' => $orderProducts));
+
+    }
+
+
+    public function showOrdersWithSpecificStatus($id)
+    {
+      if($id > 0)
+      {
+        $zamowienia = Order::where('status_id','=',$id)->get();
+        $klienci = Customer::all();
+      }
+      if($id == 0)
+      {
+        $zamowienia = Order::all();
+        $klienci = Customer::all();
+      }
+
+      return view('admin.orders.index')->with(array('klienci' => $klienci,'zamowienia' => $zamowienia));
+    }
+
+
     public function showCreateForm()
     {
-
         $klienci = Customer::all();
         $typy = ProductType::pluck('nazwa','id');
-
-        // $collection->toArray();
-        // dd($collection);
         $produkty=Session::get('cart');
         $collection=collect($produkty);
+
         return view('admin/orders/create')->with(array('klienci' => $klienci,'typy' => $typy,'collection'=> $collection));
     }
 
 
     public function getProducts($id)
     {
-
-      // $products = Products::table("products")->where("productType_id",$id)->pluck("name","id");
         $products = Product::where("productType_id",$id)->pluck("nazwa","id");
 
         return json_encode($products);
     }
 
+
     public function detailsOfOrder($id)
     {
         $order = Order::find($id);
-        // $orderProducts = DB::table('orderproducts')->where('order_id', $id)->get();
         $orderProducts = OrderProducts::where('order_id','=',$id)->get();
-        // $ops = DB::table('orderproducts')->where('order_id', $id)->get();
-
-
-
         $klienci = Customer::all();
         $typy = ProductType::pluck('nazwa','id');
-
 
         return view('admin.orders.details')->with(array('klienci' => $klienci,'typy' => $typy,'order' => $order, 'orderProducts' => $orderProducts));
     }
@@ -300,6 +341,8 @@ class OrdersController extends Controller
       $order -> nazwa = $request -> nazwa;
       $order -> terminRealizacji = $request -> terminRealizacji;
       $order -> customer_id = $request -> klient;
+      $order -> czyAktywne = 1;
+      $order -> status_id = 1;
       $order -> kosztCalkowity = $koszt;
 
       $session = Session::all();
@@ -773,14 +816,16 @@ class OrdersController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function archiveOrder($id)
     {
       $order = Order::find($id);
 
       if($order == null)
         return false;
 
-        $order -> delete();
+        $order -> czyAktywne = 0;
+        $order -> save();
+
         return redirect('/admin/orders/index');;
     }
 }

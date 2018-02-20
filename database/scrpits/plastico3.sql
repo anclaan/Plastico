@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `nip` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `kod` varchar(6) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `poczta` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `czyAktywny` int(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -53,14 +54,14 @@ CREATE TABLE IF NOT EXISTS `customers` (
 
 -- Zrzucanie danych dla tabeli plasticobaza.customers: ~7 rows (około)
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-INSERT INTO `customers` (`id`, `imie`, `nazwisko`, `adres`, `telefon`, `email`, `nip`, `kod`, `poczta`, `created_at`, `updated_at`) VALUES
-	(1, 'Jan', 'Kowalski', 'Wójcice 29', '506607798', 'janek23@gmail.com', '5233466548', '98-235', 'Błaszki', NULL, '2018-01-28 21:06:38'),
-	(2, 'Andrzej', 'Nowak', 'Łubna 22', '444333444', 'anowak@gmail.com', '7856455296', '98-235', 'Błaszki', '2017-10-25 00:23:18', '2018-01-28 21:07:07'),
-	(7, 'Janusz', 'Krupczyński', 'ul. Sulwińskiego 11', '565498976', 'krupaaa123@gmail.com', '7895642345', '98-235', 'Błaszki', '2018-01-28 21:08:04', '2018-01-28 21:08:04'),
-	(8, 'Anna', 'Andrzejewska', 'Kokoszki 10', '789564231', 'aandrzejewskaa@gmail.com', '7862314665', '98-235', 'Błaszki', '2018-01-28 21:08:48', '2018-01-28 21:08:48'),
-	(9, 'Joanna', 'Pieszkowska', 'Kaliska 11', '756426582', 'pieszkowska.a@wp.pl', '7564215248', '98-235', 'Błaszki', '2018-01-28 21:09:54', '2018-01-28 21:09:54'),
-	(10, 'Maciej', 'Furmaniak', 'Brudzew 29', '603845655', 'furmaniak.m@tt.com.pl', NULL, '98-235', 'Błaszki', '2018-01-31 01:39:52', '2018-01-31 01:39:52'),
-	(11, 'Bartosz', 'Dębicki', 'Biała 69', '608892523', 'debicki.b@gmail.com', '9874653211', '00-700', 'Tumidaj', '2018-01-31 01:43:40', '2018-01-31 01:43:40');
+INSERT INTO `customers` (`id`, `imie`, `nazwisko`, `adres`, `telefon`, `email`, `nip`, `kod`, `poczta`, `czyAktywny`, `created_at`, `updated_at`) VALUES
+	(1, 'Jan', 'Kowalski', 'Wójcice 29', '506607798', 'janek23@gmail.com', '5233466548', '98-235', 'Błaszki',1, NULL, '2018-01-28 21:06:38'),
+	(2, 'Andrzej', 'Nowak', 'Łubna 22', '444333444', 'anowak@gmail.com', '7856455296', '98-235', 'Błaszki',1, '2017-10-25 00:23:18', '2018-01-28 21:07:07'),
+	(7, 'Janusz', 'Krupczyński', 'ul. Sulwińskiego 11', '565498976', 'krupaaa123@gmail.com', '7895642345', '98-235', 'Błaszki',1, '2018-01-28 21:08:04', '2018-01-28 21:08:04'),
+	(8, 'Anna', 'Andrzejewska', 'Kokoszki 10', '789564231', 'aandrzejewskaa@gmail.com', '7862314665', '98-235', 'Błaszki',1, '2018-01-28 21:08:48', '2018-01-28 21:08:48'),
+	(9, 'Joanna', 'Pieszkowska', 'Kaliska 11', '756426582', 'pieszkowska.a@wp.pl', '7564215248', '98-235', 'Błaszki',1, '2018-01-28 21:09:54', '2018-01-28 21:09:54'),
+	(10, 'Maciej', 'Furmaniak', 'Brudzew 29', '603845655', 'furmaniak.m@tt.com.pl', NULL, '98-235', 'Błaszki',1, '2018-01-31 01:39:52', '2018-01-31 01:39:52'),
+	(11, 'Bartosz', 'Dębicki', 'Biała 69', '608892523', 'debicki.b@gmail.com', '9874653211', '00-700', 'Tumidaj',1, '2018-01-31 01:43:40', '2018-01-31 01:43:40');
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 
 -- Zrzut struktury tabela plasticobaza.events
@@ -98,6 +99,27 @@ INSERT INTO `events` (`id`, `customer_id`, `title`, `start`, `end`, `eventType_i
 	(24, NULL, 'Pomiar parapetów Kosciuszki 29', '2018-01-04 12:15:45', '2018-01-04 13:15:11', NULL, NULL, '2018-01-02 17:15:22', '2018-01-02 17:15:22'),
 	(27, NULL, 'Montaż okien i parapetów w Łubnej', '2018-01-05 12:45:15', '2018-01-05 15:39:58', NULL, NULL, '2018-01-28 19:40:16', '2018-01-28 19:40:16');
 /*!40000 ALTER TABLE `events` ENABLE KEYS */;
+
+
+CREATE TABLE IF NOT EXISTS `orderstatus` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nazwa` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `idProces` int(1) NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `orderstatus` (`id`, `nazwa`, `idProces`, `remember_token`, `created_at`, `updated_at`) VALUES
+	(1, 'Przyjęte do realizacji',1, NULL, NULL, NULL),
+	(2, 'Wysłane do producenta',2, NULL, NULL, NULL),
+	(3, 'Gotowe do montażu',3, NULL, NULL, NULL),
+	(4, 'Niezapłacone',4, NULL, NULL, NULL),
+  (5, 'Zakończone',5, NULL, NULL, NULL),
+  (6, 'Anulowane',5, NULL, NULL, NULL);
+
+
 
 -- Zrzut struktury tabela plasticobaza.eventtypes
 CREATE TABLE IF NOT EXISTS `eventtypes` (
@@ -194,30 +216,33 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `terminRealizacji` date DEFAULT NULL,
   `dataRealizacji` date DEFAULT NULL,
   `customer_id` int(11) unsigned DEFAULT NULL,
-  `czyAktywne` 
+  `czyAktywne` int(1) unsigned NOT NULL,
+  `status_id` int(11) unsigned DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `orders_customers_id_foreign` (`customer_id`),
-  CONSTRAINT `orders_customers_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`)
+  KEY `orders_orderstatus_id_foreign` (`status_id`),
+  CONSTRAINT `orders_customers_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
+  CONSTRAINT `orders_orderstatus_id_foreign` FOREIGN KEY (`status_id`) REFERENCES `orderstatus` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Zrzucanie danych dla tabeli plasticobaza.orders: ~13 rows (około)
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` (`id`, `nazwa`, `kosztCalkowity`, `terminRealizacji`, `dataRealizacji`, `customer_id`, `created_at`, `updated_at`) VALUES
-	(64, '2018/01/23/01', 3045.00, '2018-01-27', '2018-01-27', 10, '2018-01-27 11:34:27', '2018-01-27 11:34:27'),
-	(65, '2018/01/23/02', 2099.00, '2018-01-27', '2018-01-27', 8, '2018-01-27 11:34:35', '2018-01-27 11:34:35'),
-	(66, '2018/01/23/03', 899.00, '2018-01-27', '2018-01-27', 1, '2018-01-27 11:41:23', '2018-01-27 11:41:23'),
-	(67, '2018/01/24/01', 576.00, '2018-01-27', '2018-01-27', 7, '2018-01-27 11:42:07', '2018-01-27 11:42:07'),
-	(68, '2018/01/24/02', 7323.00, '2018-01-21', '2018-01-27', 9, '2018-01-27 11:43:46', '2018-01-27 11:43:46'),
-	(69, '2018/01/24/02', 1085.00, '2018-01-27', '2018-01-27', 2, '2018-01-27 11:47:42', '2018-01-27 11:47:42'),
-	(70, '2018/01/24/03', 4037.00, '2018-01-27', '2018-01-27', 1, '2018-01-27 11:52:12', '2018-01-27 11:52:12'),
-	(71, '2018/01/24/04', 544.00, '2018-01-27', '2018-01-27', 11, '2018-01-27 12:04:33', '2018-01-27 12:04:33'),
-	(72, '2018/01/24/05', 1223.00, '2018-01-27', '2018-01-27', 1, '2018-01-27 12:33:38', '2018-01-27 12:33:38'),
-	(73, '2018/01/24/06', 783.00, '2018-01-31', NULL, 1, '2018-01-30 23:00:13', '2018-01-30 23:00:13'),
-	(74, '2018/01/25/01', 1230.00, '2018-01-31', NULL, 1, '2018-01-30 23:01:37', '2018-01-30 23:01:37'),
-	(75, '2018/01/25/02', 4323.00, '2018-01-31', NULL, 1, '2018-01-30 23:03:28', '2018-01-30 23:03:28'),
-	(76, '2018/01/25/03', 900.00, '2018-01-31', NULL, 1, '2018-01-30 23:05:14', '2018-01-30 23:05:14');
+INSERT INTO `orders` (`id`, `nazwa`, `kosztCalkowity`, `terminRealizacji`, `dataRealizacji`, `customer_id`, `czyAktywne`, `status_id`, `created_at`, `updated_at`) VALUES
+	(64, '2018/01/23/01', 3045.00, '2018-01-27', '2018-01-27', 10, 1, 1, '2018-01-27 11:34:27', '2018-01-27 11:34:27'),
+	(65, '2018/01/23/02', 2099.00, '2018-01-27', '2018-01-27', 8,1, 1, '2018-01-27 11:34:35', '2018-01-27 11:34:35'),
+	(66, '2018/01/23/03', 899.00, '2018-01-27', '2018-01-27', 1,1, 1, '2018-01-27 11:41:23', '2018-01-27 11:41:23'),
+	(67, '2018/01/24/01', 576.00, '2018-01-27', '2018-01-27', 7,1, 1, '2018-01-27 11:42:07', '2018-01-27 11:42:07'),
+	(68, '2018/01/24/02', 7323.00, '2018-01-21', '2018-01-27', 9,1, 1, '2018-01-27 11:43:46', '2018-01-27 11:43:46'),
+	(69, '2018/01/24/02', 1085.00, '2018-01-27', '2018-01-27', 2,1, 1, '2018-01-27 11:47:42', '2018-01-27 11:47:42'),
+	(70, '2018/01/24/03', 4037.00, '2018-01-27', '2018-01-27', 1,1, 1, '2018-01-27 11:52:12', '2018-01-27 11:52:12'),
+	(71, '2018/01/24/04', 544.00, '2018-01-27', '2018-01-27', 11,1, 1, '2018-01-27 12:04:33', '2018-01-27 12:04:33'),
+	(72, '2018/01/24/05', 1223.00, '2018-01-27', '2018-01-27', 1,1, 1, '2018-01-27 12:33:38', '2018-01-27 12:33:38'),
+	(73, '2018/01/24/06', 783.00, '2018-01-31', NULL, 1,1, 1, '2018-01-30 23:00:13', '2018-01-30 23:00:13'),
+	(74, '2018/01/25/01', 1230.00, '2018-01-31', NULL, 1,1, 1, '2018-01-30 23:01:37', '2018-01-30 23:01:37'),
+	(75, '2018/01/25/02', 4323.00, '2018-01-31', NULL, 1,1, 1, '2018-01-30 23:03:28', '2018-01-30 23:03:28'),
+	(76, '2018/01/25/03', 900.00, '2018-01-31', NULL, 1,1, 1, '2018-01-30 23:05:14', '2018-01-30 23:05:14');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 
 -- Zrzut struktury tabela plasticobaza.parameters
@@ -233,7 +258,7 @@ CREATE TABLE IF NOT EXISTS `parameters` (
 -- Zrzucanie danych dla tabeli plasticobaza.parameters: ~13 rows (około)
 /*!40000 ALTER TABLE `parameters` DISABLE KEYS */;
 INSERT INTO `parameters` (`id`, `nazwa`, `remember_token`, `created_at`, `updated_at`) VALUES
-	(1, 'Wysokość\r\n', NULL, NULL, NULL),
+	(1, 'Wysokość', NULL, NULL, NULL),
 	(2, 'Szerokość', NULL, NULL, NULL),
 	(3, 'Długość', NULL, NULL, NULL),
 	(4, 'Szerokość profilu', NULL, NULL, NULL),
@@ -397,6 +422,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `nazwa` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `opis` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `productType_id` int(10) unsigned DEFAULT NULL,
+  `czyAktywny` int(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -406,21 +432,21 @@ CREATE TABLE IF NOT EXISTS `products` (
 
 -- Zrzucanie danych dla tabeli plasticobaza.products: ~12 rows (około)
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` (`id`, `nazwa`, `opis`, `productType_id`, `created_at`, `updated_at`) VALUES
-	(40, 'ALUPLAST IDEAL 5000', 'Zaawansowany system pięciokomorowy o głębokości zabudowy 70 mm z systemem trzech uszczelek, o możliwości szklenia pakietami szybowymi do 41 mm szerokości.', 1, '2018-01-21 19:22:50', '2018-01-31 02:30:22'),
-	(42, 'ALUPLAST IDEAL 7000', 'Ideal 7000 to doskonała propozycja dla wszystkich, którzy oczekują komfortu mieszkania na najwyższym poziomie.', 1, '2018-01-21 19:23:48', '2018-01-31 02:31:04'),
-	(43, 'Parapet Amino', 'Marmurowy', 5, '2018-01-25 18:17:15', '2018-01-25 18:17:15'),
-	(44, 'PORTA Metalowe 90cm', 'Pancerne drzwi zewnętrzne z zamkami antywłamaniowymi', 2, '2018-01-26 11:55:03', '2018-01-31 02:31:36'),
-	(45, 'ALUPLAST IDEAL 8000', 'Ideal 8000 to doskonała propozycja dla wszystkich, którzy oczekują komfortu mieszkania na najwyższym poziomie.', 1, '2018-01-26 18:30:42', '2018-01-31 02:31:42'),
-	(49, 'Drzwi Zewnętrzne', 'Drzwi zewnętrzne wykonane z PVC', 2, '2018-01-27 12:06:17', '2018-01-31 02:31:59'),
-	(51, 'Parapet Zewnętrzny PVC', 'Parapet wykonany z PVC', 5, '2018-01-27 12:06:35', '2018-01-31 02:33:35'),
-	(52, 'VEKA Alphaline', 'Okno o najwyższej klasie energooszczędności', 6, '2018-01-27 12:06:47', '2018-01-31 02:35:01'),
-	(53, 'ALUPLAST 6000', 'Ideal 6000 to doskonała propozycja dla wszystkich, którzy oczekują komfortu mieszkania na najwyższym poziomie.', 1, '2018-01-27 12:07:00', '2018-01-31 02:35:25'),
-	(54, 'Veka Artline 92', 'Ultranowoczesny system profili okiennych VEKA ARTLINE z PVC to przełomowa pod względem funkcjonalności i wzornictwa propozycja. Jego wyróżniającą cechą jest tzw. optyka przeszkleń bezramowych, czyli taka konstrukcja profili, która polega, analizując wygląd fasady zewnętrznej, na optycznym ukryciu ramy skrzydła za ramą ościeżnicy, a następnie możliwości niemal całkowitego ukrycia ramy ościeżnicy za ociepleniem budynku (wykonanym np. ze styropianiu).', 1, '2018-01-27 12:07:09', '2018-01-31 02:36:15'),
-	(55, 'Moskitiera', NULL, 9, '2018-01-27 12:07:17', '2018-01-27 12:07:17'),
-	(56, 'Drzwi wew', NULL, 3, '2018-01-27 12:10:04', '2018-01-27 12:10:04'),
-	(57, 'Brama garazowa', NULL, 4, '2018-01-27 12:23:26', '2018-01-27 12:23:26'),
-	(58, 'PIETRUCHA Parapet zewnętrzny', NULL, 5, '2018-01-28 16:53:11', '2018-01-28 16:53:11');
+INSERT INTO `products` (`id`, `nazwa`, `opis`, `productType_id`,`czyAktywny`, `created_at`, `updated_at`) VALUES
+	(40, 'ALUPLAST IDEAL 5000', 'Zaawansowany system pięciokomorowy o głębokości zabudowy 70 mm z systemem trzech uszczelek, o możliwości szklenia pakietami szybowymi do 41 mm szerokości.', 1,1, '2018-01-21 19:22:50', '2018-01-31 02:30:22'),
+	(42, 'ALUPLAST IDEAL 7000', 'Ideal 7000 to doskonała propozycja dla wszystkich, którzy oczekują komfortu mieszkania na najwyższym poziomie.', 1,1, '2018-01-21 19:23:48', '2018-01-31 02:31:04'),
+	(43, 'Parapet Amino', 'Marmurowy', 5,1, '2018-01-25 18:17:15', '2018-01-25 18:17:15'),
+	(44, 'PORTA Metalowe 90cm', 'Pancerne drzwi zewnętrzne z zamkami antywłamaniowymi', 2,1, '2018-01-26 11:55:03', '2018-01-31 02:31:36'),
+	(45, 'ALUPLAST IDEAL 8000', 'Ideal 8000 to doskonała propozycja dla wszystkich, którzy oczekują komfortu mieszkania na najwyższym poziomie.', 1,1, '2018-01-26 18:30:42', '2018-01-31 02:31:42'),
+	(49, 'Drzwi Zewnętrzne', 'Drzwi zewnętrzne wykonane z PVC', 2,1, '2018-01-27 12:06:17', '2018-01-31 02:31:59'),
+	(51, 'Parapet Zewnętrzny PVC', 'Parapet wykonany z PVC', 5,1, '2018-01-27 12:06:35', '2018-01-31 02:33:35'),
+  (52, 'VEKA Alphaline', 'Okno o najwyższej klasie energooszczędności', 6,1, '2018-01-27 12:06:47', '2018-01-31 02:35:01'),
+	(53, 'ALUPLAST 6000', 'Ideal 6000 to doskonała propozycja dla wszystkich, którzy oczekują komfortu mieszkania na najwyższym poziomie.', 1,1, '2018-01-27 12:07:00', '2018-01-31 02:35:25'),
+	(54, 'Veka Artline 92', 'Ultranowoczesny system profili okiennych VEKA ARTLINE z PVC to przełomowa pod względem funkcjonalności i wzornictwa propozycja. Jego wyróżniającą cechą jest tzw. optyka przeszkleń bezramowych, czyli taka konstrukcja profili, która polega, analizując wygląd fasady zewnętrznej, na optycznym ukryciu ramy skrzydła za ramą ościeżnicy, a następnie możliwości niemal całkowitego ukrycia ramy ościeżnicy za ociepleniem budynku (wykonanym np. ze styropianiu).', 1,1, '2018-01-27 12:07:09', '2018-01-31 02:36:15'),
+	(55, 'Moskitiera', NULL, 9,1, '2018-01-27 12:07:17', '2018-01-27 12:07:17'),
+	(56, 'Drzwi wew', NULL, 3,1, '2018-01-27 12:10:04', '2018-01-27 12:10:04'),
+	(57, 'Brama garazowa', NULL, 4,1, '2018-01-27 12:23:26', '2018-01-27 12:23:26'),
+	(58, 'PIETRUCHA Parapet zewnętrzny', NULL, 5,1, '2018-01-28 16:53:11', '2018-01-28 16:53:11');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 
 -- Zrzut struktury tabela plasticobaza.producttypeparams

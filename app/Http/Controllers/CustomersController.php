@@ -23,9 +23,17 @@ class CustomersController extends Controller
      }
     public function index()
     {
-        $klienci = Customer::all();
+        $klienci = Customer::where('czyAktywny','=',1)->get();
 
         return view('admin.customers.index')->with('klienci',$klienci);
+    }
+
+    public function archive()
+    {
+
+      $klienci = Customer::where('czyAktywny','=',0)->get();
+
+      return view('admin.customers.archive')->with('klienci',$klienci);
     }
 
     /**
@@ -44,6 +52,7 @@ class CustomersController extends Controller
        $customer -> adres = $request -> adres;
        $customer -> kod = $request -> kod;
        $customer -> poczta = $request -> poczta;
+       $customer -> czyAktywny = 1;
 
 
        $customer -> save();
@@ -121,14 +130,16 @@ class CustomersController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function archiveClient($id)
     {
       $customer = Customer::find($id);
       // dd($customer);
 
       $order = DB::table('orders')->where('customer_id',$id)->get();
 
-      $customer-> delete();
+      $customer -> czyAktywny = 0;
+      $customer -> save();
+
       return redirect('/admin/customers/index');
       // if($order == null){
       //

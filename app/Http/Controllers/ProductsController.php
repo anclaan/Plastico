@@ -21,10 +21,19 @@ class ProductsController extends Controller
     }
     public function index()
     {
-      $produkty = Product::all();
+      $produkty = Product::where('czyAktywny','=',1)->get();
       $typy = ProductType::pluck('nazwa','id');
 
       return view('admin.products.index')->with(array('produkty'=>$produkty,'typy'=>$typy));
+    }
+
+    public function archive()
+    {
+
+      $produkty = Product::where('czyAktywny','=',0)->get();
+      $typy = ProductType::pluck('nazwa','id');
+
+      return view('admin.products.archive')->with(array('produkty'=>$produkty,'typy'=>$typy));
     }
 
     /**
@@ -46,6 +55,7 @@ class ProductsController extends Controller
       $product -> nazwa = $request -> nazwa;
       $product -> opis = $request -> opis;
       $product -> productType_id = $request -> typy;
+      $product -> czyAktywny = 1;
 
 
       $product -> save();
@@ -107,14 +117,16 @@ class ProductsController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function archiveProduct($id)
     {
       $product = Product::find($id);
 
       if($product == null)
         return false;
 
-        $product-> delete();
+        $product -> czyAktywny = 0;
+        $product -> save();
+
         return redirect('/admin/products/index');
     }
 

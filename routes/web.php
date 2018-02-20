@@ -33,9 +33,10 @@ Route::group(['middleware' => ['auth:admin']], function (){
 
     // Customers routes
     Route::get('/customers/index','CustomersController@index');
+    Route::get('/customers/archive','CustomersController@archive');
     // Route::get('/customers/{id}/edit','CustomersController@edit');
     // Route::post('/customers/{id}/update','CustomersController@update');
-    Route::get('/customers/{id}/destroy','CustomersController@destroy');
+    Route::get('/customers/{id}/archiveClient','CustomersController@archiveClient');
 
 
     // Events routes
@@ -43,29 +44,46 @@ Route::group(['middleware' => ['auth:admin']], function (){
 
     // Orders routes
     Route::get('/orders/index','OrdersController@index');
+    Route::get('/orders/archive','OrdersController@archive');
     Route::get('/orders/create','OrdersController@showCreateForm');
     Route::post('/orders/create','OrdersController@create');
     Route::get('/orders/store','OrdersController@store');
     Route::get('/orders/addOrder','OrdersController@addOrder');
-    Route::get('/orders/{id}/destroy','OrdersController@destroy');
+    Route::get('/orders/{id}/archiveOrder','OrdersController@archiveOrder');
     Route::get('/orders/update','OrdersController@update');
+    Route::get('/orders/showOrdersWithSpecificStatus/{id}', 'OrdersController@showOrdersWithSpecificStatus');
     Route::get('/orders/get/{id}', 'OrdersController@getProducts');
     Route::get('/orders/clear', 'OrdersController@clearListOfOrderProducts');
     Route::get('/orders/{id}/clear', 'OrdersController@deleteProductFromListOfOrderProducts');
     Route::get('/orders/details/{id}', 'OrdersController@detailsOfOrder');
+    Route::get('/orders/{id}/changeStatus/{status}', ['as' => 'changeStatus', 'uses' => 'OrdersController@changeStatus']);
+    Route::post('/orders/changeStatusManually', 'OrdersController@changeStatusManually');
+
 
     // Product routes
     Route::get('/products/index','ProductsController@index');
+    Route::get('/products/archive','ProductsController@archive');
     Route::get('/product/index','ProductsController@getProductType');
     Route::post('/products/create','ProductsController@create');
-    Route::get('/products/{id}/destroy','ProductsController@destroy');
+    Route::get('/products/{id}/archiveProduct','ProductsController@archiveProduct');
     // Route::post('/products/{id}/update','ProductsController@update');
   });
 });
 
 Route::get('/', 'PagesController@getIndex');
-Route::get('oferta', 'PagesController@getOferta');
-Route::get('galeria', 'PagesController@getGaleria');
+
+Route::get('okna/veka', 'PagesController@oknaVeka');
+Route::get('okna/salamander', 'PagesController@oknaSalamander');
+Route::get('okna/aluplast', 'PagesController@oknaAluplast');
+Route::get('drzwi/zewnetrzne', 'PagesController@drzwiZewnetrzne');
+Route::get('drzwi/wewnetrzne', 'PagesController@drzwiWewnetrzne');
+Route::get('bramy', 'PagesController@bramy');
+Route::get('paraperty', 'PagesController@paraperty');
+Route::get('rolety', 'PagesController@rolety');
+Route::get('moskitiery', 'PagesController@moskitiery');
+
+Route::get('drzwi', 'PagesController@getGaleria');
+Route::get('bramy', 'PagesController@getGaleria');
 Route::get('info', 'PagesController@getONas');
 Route::get('kontakt', 'PagesController@getKontakt');
 Route::get('/home', 'HomeController@index')->name('home');
@@ -78,7 +96,7 @@ Route::post('kontakt', 'PagesController@sendMail');
   //     return view ('admin.calendar');
   //   });
 Route::resource('events', 'EventsController',['only' => ['index', 'store','update','destroy','create']]);
-Route::resource('products', 'ProductsController',['only' => ['index', 'store','create','addProducts','update','edit']]);
-Route::resource('orders', 'OrdersController',['only' => ['index', 'getProducts','store','detailsOfOrder','addOrder','create']]);
-Route::resource('customers', 'CustomersController',['only' => ['index', 'store','create','update','edit','searchCustomers']]);
+Route::resource('products', 'ProductsController',['only' => ['index', 'archive', 'store','create','addProducts','update','edit']]);
+Route::resource('orders', 'OrdersController',['only' => ['index','archive','getProducts','changeStatusManually','store','detailsOfOrder','addOrder','create','showOrdersWithSpecificStatus']]);
+Route::resource('customers', 'CustomersController',['only' => ['index', 'archive','store','create','update','edit','searchCustomers']]);
 Route::resource('users', 'UsersController',['only' => ['index', 'store','create']]);
