@@ -73,7 +73,7 @@
 
 <div>
 {{-- {{Form::open(['route'=>'customers.create', 'method'=>'GET', 'role'=>'form']) }} --}}
-<button type="button"  class="btn btn-info" style="float:right;" data-dismiss="modal">Powrót do listy zamówień</button>
+<a type="button" href="/admin/orders/index" class="btn btn-info" style="float:right;" data-dismiss="modal">Powrót do listy zamówień</a>
       <div style="border-bottom-style: solid;">
           <h1>Szczegóły zamówienia {{ $order->nazwa }}</h1>
       </div>

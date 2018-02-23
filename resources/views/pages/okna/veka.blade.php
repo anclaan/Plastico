@@ -39,16 +39,17 @@
                                 Poszczególne systemy okienne różnią się liczba komór, grubością ścianek, wzmocnieniem w profiach PCV czy też kształtem profili.
                                 Rodzaje systemów okiennych:
                               <ul>
-                                <li>Artline 82</li>
-                                <li>Alphaline</li>
-                                <li>Softline 82 ad</li>
-                                <li>Softline 82 md</li>
-                                <li>Softline 82 MD półzlicowany</li>
-                                <li>PERFECLTINE Oval</li>
-                                <li>PERFECTLINE Swing</li>
-                                <li>PERFECTLINE Wariant termiczny</li>
-                                <li>Topline</li>
-                                <li>Effectline</li>
+                                <li><a href="https://www.veka.pl/index.php?id=139">Artline 82</a></li>
+                                <li><a href="https://www.veka.pl/index.php?id=76">Alphaline</a></li>
+                                <li><a href="https://www.veka.pl/index.php?id=94">Softline 82 ad</a></li>
+                                <li><a href="https://www.veka.pl/index.php?id=95">Softline 82 md</a></li>
+                                <li><a href="https://www.veka.pl/index.php?id=158">Softline 82 MD półzlicowany</a></li>
+                                <li><a href="https://www.veka.pl/index.php?id=85">PERFECLTINE Standard</a></li>
+                                <li><a href="https://www.veka.pl/index.php?id=86">PERFECLTINE Oval</a></li>
+                                <li><a href="https://www.veka.pl/index.php?id=88">PERFECTLINE Swing</a></li>
+                                <li><a href="https://www.veka.pl/index.php?id=87">PERFECTLINE Wariant termiczny</a></li>
+                                <li><a href="https://www.veka.pl/index.php?id=89">Topline</a></li>
+                                <li><a href="https://www.veka.pl/index.php?id=133">Effectline</a></li>
                               </ul>
                               Dokładne informacje na temat poszczególnych systemów okiennych można uzyskać poprzez kliknięcie na wybraną pozycje, co spowoduje to przekierowanie na stronę producenta.
                             </br>

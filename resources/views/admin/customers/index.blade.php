@@ -61,7 +61,7 @@
           @endforeach
           </tbody>
         </table>
-          <a role="button" id="dodajKlienta" type="button" class="btn btn-success"style="float: left;">Dodaj nowego klienta</a>
+        
   </div>
   </div>
 

@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', ' Drzwi wewnętrzne')
+@section('title', ' Okna - Salamander')
 
 @section('content')
 
@@ -9,17 +9,17 @@
                 <div class="container no-padding">
                     <div class="row">
                         <!-- Carousel Slideshow -->
-                        <div id="carousel-example" class="carousel slide" style="border-bottom-style: solid; "data-ride="carousel">
+                        {{-- <div id="carousel-example" class="carousel slide" style="border-bottom-style: solid; "data-ride="carousel">
 
                             <div class="clearfix"></div>
 
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img src="{{ asset('img/slideshow/aluplast-baner.jpg') }}">
+                                    <img src="{{ asset('img/slideshow/salamander-baner.jpg') }}">
                                 </div>
                             </div>
 
-                        </div>
+                        </div> --}}
 
                     </div>
                 </div>
@@ -31,24 +31,25 @@
                         <!-- Main Text -->
                         <div class="col-md-12">
                           <div style="border-bottom-style: solid; font-size:25px;">
-                            <h1>Drzwi wewnętrzne</h1>
+                            <h1>Rolety</h1>
                           </div>
                           </br>
                           </br>
-                            <p>
-                              Oferujemy drzwi wewnętrze firm PORTA oraz LUNA. Nasi klinci mają możliwość dostosowywania
-                              drzwi do własnych potrzeb. Dostępnę są takie opcje jak zmiana futryny, klamek, dobór wizjera, możliwość
-                              skracania drzwi.
-
-                              Dokładne informacje na temat dostępnych modeli oraz ich parametrów znajdują się na stronach producentów, do których linki umieszone są poniżej.
+                            <p>W naszej ofercie można znaleźć rolety zewnętrzne oraz wewnętrzne firmy MASTER. Jest to producent z wieloletnim doświadczeniem oraz gwarancją jakości
+                               wyrabianych produktów. W ofercie dostępne są rolety wewnętrze i zewnętrze.
                             </br>
-                            <p>Porta: <a href ="https://www.porta.com.pl/"class="text-center">https://www.porta.com.pl/</a></p>
-                            <p>Luna: <a href ="http://www.lunadrzwi.pl/"class="text-center">http://www.lunadrzwi.pl/</a></p>
+                              </br>
+
+                              Dokładne informacje na temat rolet można uzyskać na stronie producenta, do którch link znajduje się poniżej.
+                            </br>
+                            <a href="https://www.master.kalisz.pl/">MASTER - https://www.master.kalisz.pl/<a>
+
                             </br>
                             </br>
                               Aby uzyskać więcej informacji, zapraszamy na konsultacje do naszego sklepu znajdującego się W Błaszkach, na ulicy Sulwińskiego 29!
+
                             </p>
-                        
+
                         </div>
                         <!-- End Main Text -->
                     </div>

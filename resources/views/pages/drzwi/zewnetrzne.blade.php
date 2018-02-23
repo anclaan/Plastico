@@ -48,7 +48,7 @@
                             </br>
                               Aby uzyskać więcej informacji, zapraszamy na konsultacje do naszego sklepu znajdującego się W Błaszkach, na ulicy Sulwińskiego 29!
                             </p>
-                            <p class="text-center">http://www.aluplast.com.pl/systemy-okienne-pvc</p>
+                      
                         </div>
                         <!-- End Main Text -->
                     </div>

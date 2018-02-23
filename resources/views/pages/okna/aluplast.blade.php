@@ -40,13 +40,13 @@
                             </br>
                             </br>
                               <ul>
-                                <li>Energeto</li>
-                                <li>IDEAL 8000</li>
-                                <li>IDEAL 7000</li>
-                                <li>IDEAL 5000</li>
-                                <li>IDEAL 4000</li>
-                                <li>IDEAL 2000</li>
-                                <li>Interec 85 mm</li>
+                                <li><a href="http://www.aluplast.com.pl/energeto-okna-modyfikowane-energetycznie">Energeto</a></li>
+                                <li><a href="http://www.aluplast.com.pl/aluplast-ideal-8000">IDEAL 8000</a></li>
+                                <li><a href="http://www.aluplast.com.pl/aluplast-ideal-7000">IDEAL 7000</a></li>
+                                <li><a href="http://www.aluplast.com.pl/aluplast-ideal-5000">IDEAL 5000</a></li>
+                                <li><a href="http://www.aluplast.com.pl/aluplast-ideal-6000">IDEAL 4000</a></li>
+                                <li><a href="http://www.aluplast.com.pl/aluplast-ideal-2000">IDEAL 2000</a></li>
+                                <li><a href="http://www.aluplast.com.pl/intertec">Interec 85 mm</a></li>
                               </ul>
                               Dokładne informacje na temat poszczególnych systemów okiennych można uzyskać poprzez kliknięcie na wybraną pozycje, co spowoduje to przekierowanie na stronę producenta.
                             </br>
@@ -55,7 +55,7 @@
                               Aby uzyskać więcej informacji, zapraszamy na konsultacje do naszego sklepu znajdującego się W Błaszkach, na ulicy Sulwińskiego 29!
 
                             </p>
-                            <p class="text-center">http://www.aluplast.com.pl/systemy-okienne-pvc</p>
+                            <p>Link do strony producenta: <a href ="http://www.aluplast.com.pl/systemy-okienne-pvc"class="text-center">http://www.aluplast.com.pl/systemy-okienne-pvc</a></p>
                         </div>
                         <!-- End Main Text -->
                     </div>

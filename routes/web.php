@@ -81,9 +81,7 @@ Route::get('bramy', 'PagesController@bramy');
 Route::get('paraperty', 'PagesController@paraperty');
 Route::get('rolety', 'PagesController@rolety');
 Route::get('moskitiery', 'PagesController@moskitiery');
-
-Route::get('drzwi', 'PagesController@getGaleria');
-Route::get('bramy', 'PagesController@getGaleria');
+Route::get('bramy', 'PagesController@bramy');
 Route::get('info', 'PagesController@getONas');
 Route::get('kontakt', 'PagesController@getKontakt');
 Route::get('/home', 'HomeController@index')->name('home');

@@ -37,7 +37,7 @@ class PagesController extends Controller {
     return view('pages.bramy');
   }
   public function paraperty(){
-    return view('pages.paraperty');
+    return view('pages.parapety');
   }
   public function rolety(){
     return view('pages.rolety');

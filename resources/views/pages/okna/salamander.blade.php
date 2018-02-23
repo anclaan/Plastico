@@ -36,24 +36,28 @@
                           </br>
                           </br>
                             <p>Salamander jest koncernem działa na polskim rynku od prawie
-                              dwóch dekad. Firma dysponuje dwoma rodajami systemów okiennych: Brügmann bluEvolution i Salamander.
+                              dwóch dekad. Firma dysponuje trzema rodajami systemów okiennych: Brügmann bluEvolution, Salamander oraz climAktiv.
                               Produkty dostępne są w wielu technicznych kombinacjach i wzorach.
                             </br>
                               </br>
 
                             System Brügmann bluEvolution:
                               <ul>
-                                <li>Brügmann bluEvolution: 82 AD</li>
-                                <li>Brügmann bluEvolution: 82 MD</li>
-                                <li>Brügmann bluEvolutionL 82 Alu</li>
+                                <li> <a href="https://www.sip-windows.com/pl/Produkty/systemy-okienne/bruegmann-bluevolution-73"> Brügmann bluEvolution: 73</a></li>
+                                <li> <a href="https://www.sip-windows.com/pl/Produkty/systemy-okienne/bruegmann-bluevolution-82"> Brügmann bluEvolution: 82</a></li>
+                                <li> <a href="https://www.sip-windows.com/pl/Produkty/systemy-okienne/bluevolution-92"> Brügmann bluEvolution: 92</a></li>
                               </ul>
                             </br>
                             System Salamander:
                               <ul>
-                                <li>Streamline AD</li>
-                                <li>Streamline MD</li>
-                                <li>Streamline Alu</li>
-                                <li>Streamline Skrzydło klejone</li>
+                                <li> <a href="https://www.sip-windows.com/pl/Produkty/systemy-okienne/streamline"> Streamline</a></li>
+                                <li> <a href="https://www.sip-windows.com/pl/Produkty/systemy-okienne/salamander-3D">Streamline 3D</a></li>
+
+                              </ul>
+                            </br>
+                            climAktivPlus:
+                              <ul>
+                                <li> <a href="https://www.sip-windows.com/pl/Produkty/systemy-okienne/climaktiv-plus">climAktiv</a></li>
                               </ul>
                               Dokładne informacje na temat poszczególnych systemów okiennych można uzyskać poprzez kliknięcie na wybraną pozycje, co spowoduje to przekierowanie na stronę producenta.
                             </br>
@@ -62,7 +66,8 @@
                               Aby uzyskać więcej informacji, zapraszamy na konsultacje do naszego sklepu znajdującego się W Błaszkach, na ulicy Sulwińskiego 29!
 
                             </p>
-                            <p class="text-center">https://www.veka.pl/index.php?id=4</p>
+                    
+                            <p>Link do strony producenta: <a href ="https://www.sip-windows.com/pl"class="text-center">https://www.sip-windows.com/pl</a></p>
                         </div>
                         <!-- End Main Text -->
                     </div>
